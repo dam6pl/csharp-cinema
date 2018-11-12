@@ -1,0 +1,174 @@
+﻿<Window x:Class="Kino.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kino"
+        mc:Ignorable="d"
+        Title="System Obslugi Kina" Height="600" Width="1200" WindowState="Maximized">
+
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource MainGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource MenuStyle}">
+            <MenuItem Header="_Program" Style="{StaticResource MenuItemHeaderStyle}">
+                <MenuItem Header="Nowe okno" Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Zmień użytkownika" Style="{StaticResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Header="Wyloguj"  Style="{StaticResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="_Edycja" Style="{StaticResource MenuItemHeaderStyle}">
+                <MenuItem Header="Cofnij" InputGestureText="Ctrl+Z" Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Do przodu" InputGestureText="Ctrl+Y" Style="{StaticResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Header="Wytnij" InputGestureText="Ctrl+X" Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Kopiuj" InputGestureText="Ctrl+C" Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Wklej" InputGestureText="Ctrl+V" Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Usuń" InputGestureText="Del" Style="{StaticResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Header="Znajdź" InputGestureText="Ctrl+F" Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Znajdź następny" InputGestureText="F3" Style="{StaticResource MenuItemStyle}"/>
+                <MenuItem Header="Przejdź do..." InputGestureText="Ctrl+G" Style="{StaticResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Header="Zaznacz wszystko" InputGestureText="Ctrl+A" Style="{StaticResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="_Widok" Style="{StaticResource MenuItemHeaderStyle}">
+                <MenuItem Header="Pasek stanu" Style="{StaticResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="_Pomoc" Style="{StaticResource MenuItemHeaderStyle}">
+                <MenuItem Header="O Autorze" Style="{StaticResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Header="Informacje o aplikacji" Style="{StaticResource MenuItemStyle}"/>
+            </MenuItem>
+        </Menu>
+
+        <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Source="/Assets/logo.png" Style="{StaticResource LogoStyle}"/>
+
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="340"/>
+            </Grid.ColumnDefinitions>
+
+            <Menu Grid.Column="1" Style="{StaticResource VerticalMenuStyle}">
+                <MenuItem Style="{StaticResource ImageMenuItemStyle}">
+                    <MenuItem.Header>
+                        <Image Source="/Assets/envelope.png" Style="{StaticResource MenuImageStyle}"/>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource ImageMenuItemStyle}">
+                    <MenuItem.Header>
+                        <Image Source="/Assets/user.png" Style="{StaticResource MenuImageStyle}"/>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource ImageMenuItemStyle}">
+                    <MenuItem.Header>
+                        <Image Source="/Assets/wrench.png" Style="{StaticResource MenuImageStyle}"/>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource ImageMenuItemStyle}">
+                    <MenuItem.Header>
+                        <Image Source="/Assets/sign-out-alt.png" Style="{StaticResource MenuImageStyle}"/>
+                    </MenuItem.Header>
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Menu Style="{StaticResource MenuStyle}">
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowAllShowingsCommand}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="/Assets/seanse.png" />
+                            <Label Grid.Column="1" Content="Seanse" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding Show}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="/Assets/film.png" />
+                            <Label Grid.Column="1" Content="Filmy" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowAllRoomsCommand}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="/Assets/room.png" />
+                            <Label Grid.Column="1" Content="Sale" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowNowyKontrahentCommand}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="/Assets/ticket.png" />
+                            <Label Grid.Column="1" Content="Sprzedaz biletow" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowWszyscyPracownicyCommand}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="/Assets/user.png" />
+                            <Label Grid.Column="1" Content="Pracownicy" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding ShowNewRoomCommand}">
+                    <MenuItem.Header>
+                        <Label Grid.Column="1" Content="Do usuniecia" Style="{StaticResource LeftMenuLabelStyle}"/>
+                    </MenuItem.Header>
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource WorkspacesStyle}">
+            <HeaderedContentControl
+                Content="{Binding Path = Workspaces}"
+                ContentTemplate="{StaticResource WorkspacesTemplate}"
+                Style="{StaticResource MainHCCStyle}"/>
+        </Grid>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Projektowanie desktopowych aplikacji biznesowych" Style="{StaticResource FooterLabelStyle}"/>
+
+        <Label Grid.Row="3" Grid.Column="2" Content="Damian Nowak" Style="{StaticResource FooterRightLabelStyle}"/>
+
+    </Grid>
+</Window>
