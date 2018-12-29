@@ -37,7 +37,7 @@ namespace Kino.ViewModels
 
         private List<CommandViewModel> createCommands()
         {
-            Console.WriteLine("Elo");
+
             Messenger.Default.Register<String>(this, open);
 
             return new List<CommandViewModel>
