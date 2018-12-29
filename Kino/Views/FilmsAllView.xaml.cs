@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace Kino.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy AllRoomsView.xaml
+    /// Logika interakcji dla klasy FilmsAllView.xaml
     /// </summary>
-    public partial class AllRoomsView : AllViewBase
+    public partial class FilmsAllView : AllViewBase
     {
-        public AllRoomsView()
+        public FilmsAllView()
         {
             InitializeComponent();
         }

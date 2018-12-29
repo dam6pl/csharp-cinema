@@ -1,4 +1,5 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +15,7 @@ namespace Kino.ViewModels.Abstract
         #region Fields
         protected KinoEntities kinoEntities;
         private BaseCommand _LoadCommand;
+        private BaseCommand _AddCommand;
         private ObservableCollection<T> _List;
         #endregion Fields
 
@@ -27,7 +29,17 @@ namespace Kino.ViewModels.Abstract
                 return _LoadCommand;
             }
         }
-        
+
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (_AddCommand == null)
+                    _AddCommand = new BaseCommand(() => add());
+                return _AddCommand;
+            }
+        }
+
         public ObservableCollection<T> List
         {
             get
@@ -56,6 +68,11 @@ namespace Kino.ViewModels.Abstract
 
         #region Helpers
         public abstract void load();
+
+        public void add()
+        {
+            Messenger.Default.Send(DisplayName + "Add");
+        }
         #endregion Helpers
     }
 }

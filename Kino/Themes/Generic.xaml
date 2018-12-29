@@ -1,13 +1,12 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Kino"
-    xmlns:abs="clr-namespace:Kino.Views.Abstract">
+    xmlns:local="clr-namespace:Kino.Views.Abstract">
 
-    <Style TargetType="{x:Type abs:AllViewBase}">
+    <Style TargetType="{x:Type local:AllViewBase}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type abs:AllViewBase}">
+                <ControlTemplate TargetType="{x:Type local:AllViewBase}">
                     <Grid Margin="0,10,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
@@ -23,7 +22,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0" Content="Dodaj nowy element" Margin="0 0 4 0"
-                                    Command="{Binding ShowNewShowingCommand}"/>
+                                    Command="{Binding AddCommand}"/>
                             <Button Grid.Column="1" Content="Usun element" Margin="2 0 2 0"/>
                             <Button Grid.Column="2" Content="Modufikuj element" Margin="2 0 2 0"/>
                             <Button Grid.Column="3" Content="Otworz elemenet" Margin="4 0 0 0"/>
@@ -37,11 +36,11 @@
         </Setter>
     </Style>
 
-   
-    <Style TargetType="{x:Type abs:SingleViewBase}">
+
+    <Style TargetType="{x:Type local:SingleViewBase}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type abs:SingleViewBase}">
+                <ControlTemplate TargetType="{x:Type local:SingleViewBase}">
                     <Grid Margin="0,10,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="34"/>

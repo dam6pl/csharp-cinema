@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KinoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KinoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adresy">
           <Key>
             <PropertyRef Name="IdAdresu" />
@@ -77,8 +77,7 @@
           <Property Name="IdSeansu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdSali" Type="int" />
           <Property Name="IdFilmu" Type="int" />
-          <Property Name="Data" Type="date" />
-          <Property Name="Godzina" Type="time" Precision="7" />
+          <Property Name="Data" Type="datetime" />
           <Property Name="IdTypuSeansu" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -277,8 +276,7 @@
             <End Role="Zamowienia" EntitySet="Zamowienia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KinoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -362,8 +360,7 @@
           <Property Name="IdSeansu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdSali" Type="Int32" />
           <Property Name="IdFilmu" Type="Int32" />
-          <Property Name="Data" Type="DateTime" Precision="0" />
-          <Property Name="Godzina" Type="Time" Precision="7" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
           <Property Name="IdTypuSeansu" Type="Int32" />
           <NavigationProperty Name="Filmy" Relationship="Self.FK_Seanse_Filmy" FromRole="Seanse" ToRole="Filmy" />
           <NavigationProperty Name="Sale" Relationship="Self.FK_Seanse_Sale" FromRole="Seanse" ToRole="Sale" />
@@ -656,7 +653,6 @@
                 <ScalarProperty Name="IdSali" ColumnName="IdSali" />
                 <ScalarProperty Name="IdFilmu" ColumnName="IdFilmu" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="Godzina" ColumnName="Godzina" />
                 <ScalarProperty Name="IdTypuSeansu" ColumnName="IdTypuSeansu" />
               </MappingFragment>
             </EntityTypeMapping>

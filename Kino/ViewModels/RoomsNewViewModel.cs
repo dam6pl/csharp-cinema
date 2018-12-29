@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class NewRoomViewModel : SingleViewModel<Sale>
+    class RoomsNewViewModel : SingleViewModel<Sale>
     {
         #region Construktor
-        public NewRoomViewModel()
+        public RoomsNewViewModel()
             : base()
         {
             base.DisplayName = "Nowa Sala";
@@ -84,7 +84,6 @@ namespace Kino.ViewModels
         #endregion Properties
 
         #region Helpers
-        //to jest metoda ktora zapisuje rekod
         public override void Save()
         {
             kinoEntities.Sale.Add(item);

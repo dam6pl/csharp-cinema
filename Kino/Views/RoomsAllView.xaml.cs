@@ -11,16 +11,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Kino.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy AllShowingsView.xaml
+    /// Logika interakcji dla klasy RoomsAllView.xaml
     /// </summary>
-    public partial class AllShowingsView : AllViewBase
+    public partial class RoomsAllView : AllViewBase
     {
-        public AllShowingsView()
+        public RoomsAllView()
         {
             InitializeComponent();
         }

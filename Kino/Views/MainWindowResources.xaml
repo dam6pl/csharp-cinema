@@ -3,20 +3,24 @@
                     xmlns:vw="clr-namespace:Kino.Views"
                     xmlns:vm="clr-namespace:Kino.ViewModels">
 
-    <DataTemplate DataType="{x:Type vm:AllShowingsViewModel}">
-        <vw:AllShowingsView/>
+    <DataTemplate DataType="{x:Type vm:ShowingsAllViewModel}">
+        <vw:ShowingsAllView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:NewShowingViewModel}">
-        <vw:NewShowingView/>
+    <DataTemplate DataType="{x:Type vm:ShowingsNewViewModel}">
+        <vw:ShowingsNewView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:AllRoomsViewModel}">
-        <vw:AllRoomsView/>
+    <DataTemplate DataType="{x:Type vm:RoomsAllViewModel}">
+        <vw:RoomsAllView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:NewRoomViewModel}">
-        <vw:NewRoomView/>
+    <DataTemplate DataType="{x:Type vm:RoomsNewViewModel}">
+        <vw:RoomsNewView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:FilmsAllViewModel}">
+        <vw:FilmsAllView/>
     </DataTemplate>
 
     <!--<DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">

@@ -91,7 +91,7 @@
 
         <Grid Grid.Row="2" Grid.Column="0">
             <Menu Style="{StaticResource MenuStyle}">
-                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowAllShowingsCommand}">
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowShowingsAllCommand}">
                     <MenuItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -103,7 +103,7 @@
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding Show}">
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowFilmsAllCommand}">
                     <MenuItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -115,7 +115,7 @@
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowAllRoomsCommand}">
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowRoomsAllCommand}">
                     <MenuItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -151,7 +151,7 @@
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Command="{Binding ShowNewRoomCommand}">
+                <MenuItem Command="{Binding ShowRoomsNewCommand}">
                     <MenuItem.Header>
                         <Label Grid.Column="1" Content="Do usuniecia" Style="{StaticResource LeftMenuLabelStyle}"/>
                     </MenuItem.Header>

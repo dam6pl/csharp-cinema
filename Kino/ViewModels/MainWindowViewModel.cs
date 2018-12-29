@@ -1,4 +1,5 @@
-﻿using Kino.ViewModels.Abstract;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,16 +37,19 @@ namespace Kino.ViewModels
 
         private List<CommandViewModel> createCommands()
         {
+            Console.WriteLine("Elo");
+            Messenger.Default.Register<String>(this, open);
+
             return new List<CommandViewModel>
             {
-                new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new NewShowingViewModel()))),
-                new CommandViewModel("Wszystkie seanse", new BaseCommand(()=>this.showAllShowings())),
+                new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new ShowingsNewViewModel()))),
+                new CommandViewModel("Wszystkie seanse", new BaseCommand(()=>this.showShowingsAll())),
 
-                new CommandViewModel("Nowa sala", new BaseCommand(()=>this.createWorkspace(new NewRoomViewModel()))),
-                new CommandViewModel("Wszystkie sale", new BaseCommand(()=>this.showAllRooms())),
+                new CommandViewModel("Nowa sala", new BaseCommand(()=>this.createWorkspace(new RoomsNewViewModel()))),
+                new CommandViewModel("Wszystkie sale", new BaseCommand(()=>this.showRoomsAll())),
 
                 //new CommandViewModel("Nowy pracownik", new BaseCommand(()=>this.createWorkspace(new NowyPracownikViewModel()))),
-                //new CommandViewModel("Pracownicy", new BaseCommand(()=>this.showAllPracownicy()))
+                new CommandViewModel("Wszystkie filmy", new BaseCommand(()=>this.showFilmsAll()))
             };
         }
         #endregion Commands
@@ -89,26 +93,26 @@ namespace Kino.ViewModels
             this.setActiveWorkspace(workspace);
         }
 
-        private void showAllShowings()
+        private void showShowingsAll()
         {
-            AllShowingsViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is AllShowingsViewModel)
-                as AllShowingsViewModel;
+            ShowingsAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is ShowingsAllViewModel)
+                as ShowingsAllViewModel;
             if (workspace == null)
             {
-                workspace = new AllShowingsViewModel();
+                workspace = new ShowingsAllViewModel();
                 this.Workspaces.Add(workspace);
             }
 
             this.setActiveWorkspace(workspace);
         }
 
-        private void showAllRooms()
+        private void showRoomsAll()
         {
-            AllRoomsViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is AllRoomsViewModel)
-                as AllRoomsViewModel;
+            RoomsAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is RoomsAllViewModel)
+                as RoomsAllViewModel;
             if (workspace == null)
             {
-                workspace = new AllRoomsViewModel();
+                workspace = new RoomsAllViewModel();
                 this.Workspaces.Add(workspace);
             }
 
@@ -116,18 +120,18 @@ namespace Kino.ViewModels
         }
 
 
-        //private void showAllPracownicy()
-        //{
-        //    WszyscyPracownicyViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is WszyscyPracownicyViewModel)
-        //        as WszyscyPracownicyViewModel;
-        //    if (workspace == null)
-        //    {
-        //        workspace = new WszyscyPracownicyViewModel();
-        //        this.Workspaces.Add(workspace);
-        //    }
+        private void showFilmsAll()
+        {
+            FilmsAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is FilmsAllViewModel)
+                as FilmsAllViewModel;
+            if (workspace == null)
+            {
+                workspace = new FilmsAllViewModel();
+                this.Workspaces.Add(workspace);
+            }
 
-        //    this.setActiveWorkspace(workspace);
-        //}
+            this.setActiveWorkspace(workspace);
+        }
 
         private void setActiveWorkspace(WorkspaceViewModel workspace)
         {
@@ -140,66 +144,71 @@ namespace Kino.ViewModels
                 collectionView.MoveCurrentTo(workspace);
             }
         }
+
+        private void open(String name)
+        {
+            createWorkspace(new ShowingsNewViewModel());
+        }
         #endregion Helpers
 
         #region Menu commands
-        private BaseCommand _showAllShowingsCommand;
-        public ICommand ShowAllShowingsCommand
+        private BaseCommand _showShowingsAllCommand;
+        public ICommand ShowShowingsAllCommand
         {
             get
             {
 
-                if (_showAllShowingsCommand == null)
+                if (_showShowingsAllCommand == null)
                 {
-                    _showAllShowingsCommand = new BaseCommand(() => showAllShowings());
+                    _showShowingsAllCommand = new BaseCommand(() => showShowingsAll());
                 }
 
-                return _showAllShowingsCommand;
+                return _showShowingsAllCommand;
             }
         }
 
-        private BaseCommand _showNewShowingCommand;
-        public ICommand ShowNewShowingCommand
+        private BaseCommand _showRoomsAllCommand;
+        public ICommand ShowRoomsAllCommand
         {
             get
             {
 
-                if (_showNewShowingCommand == null)
+                if (_showRoomsAllCommand == null)
                 {
-                    _showNewShowingCommand = new BaseCommand(() => createWorkspace(new NewShowingViewModel()));
+                    _showRoomsAllCommand = new BaseCommand(() => showRoomsAll());
                 }
 
-                return _showNewShowingCommand;
+                return _showRoomsAllCommand;
             }
         }
 
-        private BaseCommand _showAllRoomsCommand;
-        public ICommand ShowAllRoomsCommand
+        private BaseCommand _showFilmsAllCommand;
+        public ICommand ShowFilmsAllCommand
         {
             get
             {
 
-                if (_showAllRoomsCommand == null)
+                if (_showFilmsAllCommand == null)
                 {
-                    _showAllRoomsCommand = new BaseCommand(() => showAllRooms());
+                    _showFilmsAllCommand = new BaseCommand(() => showFilmsAll());
                 }
 
-                return _showAllRoomsCommand;
+                return _showFilmsAllCommand;
             }
         }
 
-        private BaseCommand _showNewRoomCommand;
-        public ICommand ShowNewRoomCommand
+        private BaseCommand _showRoomsNewCommand;
+        public ICommand ShowRoomsNewCommand
         {
             get
             {
 
-                if (_showNewRoomCommand == null)
+                if (_showRoomsNewCommand == null)
                 {
-                    _showNewRoomCommand = new BaseCommand(() => createWorkspace(new NewRoomViewModel()));
+                    _showRoomsNewCommand = new BaseCommand(() => createWorkspace(new ShowingsNewViewModel()));
                 }
 
-                return _showNewRoomCommand;
+                return _showRoomsNewCommand;
             }
         }
         # endregion Menu commands

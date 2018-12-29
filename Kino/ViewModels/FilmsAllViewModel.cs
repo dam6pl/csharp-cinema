@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class AllRoomsViewModel : AllViewModel<Sale>
+    class FilmsAllViewModel : AllViewModel<Filmy>
     {
         #region Constructor
-        public AllRoomsViewModel()
+        public FilmsAllViewModel()
             : base()
         {
-            base.DisplayName = "Wszystkie sale";
+            base.DisplayName = "Filmy";
         }
         #endregion Constructor
 
         #region Helpers
         public override void load()
         {
-            List = new ObservableCollection<Sale>
+            List = new ObservableCollection<Filmy>
                 (
-                from sala in kinoEntities.Sale
-                select sala
+                from film in kinoEntities.Filmy
+                select film
                 );
         }
         #endregion Helpers

@@ -24,7 +24,6 @@ namespace Kino.Models
         public Nullable<int> IdSali { get; set; }
         public Nullable<int> IdFilmu { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
-        public Nullable<System.TimeSpan> Godzina { get; set; }
         public Nullable<int> IdTypuSeansu { get; set; }
     
         public virtual Filmy Filmy { get; set; }
