@@ -28,37 +28,37 @@
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Sala: " Style="{StaticResource LabelGridStyle}"/>
-            <ComboBox Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" 
-                      ItemsSource="{Binding SaleComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                      SelectedValue="{Binding Path=IdSali, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                      ItemsSource="{Binding SaleComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
 
             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Film:"/>
-            <ComboBox Grid.Row="1" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" 
-                      ItemsSource="{Binding FilmyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                      SelectedValue="{Binding Path=IdFilmu, Mode=TwoWay}"/>
+            <ComboBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                      ItemsSource="{Binding FilmyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Data: " Style="{StaticResource LabelGridStyle}"/>
             <Label Grid.Row="2" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="2" Grid.Column="2" Style="{StaticResource DatePickerStyle}"/>
-            <Label Grid.Row="2" Grid.Column="3" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="2" Grid.Column="4" Style="{StaticResource DatePickerStyle}"/>
+            <DatePicker Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
+            <Label Grid.Row="2" Grid.Column="4" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
+            <DatePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
 
-            <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Typ filmu:"/>
+            <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Typ seansu:"/>
             <ComboBox Grid.Row="3" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" 
-                      ItemsSource="{Binding TypySeansowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                      SelectedValue="{Binding Path=IdTypuFilmu, Mode=TwoWay}"/>
-
+                      ItemsSource="{Binding TypySeansowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+            <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
+            
         </Grid>
 
 
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID seansu" Binding="{Binding IdSeansu}" Width="75*"/>
+                <DataGridTextColumn Header="ID seansu" Binding="{Binding IdSeansu}" Width="75"/>
                 <DataGridTextColumn Header="Nazwa sali" Binding="{Binding NazwaSali}" Width="100*"/>
                 <DataGridTextColumn Header="Nazwa filmu" Binding="{Binding NazwaFilmu}" Width="200*"/>
                 <DataGridTextColumn Header="Data" Binding="{Binding Data}" Width="100*"/>

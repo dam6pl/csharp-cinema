@@ -37,6 +37,7 @@ namespace Kino.ViewModels
 
             }
         }
+
         public IQueryable<ComboboxKeyAndValue> FilmyComboboxItems
         {
             get
@@ -53,6 +54,7 @@ namespace Kino.ViewModels
 
             }
         }
+
         public IQueryable<ComboboxKeyAndValue> TypySeansowComboboxItems
         {
             get
@@ -78,13 +80,13 @@ namespace Kino.ViewModels
                 (
                 from seans in kinoEntities.Seanse
                 select new ShowingsForAllView
-                {
-                    IdSeansu = seans.IdSeansu,
-                    NazwaSali = seans.Sale.Nazwa,
-                    NazwaFilmu = seans.Filmy.Tytuł,
-                    Data = seans.Data,
-                    TypSeansu = seans.TypySeansow.Nazwa
-                }
+                    {
+                        IdSeansu = seans.IdSeansu,
+                        NazwaSali = seans.Sale.Nazwa,
+                        NazwaFilmu = seans.Filmy.Tytuł,
+                        Data = seans.Data,
+                        TypSeansu = seans.TypySeansow.Nazwa
+                    }
                 );
         }
        

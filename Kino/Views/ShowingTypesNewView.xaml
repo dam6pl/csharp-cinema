@@ -1,4 +1,4 @@
-﻿<local:SingleViewBase x:Class="Kino.Views.RoomsNewView"
+﻿<local:SingleViewBase x:Class="Kino.Views.ShowingTypesNewView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,24 +20,19 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
         <Label Content="Nazwa:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBoxStyle}"
                  Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Numer:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
+        <Label Content="Opis:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Numer, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Liczba Miejsc:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=LiczbaMiejsc, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Content="Sala 3D:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
-        <CheckBox Grid.Row="3" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"
-                  IsChecked="{Binding Path=Sala3D, UpdateSourceTrigger=PropertyChanged}">Sala 3D</CheckBox>
+        <Label Content="Wymagane okulary 3D:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
+        <CheckBox Grid.Row="2" Grid.Column="2" Style="{StaticResource CheckBoxStyle}"
+                  IsChecked="{Binding Path=WymaganeOkulary3D, UpdateSourceTrigger=PropertyChanged}">Wymagane okulary 3D</CheckBox>
 
     </Grid>
 

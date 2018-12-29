@@ -71,7 +71,9 @@ namespace Kino.ViewModels.Abstract
 
         public void add()
         {
+            
             Messenger.Default.Send(DisplayName + "Add");
+            Console.WriteLine(DisplayName + "Add");
         }
         #endregion Helpers
     }

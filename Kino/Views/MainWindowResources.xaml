@@ -11,6 +11,10 @@
         <vw:ShowingsNewView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:ShowingTypesViewModel}">
+        <vw:ShowingTypesNewView/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:RoomsAllViewModel}">
         <vw:RoomsAllView/>
     </DataTemplate>
@@ -21,6 +25,18 @@
 
     <DataTemplate DataType="{x:Type vm:FilmsAllViewModel}">
         <vw:FilmsAllView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:FilmsNewViewModel}">
+        <vw:FilmsNewView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:GenreNewView}">
+        <vw:GenreNewView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:OrdersAllViewModel}">
+        <vw:OrdersAllView/>
     </DataTemplate>
 
     <!--<DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">

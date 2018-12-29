@@ -127,7 +127,7 @@
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowNowyKontrahentCommand}">
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowOrdersAllCommand}">
                     <MenuItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -139,7 +139,7 @@
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowWszyscyPracownicyCommand}">
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}">
                     <MenuItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>

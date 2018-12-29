@@ -1,4 +1,4 @@
-﻿<local:AllViewBase x:Class="Kino.Views.FilmsAllView"
+﻿<local:AllViewBase x:Class="Kino.Views.OrdersAllView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -55,14 +55,11 @@
         
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID filmu" Binding="{Binding IdFilmu}" Width="75*"/>
-                <DataGridTextColumn Header="Tytul" Binding="{Binding Tytul}" Width="100*"/>
-                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}" Width="200*"/>
-                <DataGridTextColumn Header="Gatunek" Binding="{Binding NazwaGatunku}" Width="100*"/>
-                <DataGridTextColumn Header="Reżyser" Binding="{Binding Rezyser}" Width="100*"/>
-                <DataGridTextColumn Header="Rok produkcji" Binding="{Binding RokProdukcji}" Width="100*"/>
-                <DataGridTextColumn Header="Czas trwania" Binding="{Binding CzasTrwania}" Width="100*"/>
-                <DataGridTextColumn Header="Limit wiekowy" Binding="{Binding LimitWiekowy}" Width="100*"/>
+                <DataGridTextColumn Header="ID zamówienia" Binding="{Binding IdZamowienia}" Width="75*"/>
+                <DataGridTextColumn Header="Seans" Binding="{Binding Seans}" Width="200*"/>
+                <DataGridTextColumn Header="Nazwa klienta" Binding="{Binding NazwaKlienta}" Width="200*"/>
+                <DataGridTextColumn Header="Typ biletu" Binding="{Binding TypBiletu}" Width="100*"/>
+                <DataGridTextColumn Header="Pracownik" Binding="{Binding Pracownik}" Width="150*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
