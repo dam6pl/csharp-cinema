@@ -41,29 +41,29 @@ namespace Kino.ViewModels
 
             return new List<CommandViewModel>
             {
-                //new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new ShowingsNewViewModel()))),
-                //new CommandViewModel("Wszystkie seanse", new BaseCommand(()=>this.showShowingsAll())),
+                new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new ShowingsNewViewModel()))),
+                new CommandViewModel("Wszystkie seanse", new BaseCommand(()=>this.showShowingsAll())),
 
-                //new CommandViewModel("Nowa sala", new BaseCommand(()=>this.createWorkspace(new RoomsNewViewModel()))),
-                //new CommandViewModel("Wszystkie sale", new BaseCommand(()=>this.showRoomsAll())),
+                new CommandViewModel("Nowa sala", new BaseCommand(()=>this.createWorkspace(new RoomsNewViewModel()))),
+                new CommandViewModel("Wszystkie sale", new BaseCommand(()=>this.showRoomsAll())),
 
-                //new CommandViewModel("Nowy film", new BaseCommand(()=>this.createWorkspace(new FilmsNewViewModel()))),
-                //new CommandViewModel("Wszystkie filmy", new BaseCommand(()=>this.showFilmsAll())),
+                new CommandViewModel("Nowy film", new BaseCommand(()=>this.createWorkspace(new FilmsNewViewModel()))),
+                new CommandViewModel("Wszystkie filmy", new BaseCommand(()=>this.showFilmsAll())),
 
-                //new CommandViewModel("Nowy gatunek", new BaseCommand(()=>this.createWorkspace(new GenreNewView()))),
+                new CommandViewModel("Nowy gatunek", new BaseCommand(()=>this.createWorkspace(new GenreNewView()))),
 
-                //new CommandViewModel("Nowy typ seansu", new BaseCommand(()=>this.createWorkspace(new ShowingTypesNewViewModel()))),
+                new CommandViewModel("Nowy typ seansu", new BaseCommand(()=>this.createWorkspace(new ShowingTypesNewViewModel()))),
 
-                //new CommandViewModel("Nowe zamowienie", new BaseCommand(()=>this.createWorkspace(new OrdersNewViewModel()))),
-                //new CommandViewModel("Wszystkie zamowienia", new BaseCommand(()=>this.showOrdersAll())),
+                new CommandViewModel("Nowe zamowienie", new BaseCommand(()=>this.createWorkspace(new OrdersNewViewModel()))),
+                new CommandViewModel("Wszystkie zamowienia", new BaseCommand(()=>this.showOrdersAll())),
 
-                //new CommandViewModel("Nowy klient", new BaseCommand(()=>this.createWorkspace(new CustomersNewViewModel()))),
-                //new CommandViewModel("Wszyscy klienci", new BaseCommand(()=>this.showCustomersAll())),
+                new CommandViewModel("Nowy klient", new BaseCommand(()=>this.createWorkspace(new CustomersNewViewModel()))),
+                new CommandViewModel("Wszyscy klienci", new BaseCommand(()=>this.showCustomersAll())),
 
-                //new CommandViewModel("Nowy pracownik", new BaseCommand(()=>this.createWorkspace(new EmployeesNewViewModel()))),
-                //new CommandViewModel("Wszyscy pracownicy", new BaseCommand(()=>this.showEmployeesAll())),
+                new CommandViewModel("Nowy pracownik", new BaseCommand(()=>this.createWorkspace(new EmployeesNewViewModel()))),
+                new CommandViewModel("Wszyscy pracownicy", new BaseCommand(()=>this.showEmployeesAll())),
 
-                //new CommandViewModel("Nowy adres", new BaseCommand(()=>this.createWorkspace(new AdressesNewViewModel())))
+                new CommandViewModel("Nowy adres", new BaseCommand(()=>this.createWorkspace(new AdressesNewViewModel())))
             };
         }
         #endregion Commands
