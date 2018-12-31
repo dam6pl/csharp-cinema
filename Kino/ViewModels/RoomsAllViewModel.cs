@@ -15,7 +15,7 @@ namespace Kino.ViewModels
         public RoomsAllViewModel()
             : base()
         {
-            base.DisplayName = "Sale";
+            base.DisplayName = "Wszystkie sale";
         }
         #endregion Constructor
 

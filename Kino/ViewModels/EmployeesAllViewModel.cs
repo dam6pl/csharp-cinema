@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class FilmsAllViewModel : AllViewModel<FilmsForAllView>
+    class EmployeesAllViewModel : AllViewModel<EmployeesForAllView>
     {
         #region Constructor
-        public FilmsAllViewModel()
+        public EmployeesAllViewModel()
             : base()
         {
-            base.DisplayName = "Wszystkie filmy";
+            base.DisplayName = "Wszyscy pracownicy";
         }
         #endregion Constructor
 
         #region Properties
-        public IQueryable<ComboboxKeyAndValue> GatunkiComboboxItems
+        public IQueryable<ComboboxKeyAndValue> GenreComboboxItems
         {
             get
             {
@@ -42,19 +42,18 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new ObservableCollection<FilmsForAllView>
+            List = new ObservableCollection<EmployeesForAllView>
                 (
-                from film in kinoEntities.Filmy
-                select new FilmsForAllView
+                from pracownik in kinoEntities.Pracownicy
+                select new EmployeesForAllView
                     {
-                        IdFilmu = film.IdFilmu,
-                        Tytul = film.Tytuł,
-                        Opis = film.Opis,
-                        NazwaGatunku = film.Gatunki.Nazwa,
-                        Rezyser = film.Rezyser,
-                        RokProdukcji = film.RokProdukcji,
-                        CzasTrwania = film.CzasTrwania,
-                        LimitWiekowy = film.LimitWiekowy,
+                        IdPracownika = pracownik.IdPracownika,
+                        Imie = pracownik.Imie,
+                        Nazwisko = pracownik.Nazwisko,
+                        Stanowisko = pracownik.Stanowisko,
+                        Telefon = pracownik.Telefon,
+                        Adres = pracownik.Adresy.Ulica + " " + pracownik.Adresy.NrDomu + ", " 
+                            + pracownik.Adresy.Miejscowosc + " " + pracownik.Adresy.KodPocztowy
                     }
                 );
         }

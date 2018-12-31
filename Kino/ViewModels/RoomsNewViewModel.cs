@@ -14,7 +14,7 @@ namespace Kino.ViewModels
         public RoomsNewViewModel()
             : base()
         {
-            base.DisplayName = "Nowa Sala";
+            base.DisplayName = "Nowa sala";
 
             this.item = new Sale();
         }

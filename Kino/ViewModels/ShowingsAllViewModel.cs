@@ -16,7 +16,7 @@ namespace Kino.ViewModels
         public ShowingsAllViewModel()
             : base()
         {
-            base.DisplayName = "Seanse";
+            base.DisplayName = "Wszystkie seanse";
         }
         #endregion Constructor
 

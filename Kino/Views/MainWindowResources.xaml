@@ -11,7 +11,7 @@
         <vw:ShowingsNewView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:ShowingTypesViewModel}">
+    <DataTemplate DataType="{x:Type vm:ShowingTypesNewViewModel}">
         <vw:ShowingTypesNewView/>
     </DataTemplate>
 
@@ -39,13 +39,30 @@
         <vw:OrdersAllView/>
     </DataTemplate>
 
-    <!--<DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">
-        <vw:NowyPracownikView/>
+    <DataTemplate DataType="{x:Type vm:OrdersNewViewModel}">
+        <vw:OrdersNewView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:WszyscyPracownicyViewModel}">
-        <vw:WszyscyPracownicyView/>
-    </DataTemplate>-->
+    <DataTemplate DataType="{x:Type vm:CustomersAllViewModel}">
+        <vw:CustomersAllView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CustomersNewViewModel}">
+        <vw:CustomersNewView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:EmployeesAllViewModel}">
+        <vw:EmployeesAllView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:EmployeesNewViewModel}">
+        <vw:EmployeesNewView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:AdressesNewViewModel}">
+        <vw:AdressesNewView/>
+    </DataTemplate>
+
 
     <!--Moje style-->
     <Style x:Key="MainGridStyle" TargetType="{x:Type Grid}">

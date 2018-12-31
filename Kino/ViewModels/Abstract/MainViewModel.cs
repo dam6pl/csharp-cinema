@@ -1,6 +1,6 @@
 using GalaSoft.MvvmLight;
 
-namespace Kino.ViewModel
+namespace Kino.ViewModels.Abstract
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

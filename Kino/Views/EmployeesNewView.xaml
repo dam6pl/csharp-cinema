@@ -1,0 +1,52 @@
+﻿<local:SingleViewBase x:Class="Kino.Views.EmployeesNewView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kino.Views.Abstract"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Imie:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+                 Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Nazwisko:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+                 Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Stanowisko:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+                 Text="{Binding Path=Stanowisko, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Telefon:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+                 Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Adres:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" 
+                  ItemsSource="{Binding AdresyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=IdAdresu, Mode=TwoWay}"/>
+        <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
+
+    </Grid>
+
+</local:SingleViewBase>

@@ -16,26 +16,42 @@ namespace Kino.ViewModels
         public OrdersAllViewModel()
             : base()
         {
-            base.DisplayName = "Zamowienia";
+            base.DisplayName = "Wszystkie zamowienia";
         }
         #endregion Constructor
 
         #region Properties
-        //public IQueryable<ComboboxKeyAndValue> GenreComboboxItems
-        //{
-        //    get
-        //    {
-        //        return
-        //            (
-        //                from gatunek in kinoEntities.Gatunki
-        //                select new ComboboxKeyAndValue
-        //                {
-        //                    Key = gatunek.IdGatunku,
-        //                    Value = gatunek.Nazwa
-        //                }
-        //            ).ToList().AsQueryable();
-        //    }
-        //}
+        public IQueryable<ComboboxKeyAndValue> SeanseComboboxItems
+        {
+            get
+            {
+                return
+                    (
+                        from seans in kinoEntities.Seanse
+                        select new ComboboxKeyAndValue
+                        {
+                            Key = seans.IdSeansu,
+                            Value = seans.Sale.Nazwa + " - " + seans.Filmy.Tytuł + " - " + seans.Data
+                        }
+                    ).ToList().AsQueryable();
+            }
+        }
+
+        public IQueryable<ComboboxKeyAndValue> KlienciComboboxItems
+        {
+            get
+            {
+                return
+                    (
+                        from klient in kinoEntities.Klienci
+                        select new ComboboxKeyAndValue
+                        {
+                            Key = klient.IdKlienta,
+                            Value = klient.Imie + " " + klient.Nazwisko
+                        }
+                    ).ToList().AsQueryable();
+            }
+        }
         #endregion
 
         #region Helpers
@@ -47,7 +63,8 @@ namespace Kino.ViewModels
                 select new OrdersForAllView
                     {
                         IdZamowienia = zamowienie.IdZamowienia,
-                        Seans = zamowienie.Seanse.Filmy.Tytuł + " (" + zamowienie.Seanse.Data + ")",
+                        Seans = zamowienie.Seanse.Sale.Nazwa + " - " + zamowienie.Seanse.Filmy.Tytuł 
+                            + " - " + zamowienie.Seanse.Data,
                         NazwaKlienta = zamowienie.Klienci.Imie + " " + zamowienie.Klienci.Nazwisko,
                         TypBiletu = zamowienie.TypyBiletow.Nazwa,
                         Pracownik = zamowienie.Pracownicy.Imie + " " + zamowienie.Pracownicy.Nazwisko,

@@ -26,30 +26,31 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="120*"/>
                 <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="120*"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Sala: " Style="{StaticResource LabelGridStyle}"/>
-            <ComboBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 
                       ItemsSource="{Binding SaleComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
 
             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Film:"/>
-            <ComboBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 
                       ItemsSource="{Binding FilmyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Data: " Style="{StaticResource LabelGridStyle}"/>
             <Label Grid.Row="2" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
             <DatePicker Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
-            <Label Grid.Row="2" Grid.Column="4" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
+            <Label Grid.Row="2" Grid.Column="5" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
+            <DatePicker Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
 
             <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Typ seansu:"/>
-            <ComboBox Grid.Row="3" Grid.Column="2" Style="{StaticResource ComboBoxStyle}" 
+            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
                       ItemsSource="{Binding TypySeansowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
             <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
             

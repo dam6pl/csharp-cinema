@@ -1,0 +1,55 @@
+﻿<local:SingleViewBase x:Class="Kino.Views.OrdersNewView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kino.Views.Abstract"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Seans:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                  ItemsSource="{Binding SeanseComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=IdSeansu, Mode=TwoWay}"/>
+
+        <Label Content="Klient:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                  ItemsSource="{Binding KlienciComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=IdKlienta, Mode=TwoWay}"/>
+
+        <Label Content="Typ biletu:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" 
+                  ItemsSource="{Binding TypyBiletowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=IdTypuBiletu, Mode=TwoWay}"/>
+        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
+
+        <Label Content="Pracownik:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+                  ItemsSource="{Binding PracownicyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
+                  SelectedValue="{Binding Path=IdPracownika, Mode=TwoWay}"/>
+
+        <Label Content="Status:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
+        <CheckBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource CheckBoxStyle}"
+                  IsChecked="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}">Zamowienie opłacone</CheckBox>
+
+    </Grid>
+
+</local:SingleViewBase>

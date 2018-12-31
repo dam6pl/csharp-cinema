@@ -1,4 +1,4 @@
-﻿<local:AllViewBase x:Class="Kino.Views.RoomsAllView"
+﻿<local:AllViewBase x:Class="Kino.Views.EmployeesAllView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -33,28 +33,25 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Liczba miejsc: " Style="{StaticResource LabelGridStyle}"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-            <Label Grid.Row="0" Grid.Column="5" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-
-            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Sala 3D:"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="Tak"/>
-                <ComboBoxItem Content="Nie"/>
-            </ComboBox>
+            <Label Grid.Row="0" Grid.Column="0" Content="Stanowisko: " Style="{StaticResource LabelGridStyle}"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 
+                      ItemsSource="{Binding StanowiskaComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+            
+            <Label Grid.Row="1" Grid.Column="0" Content="Miejscowosc: " Style="{StaticResource LabelGridStyle}"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 
+                      ItemsSource="{Binding MiejscowosciComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
 
         </Grid>
         
         
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID sali" Binding="{Binding IdSali}" Width="75"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}" Width="200*"/>
-                <DataGridTextColumn Header="Numer" Binding="{Binding Numer}" Width="100*"/>
-                <DataGridTextColumn Header="Liczba miejsc" Binding="{Binding LiczbaMiejsc}" Width="100*"/>
-                <DataGridTextColumn Header="Sala 3D" Binding="{Binding Sala3D}" Width="100*"/>
+                <DataGridTextColumn Header="ID pracownika" Binding="{Binding IdPracownika}" Width="75*"/>
+                <DataGridTextColumn Header="Imie" Binding="{Binding Imie}" Width="150*"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" Width="150*"/>
+                <DataGridTextColumn Header="Stanowisko" Binding="{Binding Stanowisko}" Width="150*"/>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="100*"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Adres}" Width="100*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

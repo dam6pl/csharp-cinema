@@ -16,7 +16,7 @@ namespace Kino.ViewModels
         public ShowingsNewViewModel()
             : base()
         {
-            base.DisplayName = "Nowy Seans";
+            base.DisplayName = "Nowy seans";
 
             this.item = new Seanse();
         }

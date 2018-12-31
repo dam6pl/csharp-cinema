@@ -41,20 +41,29 @@ namespace Kino.ViewModels
 
             return new List<CommandViewModel>
             {
-                new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new ShowingsNewViewModel()))),
-                new CommandViewModel("Wszystkie seanse", new BaseCommand(()=>this.showShowingsAll())),
+                //new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new ShowingsNewViewModel()))),
+                //new CommandViewModel("Wszystkie seanse", new BaseCommand(()=>this.showShowingsAll())),
 
-                new CommandViewModel("Nowa sala", new BaseCommand(()=>this.createWorkspace(new RoomsNewViewModel()))),
-                new CommandViewModel("Wszystkie sale", new BaseCommand(()=>this.showRoomsAll())),
+                //new CommandViewModel("Nowa sala", new BaseCommand(()=>this.createWorkspace(new RoomsNewViewModel()))),
+                //new CommandViewModel("Wszystkie sale", new BaseCommand(()=>this.showRoomsAll())),
 
-                new CommandViewModel("Nowy film", new BaseCommand(()=>this.createWorkspace(new FilmsNewViewModel()))),
-                new CommandViewModel("Wszystkie filmy", new BaseCommand(()=>this.showFilmsAll())),
+                //new CommandViewModel("Nowy film", new BaseCommand(()=>this.createWorkspace(new FilmsNewViewModel()))),
+                //new CommandViewModel("Wszystkie filmy", new BaseCommand(()=>this.showFilmsAll())),
 
-                new CommandViewModel("Nowy gatunek", new BaseCommand(()=>this.createWorkspace(new GenreNewView()))),
+                //new CommandViewModel("Nowy gatunek", new BaseCommand(()=>this.createWorkspace(new GenreNewView()))),
 
-                new CommandViewModel("Nowy typ seansu", new BaseCommand(()=>this.createWorkspace(new ShowingTypesViewModel()))),
+                //new CommandViewModel("Nowy typ seansu", new BaseCommand(()=>this.createWorkspace(new ShowingTypesNewViewModel()))),
 
-                new CommandViewModel("Wszystkie zamowienia", new BaseCommand(()=>this.showOrdersAll())),
+                //new CommandViewModel("Nowe zamowienie", new BaseCommand(()=>this.createWorkspace(new OrdersNewViewModel()))),
+                //new CommandViewModel("Wszystkie zamowienia", new BaseCommand(()=>this.showOrdersAll())),
+
+                //new CommandViewModel("Nowy klient", new BaseCommand(()=>this.createWorkspace(new CustomersNewViewModel()))),
+                //new CommandViewModel("Wszyscy klienci", new BaseCommand(()=>this.showCustomersAll())),
+
+                //new CommandViewModel("Nowy pracownik", new BaseCommand(()=>this.createWorkspace(new EmployeesNewViewModel()))),
+                //new CommandViewModel("Wszyscy pracownicy", new BaseCommand(()=>this.showEmployeesAll())),
+
+                //new CommandViewModel("Nowy adres", new BaseCommand(()=>this.createWorkspace(new AdressesNewViewModel())))
             };
         }
         #endregion Commands
@@ -150,6 +159,32 @@ namespace Kino.ViewModels
             this.setActiveWorkspace(workspace);
         }
 
+        private void showCustomersAll()
+        {
+            CustomersAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is CustomersAllViewModel)
+                as CustomersAllViewModel;
+            if (workspace == null)
+            {
+                workspace = new CustomersAllViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.setActiveWorkspace(workspace);
+        }
+
+        private void showEmployeesAll()
+        {
+            EmployeesAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is EmployeesAllViewModel)
+                as EmployeesAllViewModel;
+            if (workspace == null)
+            {
+                workspace = new EmployeesAllViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.setActiveWorkspace(workspace);
+        }
+
         private void setActiveWorkspace(WorkspaceViewModel workspace)
         {
             Debug.Assert(this.Workspaces.Contains(workspace));
@@ -222,10 +257,40 @@ namespace Kino.ViewModels
 
                 if (_showOrdersAllCommand == null)
                 {
-                    _showOrdersAllCommand = new BaseCommand(() => createWorkspace(new OrdersAllViewModel()));
+                    _showOrdersAllCommand = new BaseCommand(() => showOrdersAll());
                 }
 
                 return _showOrdersAllCommand;
+            }
+        }
+
+        private BaseCommand _showCustomersAllCommand;
+        public ICommand ShowCustomersAllCommand
+        {
+            get
+            {
+
+                if (_showCustomersAllCommand == null)
+                {
+                    _showCustomersAllCommand = new BaseCommand(() => showCustomersAll());
+                }
+
+                return _showCustomersAllCommand;
+            }
+        }
+
+        private BaseCommand _showEmployeesAllCommand;
+        public ICommand ShowEmployeesAllCommand
+        {
+            get
+            {
+
+                if (_showEmployeesAllCommand == null)
+                {
+                    _showEmployeesAllCommand = new BaseCommand(() => showEmployeesAll());
+                }
+
+                return _showEmployeesAllCommand;
             }
         }
 
@@ -238,7 +303,7 @@ namespace Kino.ViewModels
 
                 if (_showRoomsNewCommand == null)
                 {
-                    _showRoomsNewCommand = new BaseCommand(() => createWorkspace(new ShowingTypesViewModel()));
+                    _showRoomsNewCommand = new BaseCommand(() => createWorkspace(new AdressesNewViewModel()));
                 }
 
                 return _showRoomsNewCommand;

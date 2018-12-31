@@ -17,7 +17,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 //using Microsoft.Practices.ServiceLocation;
 
-namespace Kino.ViewModel
+namespace Kino.ViewModels.Abstract
 {
     /// <summary>
     /// This class contains static references to all the view models in the

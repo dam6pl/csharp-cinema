@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class GenreNewView : SingleViewModel<Gatunki>
+    class TicketTypesNewViewModel : SingleViewModel<TypyBiletow>
     {
         #region Construktor
-        public GenreNewView()
+        public TicketTypesNewViewModel()
             : base()
         {
-            base.DisplayName = "Nowy gatunek";
+            base.DisplayName = "Nowy typ biletow";
 
-            this.item = new Gatunki();
+            this.item = new TypyBiletow();
         }
         #endregion Constructor
 
@@ -36,6 +36,7 @@ namespace Kino.ViewModels
                 }
             }
         }
+
         public string Opis
         {
             get
@@ -51,12 +52,28 @@ namespace Kino.ViewModels
                 }
             }
         }
+
+        public decimal? Cena
+        {
+            get
+            {
+                return item.Cena;
+            }
+            set
+            {
+                if (item.Cena != value)
+                {
+                    item.Cena = value;
+                    OnPropertyChanged(() => Cena);
+                }
+            }
+        }
         #endregion Properties
 
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Gatunki.Add(item);
+            kinoEntities.TypyBiletow.Add(item);
             kinoEntities.SaveChanges();
         }
         #endregion Helpers

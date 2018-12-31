@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class FilmsAllViewModel : AllViewModel<FilmsForAllView>
+    class CustomersAllViewModel : AllViewModel<Klienci>
     {
         #region Constructor
-        public FilmsAllViewModel()
+        public CustomersAllViewModel()
             : base()
         {
-            base.DisplayName = "Wszystkie filmy";
+            base.DisplayName = "Wszyscy klienci";
         }
         #endregion Constructor
 
         #region Properties
-        public IQueryable<ComboboxKeyAndValue> GatunkiComboboxItems
+        public IQueryable<ComboboxKeyAndValue> GenreComboboxItems
         {
             get
             {
@@ -42,20 +42,10 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new ObservableCollection<FilmsForAllView>
+            List = new ObservableCollection<Klienci>
                 (
-                from film in kinoEntities.Filmy
-                select new FilmsForAllView
-                    {
-                        IdFilmu = film.IdFilmu,
-                        Tytul = film.Tytuł,
-                        Opis = film.Opis,
-                        NazwaGatunku = film.Gatunki.Nazwa,
-                        Rezyser = film.Rezyser,
-                        RokProdukcji = film.RokProdukcji,
-                        CzasTrwania = film.CzasTrwania,
-                        LimitWiekowy = film.LimitWiekowy,
-                    }
+                from klient in kinoEntities.Klienci
+                select klient
                 );
         }
         #endregion Helpers

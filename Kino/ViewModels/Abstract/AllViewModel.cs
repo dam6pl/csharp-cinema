@@ -19,6 +19,13 @@ namespace Kino.ViewModels.Abstract
         private ObservableCollection<T> _List;
         #endregion Fields
 
+        #region Constructor
+        public AllViewModel()
+        {
+            this.kinoEntities = new KinoEntities();
+        }
+        #endregion Constructor
+
         #region Properties
         public ICommand LoadCommand
         {
@@ -59,21 +66,12 @@ namespace Kino.ViewModels.Abstract
         }
         #endregion Properties
 
-        #region Constructor
-        public AllViewModel()
-        {
-            this.kinoEntities = new KinoEntities();
-        }
-        #endregion Constructor
-
         #region Helpers
         public abstract void load();
 
         public void add()
         {
-            
-            Messenger.Default.Send(DisplayName + "Add");
-            Console.WriteLine(DisplayName + "Add");
+            Messenger.Default.Send("Add");
         }
         #endregion Helpers
     }

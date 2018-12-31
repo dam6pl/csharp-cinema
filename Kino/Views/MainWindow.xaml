@@ -139,14 +139,27 @@
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Style="{StaticResource LeftMenuItemStyle}">
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowCustomersAllCommand}">
                     <MenuItem.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="/Assets/user.png" />
+                            <Image Grid.Column="0" Source="/Assets/customers.png" />
+                            <Label Grid.Column="1" Content="Klienci" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <Separator Height="3" Width="230" Margin="10 0 0 0"/>
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowEmployeesAllCommand}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="/Assets/employers.png" />
                             <Label Grid.Column="1" Content="Pracownicy" Style="{StaticResource LeftMenuLabelStyle}"/>
                         </Grid>
                     </MenuItem.Header>
@@ -166,7 +179,8 @@
                 Style="{StaticResource MainHCCStyle}"/>
         </Grid>
 
-        <Label Grid.Row="3" Grid.Column="0" Content="Projektowanie desktopowych aplikacji biznesowych" Style="{StaticResource FooterLabelStyle}"/>
+        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Projektowanie desktopowych aplikacji biznesowych" 
+               Style="{StaticResource FooterLabelStyle}"/>
 
         <Label Grid.Row="3" Grid.Column="2" Content="Damian Nowak" Style="{StaticResource FooterRightLabelStyle}"/>
 

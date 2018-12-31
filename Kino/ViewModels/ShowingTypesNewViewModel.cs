@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class ShowingTypesViewModel : SingleViewModel<TypySeansow>
+    class ShowingTypesNewViewModel : SingleViewModel<TypySeansow>
     {
         #region Construktor
-        public ShowingTypesViewModel()
+        public ShowingTypesNewViewModel()
             : base()
         {
             base.DisplayName = "Nowy typ seansu";
