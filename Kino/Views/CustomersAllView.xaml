@@ -39,9 +39,9 @@
             <DatePicker Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
 
         </Grid>
-        
-        
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True">
+
+
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID klienta" Binding="{Binding IdKlienta}" Width="75*"/>
                 <DataGridTextColumn Header="Imie" Binding="{Binding Imie}" Width="150*"/>

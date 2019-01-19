@@ -21,6 +21,13 @@ namespace Kino.ViewModels
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
         #endregion Fields
 
+        #region Constructor
+        public MainWindowViewModel()
+        {
+            Messenger.Default.Register<String>(this, open);
+        }
+        #endregion
+
         #region Commands
         public ReadOnlyCollection<CommandViewModel> Commands
         {
@@ -37,8 +44,6 @@ namespace Kino.ViewModels
 
         private List<CommandViewModel> createCommands()
         {
-            Messenger.Default.Register<String>(this, open);
-
             return new List<CommandViewModel>
             {
                 new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new ShowingsNewViewModel()))),
@@ -199,7 +204,28 @@ namespace Kino.ViewModels
 
         private void open(String name)
         {
-            createWorkspace(new ShowingsNewViewModel());
+            if (name == "Wszyscy klienci") {
+                createWorkspace(new CustomersNewViewModel());
+            }
+            else if (name == "Wszyscy pracownicy") {
+                createWorkspace(new EmployeesNewViewModel());
+            }
+            else if (name == "Wszystkie filmy")
+            {
+                createWorkspace(new FilmsNewViewModel());
+            }
+            else if (name == "Wszystkie zamowienia")
+            {
+                createWorkspace(new OrdersNewViewModel());
+            }
+            else if (name == "Wszystkie sale")
+            {
+                createWorkspace(new RoomsNewViewModel());
+            }
+            else if (name == "Wszystkie seanse")
+            {
+                createWorkspace(new ShowingsNewViewModel());
+            }
         }
         #endregion Helpers
 

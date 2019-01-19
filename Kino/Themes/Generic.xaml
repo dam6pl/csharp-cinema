@@ -3,6 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Kino.Views.Abstract">
 
+    <Style x:Key="TabButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+
     <Style TargetType="{x:Type local:AllViewBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -22,10 +26,10 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0" Content="Dodaj nowy element" Margin="0 0 4 0"
-                                    Command="{Binding AddCommand}"/>
-                            <Button Grid.Column="1" Content="Usun element" Margin="2 0 2 0"/>
-                            <Button Grid.Column="2" Content="Modufikuj element" Margin="2 0 2 0"/>
-                            <Button Grid.Column="3" Content="Otworz elemenet" Margin="4 0 0 0"/>
+                                    Command="{Binding AddCommand}" Style="{StaticResource TabButtonStyle}"/>
+                            <Button Grid.Column="1" Content="Usun element" Margin="2 0 2 0" Style="{StaticResource TabButtonStyle}"/>
+                            <Button Grid.Column="2" Content="Modufikuj element" Margin="2 0 2 0" Style="{StaticResource TabButtonStyle}"/>
+                            <Button Grid.Column="3" Content="Otworz elemenet" Margin="4 0 0 0" Style="{StaticResource TabButtonStyle}"/>
                         </Grid>
 
                         <ContentPresenter Grid.Row="2" Margin="0,5,0,5"/>
@@ -54,9 +58,9 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0" Content="Zapisz i zamknij" Margin="0 0 4 0"
-                                    Command="{Binding SaveCommand}"/>
+                                    Command="{Binding SaveCommand}" Style="{StaticResource TabButtonStyle}"/>
                             <Button Grid.Column="1" Content="Anuluj edycje" Margin="4 0 0 0"
-                                    Command="{Binding CloseCommand}"/>
+                                    Command="{Binding CloseCommand}" Style="{StaticResource TabButtonStyle}"/>
                         </Grid>
 
                        

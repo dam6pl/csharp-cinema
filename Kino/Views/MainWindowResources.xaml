@@ -66,7 +66,7 @@
 
     <!--Moje style-->
     <Style x:Key="MainGridStyle" TargetType="{x:Type Grid}">
-        <Setter Property="Background" Value="#FF4C398A" />
+        <Setter Property="Background" Value="#303F9F" />
     </Style>
 
     <Style x:Key="MenuStyle" TargetType="{x:Type Menu}">
@@ -132,6 +132,7 @@
 
     <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Margin" Value="2" />
+        <Setter Property="FontSize" Value="12" />
     </Style>
 
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
@@ -142,15 +143,18 @@
     <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ComboBox}">
         <Setter Property="Margin" Value="2" />
         <Setter Property="Padding" Value="15, 5" />
+        <Setter Property="FontSize" Value="12" />
     </Style>
 
     <Style x:Key="LabelGridStyle" TargetType="{x:Type Label}">
         <Setter Property="Margin" Value="2" />
+        <Setter Property="FontSize" Value="12" />
     </Style>
 
     <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}">
         <Setter Property="Margin" Value="2" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="12" />
     </Style>
 
     <Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}">
@@ -172,21 +176,23 @@
     <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
         <Setter Property="Margin" Value="2" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="BorderBrush" Value="#FF4B4B4B" />
         <Setter Property="Background" Value="White" />
     </Style>
 
     <Style x:Key="ListBoxStyle" TargetType="{x:Type ListBox}">
         <Setter Property="Margin" Value="2" />
     </Style>
-
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Margin" Value="2" />
-        <Setter Property="BorderBrush" Value="#FF707070" />
+        <Setter Property="Padding" Value="5" />
     </Style>
 
     <Style x:Key="TextBoxRightStyle" BasedOn="{StaticResource TextBoxStyle}" TargetType="{x:Type TextBox}">
         <Setter Property="HorizontalContentAlignment" Value="Right" />
+    </Style>
+
+    <Style x:Key="DataGridElement" TargetType="{x:Type TextBlock}">
+        <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
     <!--Moje style-->
 
@@ -228,7 +234,7 @@
                 VerticalContentAlignment="Bottom"
                 Width="16" Height="16"
             />
-            <ContentPresenter 
+            <ContentPresenter  
                 Content="{Binding Path=DisplayName}" 
                 VerticalAlignment="Center"
             />
@@ -237,11 +243,13 @@
 
     <!-- This template explains how to render the 'Workspace' content area in the main window. -->
     <DataTemplate x:Key="WorkspacesTemplate">
-        <TabControl 
+        <TabControl
             IsSynchronizedWithCurrentItem="True" 
             ItemsSource="{Binding}" 
             ItemTemplate="{StaticResource ClosableTabItemTemplate}"
-        />
+            BorderThickness="0"
+            >
+        </TabControl>
     </DataTemplate>
 
 </ResourceDictionary>

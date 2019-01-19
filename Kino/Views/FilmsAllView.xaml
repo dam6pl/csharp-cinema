@@ -52,13 +52,13 @@
             <TextBox Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
 
         </Grid>
-        
-        
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True">
+
+
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID filmu" Binding="{Binding IdFilmu}" Width="75*"/>
                 <DataGridTextColumn Header="Tytul" Binding="{Binding Tytul}" Width="100*"/>
-                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}" Width="200*"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}" Width="300*" ElementStyle="{StaticResource DataGridElement}"/>
                 <DataGridTextColumn Header="Gatunek" Binding="{Binding NazwaGatunku}" Width="100*"/>
                 <DataGridTextColumn Header="Reżyser" Binding="{Binding Rezyser}" Width="100*"/>
                 <DataGridTextColumn Header="Rok produkcji" Binding="{Binding RokProdukcji}" Width="100*"/>

@@ -68,7 +68,7 @@
             <Menu Grid.Column="1" Style="{StaticResource VerticalMenuStyle}">
                 <MenuItem Style="{StaticResource ImageMenuItemStyle}">
                     <MenuItem.Header>
-                        <Image Source="/Assets/envelope.png" Style="{StaticResource MenuImageStyle}"/>
+                        <Image Source="/Assets/envelope.png"  Style="{StaticResource MenuImageStyle}"/>
                     </MenuItem.Header>
                 </MenuItem>
                 <MenuItem Style="{StaticResource ImageMenuItemStyle}">
@@ -164,11 +164,6 @@
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Command="{Binding ShowRoomsNewCommand}">
-                    <MenuItem.Header>
-                        <Label Grid.Column="1" Content="Do usuniecia" Style="{StaticResource LeftMenuLabelStyle}"/>
-                    </MenuItem.Header>
-                </MenuItem>
             </Menu>
         </Grid>
 
@@ -176,7 +171,8 @@
             <HeaderedContentControl
                 Content="{Binding Path = Workspaces}"
                 ContentTemplate="{StaticResource WorkspacesTemplate}"
-                Style="{StaticResource MainHCCStyle}"/>
+                Style="{StaticResource MainHCCStyle}"
+                />
         </Grid>
 
         <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Projektowanie desktopowych aplikacji biznesowych" 
