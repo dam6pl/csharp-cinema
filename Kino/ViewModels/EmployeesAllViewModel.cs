@@ -21,22 +21,6 @@ namespace Kino.ViewModels
         #endregion Constructor
 
         #region Properties
-        public IQueryable<ComboboxKeyAndValue> GenreComboboxItems
-        {
-            get
-            {
-                return
-                    (
-                        from gatunek in kinoEntities.Gatunki
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = gatunek.IdGatunku,
-                            Value = gatunek.Nazwa
-                        }
-                    ).ToList().AsQueryable();
-
-            }
-        }
         #endregion
 
         #region Helpers
