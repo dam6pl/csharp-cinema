@@ -33,5 +33,44 @@ namespace MVVMFirma.ViewModels
                 );
         }
         #endregion Helpers
+
+        #region Sort and Find
+        public override void Sort()
+        {
+            if (SortField == "Nazwa")
+                List = new ObservableCollection<Towary>(List.OrderBy(item => item.Nazwa));
+            else if (SortField == "Kod")
+                List = new ObservableCollection<Towary>(List.OrderBy(item => item.Kod));
+            else if (SortField == "Cena")
+                List = new ObservableCollection<Towary>(List.OrderBy(item => item.Cena));
+        }
+        public override List<String> getComboboxSortList()
+        {
+            return new List<string>
+            {
+                "Nazwa",
+                "Kod",
+                "Cena"
+            };
+        }
+        public override void Find()
+        {
+            load();
+
+            if (FindField == "Nazwa")
+                List = new ObservableCollection<Towary>(List.Where(item => item.Nazwa != null && item.Nazwa.StartsWith(FindTextBox)));
+            else if (FindField == "Kod")
+                List = new ObservableCollection<Towary>(List.Where(item => item.Kod != null && item.Kod.StartsWith(FindTextBox)));
+
+        }
+        public override List<String> getComboboxFindList()
+        {
+            return new List<string>
+            {
+                "Nazwa",
+                "Kod"
+            };
+        }
+        #endregion
     }
 }

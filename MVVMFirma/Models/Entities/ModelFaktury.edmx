@@ -4,23 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FakturyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FakturyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adresy">
           <Key>
             <PropertyRef Name="IdAdresu" />
           </Key>
           <Property Name="IdAdresu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NrDomu" Type="nvarchar" MaxLength="10" />
-          <Property Name="NrLokalu" Type="nvarchar" MaxLength="10" />
-          <Property Name="Ulica" Type="nvarchar" MaxLength="50" />
+          <Property Name="NrDomu" Type="nchar" MaxLength="10" />
+          <Property Name="NrLokalu" Type="nchar" MaxLength="10" />
+          <Property Name="Ulica" Type="nchar" MaxLength="10" />
           <Property Name="KodPocztowy" Type="nchar" MaxLength="10" />
-          <Property Name="Poczta" Type="nvarchar" MaxLength="50" />
-          <Property Name="Powiat" Type="nvarchar" MaxLength="50" />
-          <Property Name="Miasto" Type="nvarchar" MaxLength="50" />
-          <Property Name="Wojewodztwo" Type="nvarchar" MaxLength="50" />
-          <Property Name="Kraj" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gmina" Type="nvarchar" MaxLength="50" />
-          <Property Name="NrTelefonu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Poczta" Type="nchar" MaxLength="50" />
+          <Property Name="Powiat" Type="nchar" MaxLength="50" />
+          <Property Name="Wojewodztwo" Type="nchar" MaxLength="50" />
+          <Property Name="Miasto" Type="nchar" MaxLength="50" />
+          <Property Name="Gmina" Type="nchar" MaxLength="50" />
+          <Property Name="Kraj" Type="nchar" MaxLength="50" />
+          <Property Name="NrTelefonu" Type="nchar" MaxLength="50" />
           <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="Faktury">
@@ -28,12 +28,12 @@
             <PropertyRef Name="IdFaktury" />
           </Key>
           <Property Name="IdFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CzyAktywna" Type="bit" />
-          <Property Name="Numer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CzyZatwierdzona" Type="bit" />
+          <Property Name="Numer" Type="nchar" MaxLength="50" />
           <Property Name="DataWystawienia" Type="date" />
           <Property Name="IdKontrahenta" Type="int" />
           <Property Name="TerminPlatnosci" Type="date" />
-          <Property Name="IdSposobuPlatnosci" Type="int" />
+          <Property Name="IdFormyPlatnosci" Type="int" />
           <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="Kontrahenci">
@@ -41,13 +41,12 @@
             <PropertyRef Name="IdKontrahenta" />
           </Key>
           <Property Name="IdKontrahenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Kod" Type="nvarchar" MaxLength="10" />
-          <Property Name="NIP" Type="nvarchar" MaxLength="50" />
-          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kod" Type="nchar" MaxLength="10" />
+          <Property Name="NIP" Type="nchar" MaxLength="50" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="50" />
           <Property Name="IdRodzaju" Type="int" />
           <Property Name="IdStatusu" Type="int" />
           <Property Name="IdAdresu" Type="int" />
-          <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="PozycjeFaktury">
           <Key>
@@ -67,7 +66,7 @@
           </Key>
           <Property Name="IdRodzaju" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazwa" Type="nchar" MaxLength="50" />
-          <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="Opis" Type="nchar" MaxLength="50" />
           <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="SposobyPlatnosci">
@@ -75,8 +74,8 @@
             <PropertyRef Name="IdSposobuPlatnosci" />
           </Key>
           <Property Name="IdSposobuPlatnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
-          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="50" />
+          <Property Name="Opis" Type="nchar" MaxLength="50" />
           <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="Statusy">
@@ -84,8 +83,8 @@
             <PropertyRef Name="IdStatusu" />
           </Key>
           <Property Name="IdStatusu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
-          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="50" />
+          <Property Name="Opis" Type="nchar" MaxLength="50" />
           <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -103,10 +102,10 @@
             <PropertyRef Name="IdTowaru" />
           </Key>
           <Property Name="IdTowaru" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Kod" Type="nchar" MaxLength="10" />
-          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
-          <Property Name="StawkaVatSprzedazy" Type="int" />
-          <Property Name="StawkaVatZakupu" Type="int" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="50" />
+          <Property Name="Kod" Type="nchar" MaxLength="50" />
+          <Property Name="StawkaVatTowaruZakup" Type="int" />
+          <Property Name="StawkaVatTowaruSprzedaz" Type="int" />
           <Property Name="Cena" Type="money" />
           <Property Name="Marza" Type="decimal" Precision="18" Scale="0" />
           <Property Name="CzyAktywny" Type="bit" />
@@ -131,7 +130,7 @@
               <PropertyRef Name="IdSposobuPlatnosci" />
             </Principal>
             <Dependent Role="Faktury">
-              <PropertyRef Name="IdSposobuPlatnosci" />
+              <PropertyRef Name="IdFormyPlatnosci" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -234,8 +233,7 @@
             <End Role="PozycjeFaktury" EntitySet="PozycjeFaktury" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FakturyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -244,17 +242,17 @@
             <PropertyRef Name="IdAdresu" />
           </Key>
           <Property Name="IdAdresu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NrDomu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="NrLokalu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NrDomu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NrLokalu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Ulica" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Poczta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Powiat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Wojewodztwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gmina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NrTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Poczta" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Powiat" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Wojewodztwo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Gmina" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="NrTelefonu" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
           <NavigationProperty Name="Kontrahencis" Relationship="Self.FK_Kontrahenci_Adresy" FromRole="Adresy" ToRole="Kontrahenci" />
         </EntityType>
@@ -264,7 +262,7 @@
           </Key>
           <Property Name="IdFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CzyAktywna" Type="Boolean" />
-          <Property Name="Numer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Numer" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="DataWystawienia" Type="DateTime" Precision="0" />
           <Property Name="IdKontrahenta" Type="Int32" />
           <Property Name="TerminPlatnosci" Type="DateTime" Precision="0" />
@@ -273,15 +271,18 @@
           <NavigationProperty Name="Kontrahenci" Relationship="Self.FK_Faktury_Kontrahenci" FromRole="Faktury" ToRole="Kontrahenci" />
           <NavigationProperty Name="SposobyPlatnosci" Relationship="Self.FK_Faktury_SposobyPlatnosci" FromRole="Faktury" ToRole="SposobyPlatnosci" />
           <NavigationProperty Name="PozycjeFakturies" Relationship="Self.FK_PozycjeFaktury_Faktury" FromRole="Faktury" ToRole="PozycjeFaktury" />
+          <Property Name="CzyZatwierdzona" Type="Boolean" />
+          <Property Name="IdFormyPlatnosci" Type="Int32" />
+          <NavigationProperty Name="SposobyPlatnosci1" Relationship="FakturyModel.FK_Faktury_SposobyPlatnosci1" FromRole="Faktury" ToRole="SposobyPlatnosci" />
         </EntityType>
         <EntityType Name="Kontrahenci">
           <Key>
             <PropertyRef Name="IdKontrahenta" />
           </Key>
           <Property Name="IdKontrahenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Kod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="NIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NIP" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="IdRodzaju" Type="Int32" />
           <Property Name="IdStatusu" Type="Int32" />
           <Property Name="IdAdresu" Type="Int32" />
@@ -311,7 +312,7 @@
           </Key>
           <Property Name="IdRodzaju" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
           <NavigationProperty Name="Kontrahencis" Relationship="Self.FK_Kontrahenci_Rodzaje" FromRole="Rodzaje" ToRole="Kontrahenci" />
         </EntityType>
@@ -320,18 +321,19 @@
             <PropertyRef Name="IdSposobuPlatnosci" />
           </Key>
           <Property Name="IdSposobuPlatnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
           <NavigationProperty Name="Fakturies" Relationship="Self.FK_Faktury_SposobyPlatnosci" FromRole="SposobyPlatnosci" ToRole="Faktury" />
+          <NavigationProperty Name="Fakturies1" Relationship="FakturyModel.FK_Faktury_SposobyPlatnosci1" FromRole="SposobyPlatnosci" ToRole="Faktury" />
         </EntityType>
         <EntityType Name="Statusy">
           <Key>
             <PropertyRef Name="IdStatusu" />
           </Key>
           <Property Name="IdStatusu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
           <NavigationProperty Name="Kontrahencis" Relationship="Self.FK_Kontrahenci_Statusy" FromRole="Statusy" ToRole="Kontrahenci" />
         </EntityType>
@@ -350,14 +352,16 @@
             <PropertyRef Name="IdTowaru" />
           </Key>
           <Property Name="IdTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Kod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="StawkaVatSprzedazy" Type="Int32" />
           <Property Name="StawkaVatZakupu" Type="Int32" />
           <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Marza" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="CzyAktywny" Type="Boolean" />
           <NavigationProperty Name="PozycjeFakturies" Relationship="Self.FK_PozycjeFaktury_Towary" FromRole="Towary" ToRole="PozycjeFaktury" />
+          <Property Name="StawkaVatTowaruZakup" Type="Int32" />
+          <Property Name="StawkaVatTowaruSprzedaz" Type="Int32" />
         </EntityType>
         <Association Name="FK_Kontrahenci_Adresy">
           <End Role="Adresy" Type="Self.Adresy" Multiplicity="0..1" />
@@ -481,7 +485,23 @@
             <End Role="Towary" EntitySet="Towaries" />
             <End Role="PozycjeFaktury" EntitySet="PozycjeFakturies" />
           </AssociationSet>
+          <AssociationSet Name="FK_Faktury_SposobyPlatnosci1" Association="FakturyModel.FK_Faktury_SposobyPlatnosci1">
+            <End Role="SposobyPlatnosci" EntitySet="SposobyPlatnoscis" />
+            <End Role="Faktury" EntitySet="Fakturies" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Faktury_SposobyPlatnosci1">
+          <End Type="FakturyModel.SposobyPlatnosci" Role="SposobyPlatnosci" Multiplicity="0..1" />
+          <End Type="FakturyModel.Faktury" Role="Faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobyPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktury">
+              <PropertyRef Name="IdFormyPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -510,13 +530,13 @@
           <EntitySetMapping Name="Fakturies">
             <EntityTypeMapping TypeName="FakturyModel.Faktury">
               <MappingFragment StoreEntitySet="Faktury">
+                <ScalarProperty Name="IdFormyPlatnosci" ColumnName="IdFormyPlatnosci" />
+                <ScalarProperty Name="CzyZatwierdzona" ColumnName="CzyZatwierdzona" />
                 <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
-                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
                 <ScalarProperty Name="Numer" ColumnName="Numer" />
                 <ScalarProperty Name="DataWystawienia" ColumnName="DataWystawienia" />
                 <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
                 <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
-                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
                 <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -531,7 +551,6 @@
                 <ScalarProperty Name="IdRodzaju" ColumnName="IdRodzaju" />
                 <ScalarProperty Name="IdStatusu" ColumnName="IdStatusu" />
                 <ScalarProperty Name="IdAdresu" ColumnName="IdAdresu" />
-                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -592,11 +611,11 @@
           <EntitySetMapping Name="Towaries">
             <EntityTypeMapping TypeName="FakturyModel.Towary">
               <MappingFragment StoreEntitySet="Towary">
+                <ScalarProperty Name="StawkaVatTowaruSprzedaz" ColumnName="StawkaVatTowaruSprzedaz" />
+                <ScalarProperty Name="StawkaVatTowaruZakup" ColumnName="StawkaVatTowaruZakup" />
                 <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
                 <ScalarProperty Name="Kod" ColumnName="Kod" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
-                <ScalarProperty Name="StawkaVatSprzedazy" ColumnName="StawkaVatSprzedazy" />
-                <ScalarProperty Name="StawkaVatZakupu" ColumnName="StawkaVatZakupu" />
                 <ScalarProperty Name="Cena" ColumnName="Cena" />
                 <ScalarProperty Name="Marza" ColumnName="Marza" />
                 <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />

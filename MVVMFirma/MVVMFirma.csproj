@@ -79,7 +79,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\BaseCommand.cs" />
+    <Compile Include="Models\BussinesLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BussinesLogic\TowarB.cs" />
+    <Compile Include="Models\BussinesLogic\UtargB.cs" />
     <Compile Include="Models\EntitiesForView\ComboboxKeyAndValue.cs" />
+    <Compile Include="Models\EntitiesForView\KontrahenciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\Entities\Adresy.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
@@ -123,6 +127,8 @@
     <Compile Include="Models\Entities\Towary.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validators\StringValidator.cs" />
+    <Compile Include="Models\Validators\Validator.cs" />
     <Compile Include="ViewModels\Abstract\BaseViewModel.cs" />
     <Compile Include="ViewModels\Abstract\CommandViewModel.cs" />
     <Compile Include="ViewModels\Abstract\JedenViewModel.cs" />
@@ -131,6 +137,8 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NowaFakturaViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
+    <Compile Include="ViewModels\RaportSprzedazyViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyKontrahenciViewModel.cs" />
     <Compile Include="ViewModels\WszystkieFakturyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieTowaryViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -141,6 +149,12 @@
     </Compile>
     <Compile Include="Views\NowyTowarView.xaml.cs">
       <DependentUpon>NowyTowarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportSprzedazyView.xaml.cs">
+      <DependentUpon>RaportSprzedazyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszyscyKontrahenciView.xaml.cs">
+      <DependentUpon>WszyscyKontrahenciView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieFakturyView.xaml.cs">
       <DependentUpon>WszystkieFakturyView.xaml</DependentUpon>
@@ -174,6 +188,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowyTowarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportSprzedazyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyKontrahenciView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

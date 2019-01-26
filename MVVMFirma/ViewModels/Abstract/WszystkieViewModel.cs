@@ -24,6 +24,8 @@ namespace MVVMFirma.ViewModels.Abstract
         private BaseCommand _AddCommand;
         //to jest lista obiektow, ktora zostanie zaladowana z bazy danych
         private ObservableCollection<T> _List;
+        private BaseCommand _SortCommand;
+        private BaseCommand _FindCommand;
         #endregion Fields
 
         #region Properties
@@ -66,6 +68,47 @@ namespace MVVMFirma.ViewModels.Abstract
         }
         #endregion Properties
 
+        #region Sort and Find
+        public string SortField { get; set; }
+        public List<String> SortComboboxItems
+        {
+            get
+            {
+                return getComboboxSortList();
+            }
+        }
+        public ICommand SortCommand
+        {
+            get
+            {
+                if (_SortCommand == null)
+                    _SortCommand = new BaseCommand(() => Sort());
+
+                return _SortCommand;
+            }
+        }
+
+        public string FindField { get; set; }
+        public string FindTextBox { get; set; }
+        public List<String> FindComboboxItems
+        {
+            get
+            {
+                return getComboboxFindList();
+            }
+        }
+        public ICommand FindCommand
+        {
+            get
+            {
+                if (_FindCommand == null)
+                    _FindCommand = new BaseCommand(() => Find());
+
+                return _FindCommand;
+            }
+        }
+        #endregion
+
         #region Constructor
         public WszystkieViewModel()
         {
@@ -84,6 +127,10 @@ namespace MVVMFirma.ViewModels.Abstract
             //skorzystamy z biblioteki MVVMLight
             Messenger.Default.Send(DisplayName + "Add");
         }
+        public abstract void Sort();
+        public abstract List<String> getComboboxSortList();
+        public abstract void Find();
+        public abstract List<String> getComboboxFindList();
         #endregion Helpers
     }
 }

@@ -39,5 +39,24 @@ namespace MVVMFirma.ViewModels
                 );
         }
         #endregion Helpers
+
+        #region Sort and Find
+        public override void Sort()
+        {
+
+        }
+        public override List<String> getComboboxSortList()
+        {
+            return null;
+        }
+        public override void Find()
+        {
+
+        }
+        public override List<String> getComboboxFindList()
+        {
+            return null;
+        }
+        #endregion
     }
 }

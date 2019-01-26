@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="MVVMFirma.Views.RaportSprzedazyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMFirma.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="44"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="33"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Utarg w wybranym okresie dla wybranego towaru" 
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Od: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="1" VerticalAlignment="Center" SelectedDate="{Binding Path=OdDaty, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2" Content="Do: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DatePicker Grid.Column="3" VerticalAlignment="Center" SelectedDate="{Binding Path=DoDaty, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Wybierz towar: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" VerticalAlignment="Center" 
+                      ItemsSource="{Binding TowaryComboboxItems}" 
+                      DisplayMemberPath="Value" SelectedValuePath="Key" 
+                      SelectedValue="{Binding Path=IdTowaru, Mode=TwoWay}"/>
+        </Grid>
+
+        <Button Grid.Row="3" Content="Oblicz" VerticalAlignment="Center" Command="{Binding ObliczCommand}"/>
+
+        <Label Grid.Row="4" Content="Utarg Wynosi: " Margin="20,0,0,0" VerticalAlignment="Center"/>
+        <Label Grid.Row="5" Content="{Binding Path=Utarg, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0"  VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

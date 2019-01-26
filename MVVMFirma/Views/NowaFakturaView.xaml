@@ -55,23 +55,20 @@
 
                             <Label Grid.Column="0" Grid.Row="0" Content="Kontrahent"
                                       Style="{StaticResource LabelGridStyle}"/>
-                            <ComboBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"  Style="{StaticResource ComboBoxStyle}"
-                                      ItemsSource="{Binding KontrahenciComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                                      SelectedValue="{Binding Path=IdKontrahenta, Mode=TwoWay}"/>
+                            <TextBox Grid.Column="1" Grid.Row="0"  Style="{StaticResource TextBoxStyle}"
+                                     IsEnabled="False" Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Button Grid.Column="2" Grid.Row="0" Content="..." HorizontalAlignment="Left" Width="50" 
+                                    Style="{StaticResource ButtonStyle}" Command="{Binding ShowKontrahenciCommand}"/>
 
-                            <!--<Button Grid.Column="0" Grid.Row="1" Content="Kategoria"
-                                      Style="{StaticResource ButtonStyle}"/>
-                            <ComboBox Grid.Column="1" Grid.Row="1"
-                                      Style="{StaticResource ComboBoxStyle}"/>
-                            <TextBox Grid.Column="2" Grid.Row="1"
-                                      Style="{StaticResource TextBoxStyle}"/>-->
+                            <Label Grid.Column="0" Grid.Row="1" Content="NIP"
+                                      Style="{StaticResource LabelGridStyle}"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}"
+                                     IsEnabled="False" Text="{Binding Path=NIP, UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <!--<Button Grid.Column="0" Grid.Row="2" Content="Magazyn"
-                                      Style="{StaticResource ButtonStyle}"/>
-                            <ComboBox Grid.Column="1" Grid.Row="2"
-                                      Style="{StaticResource ComboBoxStyle}"/>
-                            <TextBox Grid.Column="2" Grid.Row="2" IsEnabled="False"
-                                      Style="{StaticResource TextBoxStyle}"/>-->
+                            <Label Grid.Column="0" Grid.Row="2" Content="Adres"
+                                      Style="{StaticResource LabelGridStyle}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}"
+                                     IsEnabled="False" Text="{Binding Path=Adres, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </Expander>
 

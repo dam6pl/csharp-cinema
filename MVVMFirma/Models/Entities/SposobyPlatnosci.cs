@@ -18,6 +18,7 @@ namespace MVVMFirma.Models.Entities
         public SposobyPlatnosci()
         {
             this.Fakturies = new HashSet<Faktury>();
+            this.Fakturies1 = new HashSet<Faktury>();
         }
     
         public int IdSposobuPlatnosci { get; set; }
@@ -27,5 +28,7 @@ namespace MVVMFirma.Models.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Faktury> Fakturies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Faktury> Fakturies1 { get; set; }
     }
 }

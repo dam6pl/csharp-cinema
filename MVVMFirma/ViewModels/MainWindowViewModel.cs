@@ -66,6 +66,9 @@ namespace MVVMFirma.ViewModels
                                                 new NowaFakturaViewModel()))),
                 new CommandViewModel("Faktury",
                     new BaseCommand(()=>this.showAllFaktury())),
+
+                new CommandViewModel("Raport Sprzedazy",
+                    new BaseCommand(()=>this.showRaportSprzedazy()))
             };
         }
         #endregion Commands
@@ -153,6 +156,31 @@ namespace MVVMFirma.ViewModels
             }
             this.setActiveWorkspace(workspace);
         }
+        private void showAllKontrahenci()
+        {
+            WszyscyKontrahenciViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is
+                WszyscyKontrahenciViewModel) as WszyscyKontrahenciViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszyscyKontrahenciViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.setActiveWorkspace(workspace);
+        }
+
+        private void showRaportSprzedazy()
+        {
+            RaportSprzedazyViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is
+                RaportSprzedazyViewModel) as RaportSprzedazyViewModel;
+            if (workspace == null)
+            {
+                workspace = new RaportSprzedazyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.setActiveWorkspace(workspace);
+        }
         //to jest funkcja ktora wlacza aktywnosc zakladki
         private void setActiveWorkspace(WorkspaceViewModel workspace)
         {
@@ -165,13 +193,17 @@ namespace MVVMFirma.ViewModels
         }
         private void open(String name)
         {
-            if(name == "FakturyAdd")
+            if (name == "FakturyAdd")
             {
                 createWorkspace(new NowaFakturaViewModel());
             }
-            else if(name == "TowaryAdd")
+            else if (name == "TowaryAdd")
             {
                 createWorkspace(new NowyTowarViewModel());
+            }
+            else if (name == "KontrahenciShow")
+            {
+                showAllKontrahenci();
             }
         }
         #endregion Helpers

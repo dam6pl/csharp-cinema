@@ -28,6 +28,8 @@ namespace MVVMFirma.Models.Entities
         public Nullable<decimal> Cena { get; set; }
         public Nullable<decimal> Marza { get; set; }
         public Nullable<bool> CzyAktywny { get; set; }
+        public Nullable<int> StawkaVatTowaruZakup { get; set; }
+        public Nullable<int> StawkaVatTowaruSprzedaz { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PozycjeFaktury> PozycjeFakturies { get; set; }

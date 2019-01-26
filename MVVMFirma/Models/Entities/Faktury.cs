@@ -28,10 +28,13 @@ namespace MVVMFirma.Models.Entities
         public Nullable<System.DateTime> TerminPlatnosci { get; set; }
         public Nullable<int> IdSposobuPlatnosci { get; set; }
         public Nullable<bool> CzyAktywny { get; set; }
+        public Nullable<bool> CzyZatwierdzona { get; set; }
+        public Nullable<int> IdFormyPlatnosci { get; set; }
     
         public virtual Kontrahenci Kontrahenci { get; set; }
         public virtual SposobyPlatnosci SposobyPlatnosci { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PozycjeFaktury> PozycjeFakturies { get; set; }
+        public virtual SposobyPlatnosci SposobyPlatnosci1 { get; set; }
     }
 }

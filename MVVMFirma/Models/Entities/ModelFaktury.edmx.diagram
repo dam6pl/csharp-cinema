@@ -21,6 +21,7 @@
         <AssociationConnector Association="FakturyModel.FK_Kontrahenci_Rodzaje" ManuallyRouted="false" />
         <AssociationConnector Association="FakturyModel.FK_Kontrahenci_Statusy" ManuallyRouted="false" />
         <AssociationConnector Association="FakturyModel.FK_PozycjeFaktury_Towary" ManuallyRouted="false" />
+        <AssociationConnector Association="FakturyModel.FK_Faktury_SposobyPlatnosci1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,6 +17,15 @@
     <DataTemplate DataType="{x:Type vm:WszystkieFakturyViewModel}">
         <vw:WszystkieFakturyView/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:WszyscyKontrahenciViewModel}">
+        <vw:WszyscyKontrahenciView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:RaportSprzedazyViewModel}">
+        <vw:RaportSprzedazyView/>
+    </DataTemplate>
+
     <!--Moje style-->
     <Style x:Key="ToolbarButtonStyle" 
            TargetType="{x:Type ToggleButton}">
