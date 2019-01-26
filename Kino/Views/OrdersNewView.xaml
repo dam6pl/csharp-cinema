@@ -14,6 +14,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
@@ -21,33 +22,59 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
         <Label Content="Seans:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
-        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
-                  ItemsSource="{Binding SeanseComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                  SelectedValue="{Binding Path=IdSeansu, Mode=TwoWay}"/>
+        <Label Content="Sala:" Grid.Column="1" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="0" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=SeansSala, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonStyle}"
+                Command="{Binding ShowShowingsCommand}">Wybierz</Button>
+        
+        <Label Content="Film:" Grid.Column="1" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=SeansFilm, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Klient:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
-                  ItemsSource="{Binding KlienciComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                  SelectedValue="{Binding Path=IdKlienta, Mode=TwoWay}"/>
+        <Label Content="Data:" Grid.Column="1" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=SeansData, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Typ biletu:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" 
+        <Label Content="Klient:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
+        <Label Content="Imię i nazwisko:" Grid.Column="1" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=KlientImieNazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource ButtonStyle}"
+                Command="{Binding ShowCustomersCommand}">Wybierz</Button>
+
+        <Label Content="Email:" Grid.Column="1" Grid.Row="5" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="5" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=KlientEmail, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Numer telefonu:" Grid.Column="1" Grid.Row="6" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=KlientTelefon, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Typ biletu:" Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelGridStyle}"/>
+        <ComboBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
                   ItemsSource="{Binding TypyBiletowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
                   SelectedValue="{Binding Path=IdTypuBiletu, Mode=TwoWay}"/>
-        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
+        <Button Grid.Row="8" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
 
-        <Label Content="Pracownik:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
-        <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
+        <Label Content="Pracownik:" Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelGridStyle}"/>
+        <ComboBox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 
                   ItemsSource="{Binding PracownicyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
                   SelectedValue="{Binding Path=IdPracownika, Mode=TwoWay}"/>
 
-        <Label Content="Status:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
-        <CheckBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource CheckBoxStyle}"
+        <Label Content="Status:" Grid.Column="0" Grid.Row="10" Style="{StaticResource LabelGridStyle}"/>
+        <CheckBox Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource CheckBoxStyle}"
                   IsChecked="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}">Zamowienie opłacone</CheckBox>
 
     </Grid>

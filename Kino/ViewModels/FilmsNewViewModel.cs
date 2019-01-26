@@ -1,4 +1,5 @@
 ﻿using Kino.Models;
+using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
 using Kino.ViewModels.Abstract;
 using System;
@@ -74,15 +75,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return
-                    (
-                        from gatunek in kinoEntities.Gatunki
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = gatunek.IdGatunku,
-                            Value = gatunek.Nazwa
-                        }
-                    ).ToList().AsQueryable();
+                return new Genre(kinoEntities).getGenreComboboxItems();
 
             }
         }

@@ -1,4 +1,6 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Models;
+using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
 using Kino.ViewModels.Abstract;
 using System;
@@ -21,54 +23,21 @@ namespace Kino.ViewModels
         #endregion Constructor
 
         #region properties
-        public IQueryable<ComboboxKeyAndValue> SaleComboboxItems
+        private ShowingsForAllView _SelectedShowing;
+        public ShowingsForAllView SelectedShowing
         {
             get
             {
-                return
-                    (
-                        from sala in kinoEntities.Sale
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = sala.IdSali,
-                            Value = sala.Nazwa + " (ID: " + sala.IdSali + ")"
-                        }
-                    ).ToList().AsQueryable();
-
+                return _SelectedShowing;
             }
-        }
-
-        public IQueryable<ComboboxKeyAndValue> FilmyComboboxItems
-        {
-            get
+            set
             {
-                return
-                    (
-                        from film in kinoEntities.Filmy
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = film.IdFilmu,
-                            Value = film.Tytuł
-                        }
-                    ).ToList().AsQueryable();
-
-            }
-        }
-
-        public IQueryable<ComboboxKeyAndValue> TypySeansowComboboxItems
-        {
-            get
-            {
-                return
-                    (
-                        from typSeansu in kinoEntities.TypySeansow
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = typSeansu.IdTypuSeansu,
-                            Value = typSeansu.Nazwa
-                        }
-                    ).ToList().AsQueryable();
-
+                if (_SelectedShowing != value)
+                {
+                    _SelectedShowing = value;
+                    Messenger.Default.Send(_SelectedShowing);
+                    onRequestClose();
+                }
             }
         }
         #endregion
@@ -76,20 +45,52 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new ObservableCollection<ShowingsForAllView>
-                (
-                from seans in kinoEntities.Seanse
-                select new ShowingsForAllView
-                    {
-                        IdSeansu = seans.IdSeansu,
-                        NazwaSali = seans.Sale.Nazwa,
-                        NazwaFilmu = seans.Filmy.Tytuł,
-                        Data = seans.Data,
-                        TypSeansu = seans.TypySeansow.Nazwa
-                    }
-                );
+            List = new Showings(kinoEntities).getAllShowings();
         }
-       
         #endregion Helpers
+
+        #region Sort and Find
+        public override void Sort()
+        {
+            if (SortField == "Film")
+                List = new ObservableCollection<ShowingsForAllView>(List.OrderBy(item => item.NazwaFilmu));
+            else if (SortField == "Sala")
+                List = new ObservableCollection<ShowingsForAllView>(List.OrderBy(item => item.NazwaSali));
+            else if (SortField == "Data")
+                List = new ObservableCollection<ShowingsForAllView>(List.OrderBy(item => item.Data));
+        }
+
+        public override List<String> getComboboxSortList()
+        {
+            return new List<string>
+            {
+                "Film",
+                "Sala",
+                "Data"
+            };
+        }
+
+        public override void Find()
+        {
+            load();
+
+            if (FindField == "Film")
+                List = new ObservableCollection<ShowingsForAllView>(List.Where(item => item.NazwaFilmu != null 
+                && item.NazwaFilmu.StartsWith(FindTextBox)));
+            else if (FindField == "Sala")
+                List = new ObservableCollection<ShowingsForAllView>(List.Where(item => item.NazwaSali != null
+                && item.NazwaSali.StartsWith(FindTextBox)));
+
+        }
+
+        public override List<String> getComboboxFindList()
+        {
+            return new List<string>
+            {
+                "Film",
+                "Sala"
+            };
+        }
+        #endregion
     }
 }

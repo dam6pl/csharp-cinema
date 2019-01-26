@@ -68,7 +68,11 @@ namespace Kino.ViewModels
                 new CommandViewModel("Nowy pracownik", new BaseCommand(()=>this.createWorkspace(new EmployeesNewViewModel()))),
                 new CommandViewModel("Wszyscy pracownicy", new BaseCommand(()=>this.showEmployeesAll())),
 
-                new CommandViewModel("Nowy adres", new BaseCommand(()=>this.createWorkspace(new AdressesNewViewModel())))
+                new CommandViewModel("Nowy adres", new BaseCommand(()=>this.createWorkspace(new AddressesNewViewModel()))),
+                new CommandViewModel("Wszystkie adresy", new BaseCommand(()=>this.showAddressesAll())),
+
+
+                new CommandViewModel("Raport sprzedaży", new BaseCommand(()=>this.showSalesReport())),
             };
         }
         #endregion Commands
@@ -190,6 +194,32 @@ namespace Kino.ViewModels
             this.setActiveWorkspace(workspace);
         }
 
+        private void showAddressesAll()
+        {
+            AddressesAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is AddressesAllViewModel)
+                as AddressesAllViewModel;
+            if (workspace == null)
+            {
+                workspace = new AddressesAllViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.setActiveWorkspace(workspace);
+        }
+
+        private void showSalesReport()
+        {
+            SalesReportViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is SalesReportViewModel)
+                as SalesReportViewModel;
+            if (workspace == null)
+            {
+                workspace = new SalesReportViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.setActiveWorkspace(workspace);
+        }
+
         private void setActiveWorkspace(WorkspaceViewModel workspace)
         {
             Debug.Assert(this.Workspaces.Contains(workspace));
@@ -225,6 +255,30 @@ namespace Kino.ViewModels
             else if (name == "Wszystkie seanse")
             {
                 createWorkspace(new ShowingsNewViewModel());
+            }
+            else if (name == "Wszystkie adresy")
+            {
+                createWorkspace(new AddressesNewViewModel());
+            }
+            else if (name == "Nowy typ seansu")
+            {
+                createWorkspace(new ShowingTypesNewViewModel());
+            }
+            else if (name == "FilmsShow")
+            {
+                showFilmsAll();
+            }
+            else if (name == "ShowingsShow")
+            {
+                showShowingsAll();
+            }
+            else if (name == "CustomersShow")
+            {
+                showCustomersAll();
+            }
+            else if (name == "AddressesShow")
+            {
+                showAddressesAll();
             }
         }
         #endregion Helpers
@@ -320,19 +374,34 @@ namespace Kino.ViewModels
             }
         }
 
-        //Temporary command
-        private BaseCommand _showRoomsNewCommand;
-        public ICommand ShowRoomsNewCommand
+        private BaseCommand _showAddressesAllCommand;
+        public ICommand ShowAddressesAllCommand
         {
             get
             {
 
-                if (_showRoomsNewCommand == null)
+                if (_showAddressesAllCommand == null)
                 {
-                    _showRoomsNewCommand = new BaseCommand(() => createWorkspace(new AdressesNewViewModel()));
+                    _showAddressesAllCommand = new BaseCommand(() => createWorkspace(new AddressesAllViewModel()));
                 }
 
-                return _showRoomsNewCommand;
+                return _showAddressesAllCommand;
+            }
+        }
+
+
+        private BaseCommand _showSalesReportCommand;
+        public ICommand ShowSalesReportCommand
+        {
+            get
+            {
+
+                if (_showSalesReportCommand == null)
+                {
+                    _showSalesReportCommand = new BaseCommand(() => createWorkspace(new SalesReportViewModel()));
+                }
+
+                return _showSalesReportCommand;
             }
         }
         # endregion Menu commands

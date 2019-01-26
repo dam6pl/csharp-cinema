@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class AdressesNewViewModel : SingleViewModel<Adresy>
+    class AddressesNewViewModel : SingleViewModel<Adresy>
     {
         #region Construktor
-        public AdressesNewViewModel()
+        public AddressesNewViewModel()
             : base()
         {
             base.DisplayName = "Nowy adres";

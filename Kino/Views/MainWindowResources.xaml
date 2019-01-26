@@ -59,8 +59,16 @@
         <vw:EmployeesNewView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:AdressesNewViewModel}">
-        <vw:AdressesNewView/>
+    <DataTemplate DataType="{x:Type vm:AddressesNewViewModel}">
+        <vw:AddressesNewView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:AddressesAllViewModel}">
+        <vw:AddressesAllView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SalesReportViewModel}">
+        <vw:SalesReportView/>
     </DataTemplate>
 
 
@@ -182,6 +190,7 @@
     <Style x:Key="ListBoxStyle" TargetType="{x:Type ListBox}">
         <Setter Property="Margin" Value="2" />
     </Style>
+    
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Margin" Value="2" />
         <Setter Property="Padding" Value="5" />

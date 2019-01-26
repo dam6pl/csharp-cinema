@@ -1,4 +1,5 @@
 ﻿using Kino.Models;
+using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
 using Kino.ViewModels.Abstract;
 using System;
@@ -21,57 +22,68 @@ namespace Kino.ViewModels
         #endregion Constructor
 
         #region Properties
-        public IQueryable<ComboboxKeyAndValue> SeanseComboboxItems
-        {
-            get
-            {
-                return
-                    (
-                        from seans in kinoEntities.Seanse
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = seans.IdSeansu,
-                            Value = seans.Sale.Nazwa + " - " + seans.Filmy.Tytuł + " - " + seans.Data
-                        }
-                    ).ToList().AsQueryable();
-            }
-        }
-
-        public IQueryable<ComboboxKeyAndValue> KlienciComboboxItems
-        {
-            get
-            {
-                return
-                    (
-                        from klient in kinoEntities.Klienci
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = klient.IdKlienta,
-                            Value = klient.Imie + " " + klient.Nazwisko
-                        }
-                    ).ToList().AsQueryable();
-            }
-        }
         #endregion
 
         #region Helpers
         public override void load()
         {
-            List = new ObservableCollection<OrdersForAllView>
-                (
-                from zamowienie in kinoEntities.Zamowienia
-                select new OrdersForAllView
-                    {
-                        IdZamowienia = zamowienie.IdZamowienia,
-                        Seans = zamowienie.Seanse.Sale.Nazwa + " - " + zamowienie.Seanse.Filmy.Tytuł 
-                            + " - " + zamowienie.Seanse.Data,
-                        NazwaKlienta = zamowienie.Klienci.Imie + " " + zamowienie.Klienci.Nazwisko,
-                        TypBiletu = zamowienie.TypyBiletow.Nazwa,
-                        Pracownik = zamowienie.Pracownicy.Imie + " " + zamowienie.Pracownicy.Nazwisko,
-                        Status = zamowienie.Status
-                    }
-                );
+            List = new Orders(kinoEntities).getAllOrders();
         }
         #endregion Helpers
+
+        #region Sort and Find
+        public override void Sort()
+        {
+            if (SortField == "Seans")
+                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.Seans));
+            else if (SortField == "Klient")
+                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.NazwaKlienta));
+            else if (SortField == "Typ biletu")
+                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.TypBiletu));
+            else if (SortField == "Pracownik")
+                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.Pracownik));
+        }
+
+        public override List<String> getComboboxSortList()
+        {
+            return new List<string>
+            {
+                "Seans",
+                "Klient",
+                "Typ biletu",
+                "Pracownik"
+            };
+        }
+
+        public override void Find()
+        {
+            load();
+
+            if (FindField == "Senas")
+                List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.Seans != null
+                && item.Seans.StartsWith(FindTextBox)));
+            else if (FindField == "Klient")
+                List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.NazwaKlienta != null
+                && item.NazwaKlienta.StartsWith(FindTextBox)));
+            else if (FindField == "Typ biletu")
+                List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.TypBiletu != null
+                && item.TypBiletu.StartsWith(FindTextBox)));
+            else if (FindField == "Pracownik")
+                List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.Pracownik != null
+                && item.Pracownik.StartsWith(FindTextBox)));
+
+        }
+
+        public override List<String> getComboboxFindList()
+        {
+            return new List<string>
+            {
+                "Seans",
+                "Klient",
+                "Typ biletu",
+                "Pracownik"
+            };
+        }
+        #endregion
     }
 }

@@ -79,16 +79,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\BusinessLogic\Customers.cs" />
+    <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\SalesReport.cs" />
+    <Compile Include="Models\BusinessLogic\Genre.cs" />
+    <Compile Include="Models\BusinessLogic\Employees.cs" />
+    <Compile Include="Models\BusinessLogic\Addresses.cs" />
+    <Compile Include="Models\BusinessLogic\Films.cs" />
+    <Compile Include="Models\BusinessLogic\Showings.cs" />
+    <Compile Include="Models\BusinessLogic\Orders.cs" />
+    <Compile Include="Models\BusinessLogic\TicketTypes.cs" />
+    <Compile Include="Models\BusinessLogic\ShowingTypes.cs" />
+    <Compile Include="Models\BusinessLogic\Rooms.cs" />
     <Compile Include="Models\EntitiesForView\ComboboxKeyAndValue.cs" />
     <Compile Include="Models\EntitiesForView\EmployeesForAllView.cs" />
     <Compile Include="Models\EntitiesForView\OrdersForAllView.cs" />
     <Compile Include="Models\EntitiesForView\FilmsForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ShowingsForAllView.cs" />
+    <Compile Include="ViewModels\AddressesAllViewModel.cs" />
     <Compile Include="ViewModels\EmployeesNewViewModel.cs" />
     <Compile Include="ViewModels\EmployeesAllViewModel.cs" />
     <Compile Include="ViewModels\CustomersAllViewModel.cs" />
     <Compile Include="ViewModels\CustomersNewViewModel.cs" />
-    <Compile Include="ViewModels\AdressesNewViewModel.cs" />
+    <Compile Include="ViewModels\AddressesNewViewModel.cs" />
+    <Compile Include="ViewModels\SalesReportViewModel.cs" />
     <Compile Include="ViewModels\TicketTypesNewViewModel.cs" />
     <Compile Include="ViewModels\OrdersNewViewModel.cs" />
     <Compile Include="ViewModels\OrdersAllViewModel.cs" />
@@ -101,6 +115,9 @@
     <Compile Include="ViewModels\ShowingsNewViewModel.cs" />
     <Compile Include="ViewModels\Abstract\MainViewModel.cs" />
     <Compile Include="ViewModels\Abstract\ViewModelLocator.cs" />
+    <Compile Include="Views\AddressesAllView.xaml.cs">
+      <DependentUpon>AddressesAllView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EmployeesNewView.xaml.cs">
       <DependentUpon>EmployeesNewView.xaml</DependentUpon>
     </Compile>
@@ -113,8 +130,11 @@
     <Compile Include="Views\CustomersNewView.xaml.cs">
       <DependentUpon>CustomersNewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdressesNewView.xaml.cs">
-      <DependentUpon>AdressesNewView.xaml</DependentUpon>
+    <Compile Include="Views\AddressesNewView.xaml.cs">
+      <DependentUpon>AddressesNewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SalesReportView.xaml.cs">
+      <DependentUpon>SalesReportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TicketTypesNewView.xaml.cs">
       <DependentUpon>TicketTypesNewView.xaml</DependentUpon>
@@ -150,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AddressesAllView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\EmployeesNewView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -166,9 +190,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AdressesNewView.xaml">
+    <Page Include="Views\AddressesNewView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SalesReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TicketTypesNewView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -357,6 +385,7 @@
   <ItemGroup>
     <Resource Include="Assets\customers.png" />
     <Resource Include="Assets\employers.png" />
+    <Resource Include="Assets\addresses.png" />
     <Content Include="Models\KinoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>KinoEntities.Context.cs</LastGenOutput>

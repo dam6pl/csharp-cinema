@@ -7,6 +7,26 @@
         <Setter Property="FontSize" Value="13"/>
     </Style>
 
+    <Style x:Key="LabelGridStyle" TargetType="{x:Type Label}">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Background" Value="White" />
+    </Style>
+
+    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Padding" Value="5" />
+    </Style>
+
     <Style TargetType="{x:Type local:AllViewBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -14,6 +34,8 @@
                     <Grid Margin="0,10,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="60"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
@@ -32,7 +54,33 @@
                             <Button Grid.Column="3" Content="Otworz elemenet" Margin="4 0 0 0" Style="{StaticResource TabButtonStyle}"/>
                         </Grid>
 
-                        <ContentPresenter Grid.Row="2" Margin="0,5,0,5"/>
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="120*"/>
+                                <ColumnDefinition Width="120*"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Sortowanie:" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelGridStyle}"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding SortComboboxItems}" 
+                                      SelectedValue="{Binding Path=SortField, Mode=TwoWay}" Style="{StaticResource ComboBoxStyle}"/>
+                            <Button Content="Sortuj" Grid.Row="0" Grid.Column="3" Command="{Binding SortCommand}"
+                                    Style="{StaticResource ButtonStyle}"/>
+
+                            <Label Content="Wyszukiwanie:" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelGridStyle}"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FindComboboxItems}" 
+                                      SelectedValue="{Binding Path=FindField, Mode=TwoWay}" Style="{StaticResource ComboBoxStyle}"/>
+                            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding FindTextBox}" Style="{StaticResource TextBoxStyle}"/>
+                            <Button Content="Szukaj" Grid.Row="1" Grid.Column="3" Command="{Binding FindCommand}"
+                                    Style="{StaticResource ButtonStyle}"/>
+                        </Grid>
+
+                        <ContentPresenter Grid.Row="3" Margin="0,5,0,5"/>
 
                     </Grid>
                 </ControlTemplate>

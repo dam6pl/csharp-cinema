@@ -110,7 +110,7 @@
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="/Assets/film.png" />
+                            <Image Grid.Column="0" Margin="2" Source="/Assets/film.png" />
                             <Label Grid.Column="1" Content="Filmy" Style="{StaticResource LeftMenuLabelStyle}"/>
                         </Grid>
                     </MenuItem.Header>
@@ -161,6 +161,31 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="/Assets/employers.png" />
                             <Label Grid.Column="1" Content="Pracownicy" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowAddressesAllCommand}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Margin="3" Source="/Assets/addresses.png" />
+                            <Label Grid.Column="1" Content="Adresy" Style="{StaticResource LeftMenuLabelStyle}"/>
+                        </Grid>
+                    </MenuItem.Header>
+                </MenuItem>
+                <Separator Height="3" Width="230" Margin="10 0 0 0"/>
+                <MenuItem Style="{StaticResource LeftMenuItemStyle}" Command="{Binding ShowSalesReportCommand}">
+                    <MenuItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="/Assets/employers.png" />
+                            <Label Grid.Column="1" Content="Raport sprzedaży" Style="{StaticResource LeftMenuLabelStyle}"/>
                         </Grid>
                     </MenuItem.Header>
                 </MenuItem>

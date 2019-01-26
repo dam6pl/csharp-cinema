@@ -1,4 +1,6 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Models;
+using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
 using Kino.ViewModels.Abstract;
 using System;
@@ -26,21 +28,75 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new ObservableCollection<EmployeesForAllView>
-                (
-                from pracownik in kinoEntities.Pracownicy
-                select new EmployeesForAllView
-                    {
-                        IdPracownika = pracownik.IdPracownika,
-                        Imie = pracownik.Imie,
-                        Nazwisko = pracownik.Nazwisko,
-                        Stanowisko = pracownik.Stanowisko,
-                        Telefon = pracownik.Telefon,
-                        Adres = pracownik.Adresy.Ulica + " " + pracownik.Adresy.NrDomu + ", " 
-                            + pracownik.Adresy.Miejscowosc + " " + pracownik.Adresy.KodPocztowy
-                    }
-                );
+            List = new Employees(kinoEntities).getAllEmployees();
         }
         #endregion Helpers
+
+        #region Properties
+        private FilmsForAllView _SelectedFilm;
+        public FilmsForAllView SelectedFilm
+        {
+            get
+            {
+                return _SelectedFilm;
+            }
+            set
+            {
+                if (_SelectedFilm != value)
+                {
+                    _SelectedFilm = value;
+                    Messenger.Default.Send(_SelectedFilm);
+                    onRequestClose();
+                }
+            }
+        }
+        #endregion
+
+        #region Sort and Find
+        public override void Sort()
+        {
+            if (SortField == "Imię")
+                List = new ObservableCollection<EmployeesForAllView>(List.OrderBy(item => item.Imie));
+            else if (SortField == "Nazwisko")
+                List = new ObservableCollection<EmployeesForAllView>(List.OrderBy(item => item.Nazwisko));
+            else if (SortField == "Stanowisko")
+                List = new ObservableCollection<EmployeesForAllView>(List.OrderBy(item => item.Stanowisko));
+        }
+
+        public override List<String> getComboboxSortList()
+        {
+            return new List<string>
+            {
+                "Imię",
+                "Nazwisko",
+                "Stanowisko"
+            };
+        }
+
+        public override void Find()
+        {
+            load();
+
+            if (FindField == "Imię")
+                List = new ObservableCollection<EmployeesForAllView>(List.Where(item => item.Imie != null
+                && item.Imie.StartsWith(FindTextBox)));
+            else if (FindField == "Nazwisko")
+                List = new ObservableCollection<EmployeesForAllView>(List.Where(item => item.Nazwisko != null
+                && item.Nazwisko.StartsWith(FindTextBox)));
+            else if (FindField == "Stanowisko")
+                List = new ObservableCollection<EmployeesForAllView>(List.Where(item => item.Stanowisko != null
+                && item.Stanowisko.StartsWith(FindTextBox)));
+        }
+
+        public override List<String> getComboboxFindList()
+        {
+            return new List<string>
+            {
+                "Imię",
+                "Nazwisko",
+                "Stanowisko"
+            };
+        }
+        #endregion
     }
 }

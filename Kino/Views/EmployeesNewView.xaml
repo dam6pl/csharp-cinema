@@ -14,6 +14,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
@@ -22,31 +23,47 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
         <Label Content="Imie:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
                  Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Nazwisko:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+        <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
                  Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Stanowisko:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
                  Text="{Binding Path=Stanowisko, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Telefon:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
+        <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
                  Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Adres:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
-        <ComboBox Grid.Row="4" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" 
-                  ItemsSource="{Binding AdresyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                  SelectedValue="{Binding Path=IdAdresu, Mode=TwoWay}"/>
-        <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
+        <Label Content="Adres:" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelGridStyle}"/>
+        <Label Content="Ulica:" Grid.Column="1" Grid.Row="5" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="5" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=AdresUlica, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource ButtonStyle}"
+                Command="{Binding ShowAddressesCommand}">Wybierz</Button>
 
+        <Label Content="Numer domu:" Grid.Column="1" Grid.Row="6" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=AdresNrDomu, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <Label Content="Miejscowość:" Grid.Column="1" Grid.Row="7" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=AdresMiejscowosc, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Kod pocztowy:" Grid.Column="1" Grid.Row="8" Style="{StaticResource LabelGridStyle}"/>
+        <TextBox Grid.Row="8" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
+                  Text="{Binding Path=AdresKodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 
 </local:SingleViewBase>

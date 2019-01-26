@@ -1,4 +1,5 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Models;
 using Kino.Models.EntitiesForView;
 using Kino.ViewModels.Abstract;
 using System;
@@ -6,12 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Kino.ViewModels
 {
     
     public class EmployeesNewViewModel : SingleViewModel<Pracownicy>
-    { 
+    {
+        #region Fields
+        private BaseCommand _ShowAddressesCommand;
+        #endregion
+
         #region Construktor
         public EmployeesNewViewModel()
             : base()
@@ -19,8 +25,22 @@ namespace Kino.ViewModels
             base.DisplayName = "Nowy pracownik";
 
             this.item = new Pracownicy();
+            Messenger.Default.Register<Adresy>(this, getSelectedAddress);
         }
         #endregion Constructor
+
+        #region Command
+        public ICommand ShowAddressesCommand
+        {
+            get
+            {
+                if (_ShowAddressesCommand == null)
+                    _ShowAddressesCommand = new BaseCommand(() => Messenger.Default.Send("AddressesShow"));
+
+                return _ShowAddressesCommand;
+            }
+        }
+        #endregion
 
         #region Properties
         public string Imie
@@ -102,23 +122,74 @@ namespace Kino.ViewModels
                 }
             }
         }
-        public IQueryable<ComboboxKeyAndValue> AdresyComboboxItems
+
+        private string _AdresUlica;
+        public string AdresUlica
         {
             get
             {
-                return
-                    (
-                        from adres in kinoEntities.Adresy
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = adres.IdAdresu,
-                            Value = adres.Ulica + " " + adres.NrDomu + ", "
-                            + adres.Miejscowosc + " " + adres.KodPocztowy
-                        }
-                    ).ToList().AsQueryable();
+                return _AdresUlica;
+            }
+            set
+            {
+                if (_AdresUlica != value)
+                {
+                    _AdresUlica = value;
+                    OnPropertyChanged(() => _AdresUlica);
+                }
             }
         }
 
+        private string _AdresNrDomu;
+        public string AdresNrDomu
+        {
+            get
+            {
+                return _AdresNrDomu;
+            }
+            set
+            {
+                if (_AdresNrDomu != value)
+                {
+                    _AdresNrDomu = value;
+                    OnPropertyChanged(() => _AdresNrDomu);
+                }
+            }
+        }
+
+        private string _AdresMiejscowosc;
+        public string AdresMiejscowosc
+        {
+            get
+            {
+                return _AdresMiejscowosc;
+            }
+            set
+            {
+                if (_AdresMiejscowosc != value)
+                {
+                    _AdresMiejscowosc = value;
+                    OnPropertyChanged(() => _AdresMiejscowosc);
+                }
+            }
+        }
+
+        private string _AdresKodPocztowy;
+        public string AdresKodPocztowy
+        {
+            get
+            {
+                return _AdresKodPocztowy;
+            }
+            set
+            {
+                if (_AdresKodPocztowy != value)
+                {
+                    _AdresKodPocztowy = value;
+                    OnPropertyChanged(() => _AdresKodPocztowy);
+                }
+            }
+        }
         #endregion Properties
 
         #region Helpers
@@ -126,6 +197,15 @@ namespace Kino.ViewModels
         {
             kinoEntities.Pracownicy.Add(item);
             kinoEntities.SaveChanges();
+        }
+
+        private void getSelectedAddress(Adresy adres)
+        {
+            IdAdresu = adres.IdAdresu;
+            AdresUlica = adres.Ulica;
+            AdresNrDomu = adres.NrDomu;
+            AdresMiejscowosc = adres.Miejscowosc;
+            AdresKodPocztowy = adres.KodPocztowy;
         }
         #endregion Helpers
     }

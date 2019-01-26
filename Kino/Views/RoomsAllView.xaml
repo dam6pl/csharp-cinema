@@ -11,52 +11,14 @@
         <ResourceDictionary Source="MainWindowResources.xaml"/>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="66"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" Content="Liczba miejsc: " Style="{StaticResource LabelGridStyle}"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-            <Label Grid.Row="0" Grid.Column="5" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-
-            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Sala 3D:"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="Tak"/>
-                <ComboBoxItem Content="Nie"/>
-            </ComboBox>
-
-        </Grid>
-
-
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID sali" Binding="{Binding IdSali}" Width="75"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}" Width="200*"/>
-                <DataGridTextColumn Header="Numer" Binding="{Binding Numer}" Width="100*"/>
-                <DataGridTextColumn Header="Liczba miejsc" Binding="{Binding LiczbaMiejsc}" Width="100*"/>
-                <DataGridTextColumn Header="Sala 3D" Binding="{Binding Sala3D}" Width="100*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ID sali" Binding="{Binding IdSali}" Width="75"/>
+            <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}" Width="200*"/>
+            <DataGridTextColumn Header="Numer" Binding="{Binding Numer}" Width="100*"/>
+            <DataGridTextColumn Header="Liczba miejsc" Binding="{Binding LiczbaMiejsc}" Width="100*"/>
+            <DataGridTextColumn Header="Sala 3D" Binding="{Binding Sala3D}" Width="100*"/>
+        </DataGrid.Columns>
+    </DataGrid>
 
 </local:AllViewBase>

@@ -11,61 +11,15 @@
         <ResourceDictionary Source="MainWindowResources.xaml"/>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="130"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" Content="Sala: " Style="{StaticResource LabelGridStyle}"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 
-                      ItemsSource="{Binding SaleComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
-
-            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Film:"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 
-                      ItemsSource="{Binding FilmyComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
-
-            <Label Grid.Row="2" Grid.Column="0" Content="Data: " Style="{StaticResource LabelGridStyle}"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
-            <Label Grid.Row="2" Grid.Column="5" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
-
-            <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Typ seansu:"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
-                      ItemsSource="{Binding TypySeansowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
-            <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
-            
-        </Grid>
-
-
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID seansu" Binding="{Binding IdSeansu}" Width="75"/>
-                <DataGridTextColumn Header="Nazwa sali" Binding="{Binding NazwaSali}" Width="100*"/>
-                <DataGridTextColumn Header="Nazwa filmu" Binding="{Binding NazwaFilmu}" Width="200*"/>
-                <DataGridTextColumn Header="Data" Binding="{Binding Data}" Width="100*"/>
-                <DataGridTextColumn Header="Typ seansu" Binding="{Binding TypSeansu}" Width="100*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
-
+    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12"
+                   SelectedItem="{Binding Path=SelectedShowing, Mode=TwoWay}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ID seansu" Binding="{Binding IdSeansu}" Width="75"/>
+            <DataGridTextColumn Header="Nazwa sali" Binding="{Binding NazwaSali}" Width="100*"/>
+            <DataGridTextColumn Header="Nazwa filmu" Binding="{Binding NazwaFilmu}" Width="200*"/>
+            <DataGridTextColumn Header="Data" Binding="{Binding Data}" Width="100*"/>
+            <DataGridTextColumn Header="Typ seansu" Binding="{Binding TypSeansu}" Width="100*"/>
+        </DataGrid.Columns>
+    </DataGrid>
+    
 </local:AllViewBase>

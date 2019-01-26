@@ -11,61 +11,18 @@
         <ResourceDictionary Source="MainWindowResources.xaml"/>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="99"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelGridStyle}" Content="Gatunek:"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
-                      ItemsSource="{Binding GatunkiComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
-            <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
-
-            <Label Grid.Row="1" Grid.Column="0" Content="Rok produkcji: " Style="{StaticResource LabelGridStyle}"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
-            <Label Grid.Row="1" Grid.Column="5" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
-
-            <Label Grid.Row="2" Grid.Column="0" Content="Czas trwania: " Style="{StaticResource LabelGridStyle}"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-            <Label Grid.Row="2" Grid.Column="5" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-
-        </Grid>
-
-
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID filmu" Binding="{Binding IdFilmu}" Width="75*"/>
-                <DataGridTextColumn Header="Tytul" Binding="{Binding Tytul}" Width="100*"/>
-                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}" Width="300*" ElementStyle="{StaticResource DataGridElement}"/>
-                <DataGridTextColumn Header="Gatunek" Binding="{Binding NazwaGatunku}" Width="100*"/>
-                <DataGridTextColumn Header="Reżyser" Binding="{Binding Rezyser}" Width="100*"/>
-                <DataGridTextColumn Header="Rok produkcji" Binding="{Binding RokProdukcji}" Width="100*"/>
-                <DataGridTextColumn Header="Czas trwania" Binding="{Binding CzasTrwania}" Width="100*"/>
-                <DataGridTextColumn Header="Limit wiekowy" Binding="{Binding LimitWiekowy}" Width="100*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12"
+                   SelectedItem="{Binding Path=SelectedFilm, Mode=TwoWay}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ID filmu" Binding="{Binding IdFilmu}" Width="75*"/>
+            <DataGridTextColumn Header="Tytul" Binding="{Binding Tytul}" Width="100*"/>
+            <DataGridTextColumn Header="Opis" Binding="{Binding Opis}" Width="300*" ElementStyle="{StaticResource DataGridElement}"/>
+            <DataGridTextColumn Header="Gatunek" Binding="{Binding NazwaGatunku}" Width="100*"/>
+            <DataGridTextColumn Header="Reżyser" Binding="{Binding Rezyser}" Width="100*"/>
+            <DataGridTextColumn Header="Rok produkcji" Binding="{Binding RokProdukcji}" Width="100*"/>
+            <DataGridTextColumn Header="Czas trwania" Binding="{Binding CzasTrwania}" Width="100*"/>
+            <DataGridTextColumn Header="Limit wiekowy" Binding="{Binding LimitWiekowy}" Width="100*"/>
+        </DataGrid.Columns>
+    </DataGrid>
 
 </local:AllViewBase>

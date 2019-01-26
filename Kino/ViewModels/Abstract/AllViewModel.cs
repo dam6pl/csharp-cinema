@@ -17,6 +17,8 @@ namespace Kino.ViewModels.Abstract
         private BaseCommand _LoadCommand;
         private BaseCommand _AddCommand;
         private ObservableCollection<T> _List;
+        private BaseCommand _SortCommand;
+        private BaseCommand _FindCommand;
         #endregion Fields
 
         #region Constructor
@@ -66,6 +68,47 @@ namespace Kino.ViewModels.Abstract
         }
         #endregion Properties
 
+        #region Sort and Find
+        public string SortField { get; set; }
+        public List<String> SortComboboxItems
+        {
+            get
+            {
+                return getComboboxSortList();
+            }
+        }
+        public ICommand SortCommand
+        {
+            get
+            {
+                if (_SortCommand == null)
+                    _SortCommand = new BaseCommand(() => Sort());
+
+                return _SortCommand;
+            }
+        }
+
+        public string FindField { get; set; }
+        public string FindTextBox { get; set; }
+        public List<String> FindComboboxItems
+        {
+            get
+            {
+                return getComboboxFindList();
+            }
+        }
+        public ICommand FindCommand
+        {
+            get
+            {
+                if (_FindCommand == null)
+                    _FindCommand = new BaseCommand(() => Find());
+
+                return _FindCommand;
+            }
+        }
+        #endregion
+
         #region Helpers
         public abstract void load();
 
@@ -73,6 +116,14 @@ namespace Kino.ViewModels.Abstract
         {
             Messenger.Default.Send(this.DisplayName);
         }
+
+        public abstract void Sort();
+
+        public abstract List<String> getComboboxSortList();
+
+        public abstract void Find();
+
+        public abstract List<String> getComboboxFindList();
         #endregion Helpers
     }
 }

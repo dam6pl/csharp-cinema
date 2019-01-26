@@ -19,9 +19,9 @@ namespace Kino.Views
     /// <summary>
     /// Logika interakcji dla klasy AdressesNewView.xaml
     /// </summary>
-    public partial class AdressesNewView : SingleViewBase
+    public partial class AddressesNewView : SingleViewBase
     {
-        public AdressesNewView()
+        public AddressesNewView()
         {
             InitializeComponent();
         }

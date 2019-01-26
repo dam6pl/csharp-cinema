@@ -11,46 +11,16 @@
         <ResourceDictionary Source="MainWindowResources.xaml"/>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="1" Grid.Column="0" Content="Data urodzenia: " Style="{StaticResource LabelGridStyle}"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="Od:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
-            <Label Grid.Row="1" Grid.Column="5" Content="Do:" Style="{StaticResource LabelGridStyle}" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"/>
-
-        </Grid>
-
-
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID klienta" Binding="{Binding IdKlienta}" Width="75*"/>
-                <DataGridTextColumn Header="Imie" Binding="{Binding Imie}" Width="150*"/>
-                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" Width="200*"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="150*"/>
-                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="100*"/>
-                <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}" Width="100*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+    <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12"
+                   SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ID klienta" Binding="{Binding IdKlienta}" Width="75*"/>
+            <DataGridTextColumn Header="Imie" Binding="{Binding Imie}" Width="150*"/>
+            <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" Width="200*"/>
+            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="150*"/>
+            <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="100*"/>
+            <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}" Width="100*"/>
+        </DataGrid.Columns>
+    </DataGrid>
 
 </local:AllViewBase>
