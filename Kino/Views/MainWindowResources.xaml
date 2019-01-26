@@ -31,7 +31,7 @@
         <vw:FilmsNewView/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type vm:GenreNewView}">
+    <DataTemplate DataType="{x:Type vm:GenreNewViewModel}">
         <vw:GenreNewView/>
     </DataTemplate>
 
@@ -65,6 +65,10 @@
 
     <DataTemplate DataType="{x:Type vm:AddressesAllViewModel}">
         <vw:AddressesAllView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:TicketTypesNewViewModel}">
+        <vw:TicketTypesNewView/>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:SalesReportViewModel}">

@@ -14,6 +14,7 @@ namespace Kino.ViewModels.Abstract
     {
         #region DisplayName 
         public virtual string DisplayName { get; protected set; }
+        public virtual string ViewType { get; protected set; }
         #endregion
 
         #region WindowPropertys

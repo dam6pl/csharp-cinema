@@ -17,6 +17,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Wszystkie sale";
+            base.ViewType = "Rooms";
         }
         #endregion Constructor
 
@@ -28,12 +29,20 @@ namespace Kino.ViewModels
         #endregion Helpers
 
         #region Sort and Find
-        public override void Sort()
+        public override void Sort(bool order)
         {
             if (SortField == "Nazwa")
-                List = new ObservableCollection<Sale>(List.OrderBy(item => item.Nazwa));
+                List = new ObservableCollection<Sale>(
+                    order
+                    ? List.OrderBy(item => item.Nazwa)
+                    : List.OrderByDescending(item => item.Nazwa)
+                    );
             else if (SortField == "Liczba miejsc")
-                List = new ObservableCollection<Sale>(List.OrderBy(item => item.LiczbaMiejsc));
+                List = new ObservableCollection<Sale>(
+                    order
+                    ? List.OrderBy(item => item.LiczbaMiejsc)
+                    : List.OrderByDescending(item => item.LiczbaMiejsc)
+                    );
         }
 
         public override List<String> getComboboxSortList()

@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class GenreNewView : SingleViewModel<Gatunki>
+    class GenreNewViewModel : SingleViewModel<Gatunki>
     {
         #region Construktor
-        public GenreNewView()
+        public GenreNewViewModel()
             : base()
         {
             base.DisplayName = "Nowy gatunek";
+            base.ViewType = "Genre";
 
             this.item = new Gatunki();
         }

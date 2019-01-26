@@ -23,6 +23,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowy pracownik";
+            base.ViewType = "Empoyees";
 
             this.item = new Pracownicy();
             Messenger.Default.Register<Adresy>(this, getSelectedAddress);
@@ -35,7 +36,7 @@ namespace Kino.ViewModels
             get
             {
                 if (_ShowAddressesCommand == null)
-                    _ShowAddressesCommand = new BaseCommand(() => Messenger.Default.Send("AddressesShow"));
+                    _ShowAddressesCommand = new BaseCommand(() => Messenger.Default.Send("AddressesAll"));
 
                 return _ShowAddressesCommand;
             }

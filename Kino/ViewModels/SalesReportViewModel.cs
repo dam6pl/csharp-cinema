@@ -39,7 +39,7 @@ namespace Kino.ViewModels
                 if (_obliczCommand == null)
                     _obliczCommand = new BaseCommand(() => GetReportClick());
 
-                return _obliczCommand;
+                return new BaseCommand(() => GetReportClick());
             }
         }
         #endregion
@@ -79,8 +79,8 @@ namespace Kino.ViewModels
             }
         }
 
-        private int _IdPracownika;
-        public int IdPracownika
+        private int? _IdPracownika;
+        public int? IdPracownika
         {
             get
             {
@@ -103,8 +103,8 @@ namespace Kino.ViewModels
             }
         }
 
-        private int _IdSali;
-        public int IdSali
+        private int? _IdSali;
+        public int? IdSali
         {
             get
             {
@@ -127,8 +127,8 @@ namespace Kino.ViewModels
             }
         }
 
-        private int _IdFilmu;
-        public int IdFilmu
+        private int? _IdFilmu;
+        public int? IdFilmu
         {
             get
             {
@@ -163,7 +163,7 @@ namespace Kino.ViewModels
                 if (_ShowingCount != value)
                 {
                     _ShowingCount = value;
-                    OnPropertyChanged(() => _ShowingCount);
+                    OnPropertyChanged(() => ShowingCount);
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace Kino.ViewModels
                 if (_TicketsCount != value)
                 {
                     _TicketsCount = value;
-                    OnPropertyChanged(() => _TicketsCount);
+                    OnPropertyChanged(() => TicketsCount);
                 }
             }
         }
@@ -197,7 +197,7 @@ namespace Kino.ViewModels
                 if (_IncomeCount != value)
                 {
                     _IncomeCount = value;
-                    OnPropertyChanged(() => _IncomeCount);
+                    OnPropertyChanged(() => IncomeCount);
                 }
             }
         }

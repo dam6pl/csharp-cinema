@@ -1,4 +1,5 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
 using Kino.ViewModels.Abstract;
@@ -7,21 +8,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Kino.ViewModels
 {
     
     public class FilmsNewViewModel : SingleViewModel<Filmy>
-    { 
+    {
+        #region Fields
+        private BaseCommand _AddGenreCommand;
+        #endregion
+
         #region Construktor
         public FilmsNewViewModel()
             : base()
         {
             base.DisplayName = "Nowy film";
+            base.ViewType = "Films";
 
             this.item = new Filmy();
         }
         #endregion Constructor
+
+        #region Command
+        public ICommand AddGenreCommand
+        {
+            get
+            {
+                if (_AddGenreCommand == null)
+                    _AddGenreCommand = new BaseCommand(() => Messenger.Default.Send("GenreNew"));
+
+                return _AddGenreCommand;
+            }
+        }
+        #endregion
 
         #region Properties
         public string Tytuł

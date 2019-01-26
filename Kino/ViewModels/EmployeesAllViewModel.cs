@@ -19,6 +19,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Wszyscy pracownicy";
+            base.ViewType = "Employees";
         }
         #endregion Constructor
 
@@ -53,14 +54,26 @@ namespace Kino.ViewModels
         #endregion
 
         #region Sort and Find
-        public override void Sort()
+        public override void Sort(bool order)
         {
             if (SortField == "Imię")
-                List = new ObservableCollection<EmployeesForAllView>(List.OrderBy(item => item.Imie));
+                List = new ObservableCollection<EmployeesForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Imie)
+                    : List.OrderByDescending(item => item.Imie)
+                    );
             else if (SortField == "Nazwisko")
-                List = new ObservableCollection<EmployeesForAllView>(List.OrderBy(item => item.Nazwisko));
+                List = new ObservableCollection<EmployeesForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Nazwisko)
+                    : List.OrderByDescending(item => item.Nazwisko)
+                    );
             else if (SortField == "Stanowisko")
-                List = new ObservableCollection<EmployeesForAllView>(List.OrderBy(item => item.Stanowisko));
+                List = new ObservableCollection<EmployeesForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Stanowisko)
+                    : List.OrderByDescending(item => item.Stanowisko)
+                    );
         }
 
         public override List<String> getComboboxSortList()

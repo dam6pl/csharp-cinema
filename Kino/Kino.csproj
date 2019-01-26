@@ -109,7 +109,7 @@
     <Compile Include="ViewModels\FilmsAllViewModel.cs" />
     <Compile Include="ViewModels\ShowingTypesNewViewModel.cs" />
     <Compile Include="ViewModels\RoomsAllViewModel.cs" />
-    <Compile Include="ViewModels\GenreNewView.cs" />
+    <Compile Include="ViewModels\GenreNewViewModel.cs" />
     <Compile Include="ViewModels\RoomsNewViewModel.cs" />
     <Compile Include="ViewModels\FilmsNewViewModel.cs" />
     <Compile Include="ViewModels\ShowingsNewViewModel.cs" />

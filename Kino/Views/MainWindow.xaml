@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kino"
         mc:Ignorable="d"
-        Title="System Obslugi Kina" Height="600" Width="1200" WindowState="Maximized">
+        Title="System Obslugi Kina" Height="800" Width="1200" WindowState="Maximized">
 
     <Window.Resources>
         <ResourceDictionary Source="MainWindowResources.xaml"/>
@@ -184,7 +184,7 @@
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="/Assets/employers.png" />
+                            <Image Grid.Column="0" Source="/Assets/wrench.png" Margin="3"/>
                             <Label Grid.Column="1" Content="Raport sprzedaży" Style="{StaticResource LeftMenuLabelStyle}"/>
                         </Grid>
                     </MenuItem.Header>

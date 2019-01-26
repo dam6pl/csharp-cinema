@@ -1,4 +1,5 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,7 @@ namespace Kino.ViewModels.Abstract
         private void saveAndClose()
         {
             this.Save();
+            Messenger.Default.Send(ViewType + "Close");
             onRequestClose();
         }
         #endregion Helpers

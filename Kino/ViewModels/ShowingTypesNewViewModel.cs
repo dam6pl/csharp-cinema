@@ -15,6 +15,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowy typ seansu";
+            base.ViewType = "ShowingTypes";
 
             this.item = new TypySeansow();
         }

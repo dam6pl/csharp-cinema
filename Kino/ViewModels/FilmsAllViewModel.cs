@@ -19,6 +19,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Wszystkie filmy";
+            base.ViewType = "Films";
         }
         #endregion Constructor
 
@@ -50,18 +51,38 @@ namespace Kino.ViewModels
         #endregion Helpers
 
         #region Sort and Find
-        public override void Sort()
+        public override void Sort(bool order)
         {
             if (SortField == "Tytuł")
-                List = new ObservableCollection<FilmsForAllView>(List.OrderBy(item => item.Tytul));
+                List = new ObservableCollection<FilmsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Tytul)
+                    : List.OrderByDescending(item => item.Tytul)
+                    );
             else if (SortField == "Opis")
-                List = new ObservableCollection<FilmsForAllView>(List.OrderBy(item => item.Opis));
+                List = new ObservableCollection<FilmsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Opis)
+                    : List.OrderByDescending(item => item.Opis)
+                    );
             else if (SortField == "Reżyser")
-                List = new ObservableCollection<FilmsForAllView>(List.OrderBy(item => item.Rezyser));
+                List = new ObservableCollection<FilmsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Rezyser)
+                    : List.OrderByDescending(item => item.Rezyser)
+                    );
             else if (SortField == "Rok produkcji")
-                List = new ObservableCollection<FilmsForAllView>(List.OrderBy(item => item.RokProdukcji));
+                List = new ObservableCollection<FilmsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.RokProdukcji)
+                    : List.OrderByDescending(item => item.RokProdukcji)
+                    );
             else if (SortField == "Czas trwania")
-                List = new ObservableCollection<FilmsForAllView>(List.OrderBy(item => item.CzasTrwania));
+                List = new ObservableCollection<FilmsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.CzasTrwania)
+                    : List.OrderByDescending(item => item.CzasTrwania)
+                    );
         }
 
         public override List<String> getComboboxSortList()

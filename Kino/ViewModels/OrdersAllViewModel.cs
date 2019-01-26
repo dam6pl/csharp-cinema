@@ -18,6 +18,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Wszystkie zamowienia";
+            base.ViewType = "Orders";
         }
         #endregion Constructor
 
@@ -32,16 +33,32 @@ namespace Kino.ViewModels
         #endregion Helpers
 
         #region Sort and Find
-        public override void Sort()
+        public override void Sort(bool order)
         {
             if (SortField == "Seans")
-                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.Seans));
+                List = new ObservableCollection<OrdersForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Seans)
+                    : List.OrderByDescending(item => item.Seans)
+                    );
             else if (SortField == "Klient")
-                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.NazwaKlienta));
+                List = new ObservableCollection<OrdersForAllView>(
+                    order
+                    ? List.OrderBy(item => item.NazwaKlienta)
+                    : List.OrderByDescending(item => item.NazwaKlienta)
+                    );
             else if (SortField == "Typ biletu")
-                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.TypBiletu));
+                List = new ObservableCollection<OrdersForAllView>(
+                    order
+                    ? List.OrderBy(item => item.TypBiletu)
+                    : List.OrderByDescending(item => item.TypBiletu)
+                    );
             else if (SortField == "Pracownik")
-                List = new ObservableCollection<OrdersForAllView>(List.OrderBy(item => item.Pracownik));
+                List = new ObservableCollection<OrdersForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Pracownik)
+                    : List.OrderByDescending(item => item.Pracownik)
+                    );
         }
 
         public override List<String> getComboboxSortList()

@@ -13,6 +13,7 @@ namespace Kino.Models.EntitiesForView
         public string NazwaKlienta  { get; set; }
         public string TypBiletu  { get; set; }
         public string Pracownik  { get; set; }
+        public DateTime? Data { get; set; }
         public bool? Status  { get; set; }
     }
 }

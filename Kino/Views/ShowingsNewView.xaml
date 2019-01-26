@@ -32,7 +32,7 @@
         <Label Content="Sala:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
                   ItemsSource="{Binding SaleComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                  SelectedValue="{Binding Path=IdSali, Mode=TwoWay}"/>
+                  SelectedValue="{Binding Path=IdSali, Mode=TwoWay}" SelectedIndex="0"/>
         <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonStyle}"
                 Command="{Binding AddRoomCommand}">Dodaj nowy</Button>
 

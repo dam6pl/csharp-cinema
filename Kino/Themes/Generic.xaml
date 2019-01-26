@@ -61,22 +61,26 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="120*"/>
                                 <ColumnDefinition Width="120*"/>
+                                <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Sortowanie:" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelGridStyle}"/>
-                            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding SortComboboxItems}" 
+                            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding SortComboboxItems}" 
                                       SelectedValue="{Binding Path=SortField, Mode=TwoWay}" Style="{StaticResource ComboBoxStyle}"/>
-                            <Button Content="Sortuj" Grid.Row="0" Grid.Column="3" Command="{Binding SortCommand}"
+                            <Button Content="Sortuj rosnaco" Grid.Row="0" Grid.Column="4" Command="{Binding SortDescCommand}"
+                                    Style="{StaticResource ButtonStyle}"/>
+                            <Button Content="Sortuj malejaco" Grid.Row="0" Grid.Column="6" Command="{Binding SortAscCommand}"
                                     Style="{StaticResource ButtonStyle}"/>
 
                             <Label Content="Wyszukiwanie:" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelGridStyle}"/>
-                            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FindComboboxItems}" 
+                            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding FindComboboxItems}" 
                                       SelectedValue="{Binding Path=FindField, Mode=TwoWay}" Style="{StaticResource ComboBoxStyle}"/>
-                            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding FindTextBox}" Style="{StaticResource TextBoxStyle}"/>
-                            <Button Content="Szukaj" Grid.Row="1" Grid.Column="3" Command="{Binding FindCommand}"
+                            <TextBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding FindTextBox}" Style="{StaticResource TextBoxStyle}"/>
+                            <Button Content="Szukaj" Grid.Row="1" Grid.Column="6" Command="{Binding FindCommand}"
                                     Style="{StaticResource ButtonStyle}"/>
                         </Grid>
 

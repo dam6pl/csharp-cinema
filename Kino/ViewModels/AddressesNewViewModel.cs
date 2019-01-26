@@ -15,6 +15,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowy adres";
+            base.ViewType = "Addresses";
 
             this.item = new Adresy();
         }

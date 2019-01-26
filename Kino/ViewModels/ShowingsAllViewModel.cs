@@ -19,6 +19,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Wszystkie seanse";
+            base.ViewType = "Showings";
         }
         #endregion Constructor
 
@@ -50,14 +51,26 @@ namespace Kino.ViewModels
         #endregion Helpers
 
         #region Sort and Find
-        public override void Sort()
+        public override void Sort(bool order)
         {
             if (SortField == "Film")
-                List = new ObservableCollection<ShowingsForAllView>(List.OrderBy(item => item.NazwaFilmu));
+                List = new ObservableCollection<ShowingsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.NazwaFilmu)
+                    : List.OrderByDescending(item => item.NazwaFilmu)
+                    );
             else if (SortField == "Sala")
-                List = new ObservableCollection<ShowingsForAllView>(List.OrderBy(item => item.NazwaSali));
+                List = new ObservableCollection<ShowingsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.NazwaSali)
+                    : List.OrderByDescending(item => item.NazwaSali)
+                    );
             else if (SortField == "Data")
-                List = new ObservableCollection<ShowingsForAllView>(List.OrderBy(item => item.Data));
+                List = new ObservableCollection<ShowingsForAllView>(
+                    order
+                    ? List.OrderBy(item => item.Data)
+                    : List.OrderByDescending(item => item.Data)
+                    );
         }
 
         public override List<String> getComboboxSortList()

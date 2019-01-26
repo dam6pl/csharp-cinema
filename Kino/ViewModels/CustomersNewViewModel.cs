@@ -17,6 +17,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowy klient";
+            base.ViewType = "Customers";
 
             this.item = new Klienci();
         }

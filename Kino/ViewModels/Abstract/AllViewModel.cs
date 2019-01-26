@@ -17,7 +17,8 @@ namespace Kino.ViewModels.Abstract
         private BaseCommand _LoadCommand;
         private BaseCommand _AddCommand;
         private ObservableCollection<T> _List;
-        private BaseCommand _SortCommand;
+        private BaseCommand _SortDescCommand;
+        private BaseCommand _SortAscCommand;
         private BaseCommand _FindCommand;
         #endregion Fields
 
@@ -25,6 +26,7 @@ namespace Kino.ViewModels.Abstract
         public AllViewModel()
         {
             this.kinoEntities = new KinoEntities();
+            Messenger.Default.Register<String>(this, onSaveNewItem);
         }
         #endregion Constructor
 
@@ -77,14 +79,24 @@ namespace Kino.ViewModels.Abstract
                 return getComboboxSortList();
             }
         }
-        public ICommand SortCommand
+        public ICommand SortDescCommand
         {
             get
             {
-                if (_SortCommand == null)
-                    _SortCommand = new BaseCommand(() => Sort());
+                if (_SortDescCommand == null)
+                    _SortDescCommand = new BaseCommand(() => Sort(true));
 
-                return _SortCommand;
+                return _SortDescCommand;
+            }
+        }
+        public ICommand SortAscCommand
+        {
+            get
+            {
+                if (_SortAscCommand == null)
+                    _SortAscCommand = new BaseCommand(() => Sort(false));
+
+                return _SortAscCommand;
             }
         }
 
@@ -110,14 +122,20 @@ namespace Kino.ViewModels.Abstract
         #endregion
 
         #region Helpers
+        private void onSaveNewItem(string message)
+        {
+            if (message == this.ViewType + "Close")
+                load();
+        }
+
         public abstract void load();
 
         public void add()
         {
-            Messenger.Default.Send(this.DisplayName);
+            Messenger.Default.Send(this.ViewType + "New");
         }
 
-        public abstract void Sort();
+        public abstract void Sort(bool order);
 
         public abstract List<String> getComboboxSortList();
 

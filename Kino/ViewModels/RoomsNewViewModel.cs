@@ -15,6 +15,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowa sala";
+            base.ViewType = "Rooms";
 
             this.item = new Sale();
         }

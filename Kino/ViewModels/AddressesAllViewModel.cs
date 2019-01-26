@@ -19,27 +19,11 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Wszystkie adresy";
+            base.ViewType = "Addresses";
         }
         #endregion Constructor
 
         #region Properties
-        public IQueryable<ComboboxKeyAndValue> GenreComboboxItems
-        {
-            get
-            {
-                return
-                    (
-                        from gatunek in kinoEntities.Gatunki
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = gatunek.IdGatunku,
-                            Value = gatunek.Nazwa
-                        }
-                    ).ToList().AsQueryable();
-
-            }
-        }
-
         private Adresy _SelectedAddress;
         public Adresy SelectedAddress
         {
@@ -67,14 +51,26 @@ namespace Kino.ViewModels
         #endregion Helpers
 
         #region Sort and Find
-        public override void Sort()
+        public override void Sort(bool order)
         {
             if (SortField == "Ulica")
-                List = new ObservableCollection<Adresy>(List.OrderBy(item => item.Ulica));
+                List = new ObservableCollection<Adresy>(
+                    order 
+                    ? List.OrderBy(item => item.Ulica) 
+                    : List.OrderByDescending(item => item.Ulica)
+                    );
             else if (SortField == "Miejscowość")
-                List = new ObservableCollection<Adresy>(List.OrderBy(item => item.Miejscowosc));
+                List = new ObservableCollection<Adresy>(
+                    order 
+                    ? List.OrderBy(item => item.Miejscowosc) 
+                    : List.OrderByDescending(item => item.Miejscowosc)
+                    );
             else if (SortField == "Kod pocztowy")
-                List = new ObservableCollection<Adresy>(List.OrderBy(item => item.KodPocztowy));
+                List = new ObservableCollection<Adresy>(
+                    order
+                    ? List.OrderBy(item => item.KodPocztowy)
+                    : List.OrderByDescending(item => item.KodPocztowy)
+                    );
         }
 
         public override List<String> getComboboxSortList()

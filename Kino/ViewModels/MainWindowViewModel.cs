@@ -55,7 +55,7 @@ namespace Kino.ViewModels
                 new CommandViewModel("Nowy film", new BaseCommand(()=>this.createWorkspace(new FilmsNewViewModel()))),
                 new CommandViewModel("Wszystkie filmy", new BaseCommand(()=>this.showFilmsAll())),
 
-                new CommandViewModel("Nowy gatunek", new BaseCommand(()=>this.createWorkspace(new GenreNewView()))),
+                new CommandViewModel("Nowy gatunek", new BaseCommand(()=>this.createWorkspace(new GenreNewViewModel()))),
 
                 new CommandViewModel("Nowy typ seansu", new BaseCommand(()=>this.createWorkspace(new ShowingTypesNewViewModel()))),
 
@@ -71,8 +71,7 @@ namespace Kino.ViewModels
                 new CommandViewModel("Nowy adres", new BaseCommand(()=>this.createWorkspace(new AddressesNewViewModel()))),
                 new CommandViewModel("Wszystkie adresy", new BaseCommand(()=>this.showAddressesAll())),
 
-
-                new CommandViewModel("Raport sprzedaży", new BaseCommand(()=>this.showSalesReport())),
+                new CommandViewModel("Raport sprzedaży", new BaseCommand(()=>this.showSalesReport()))
             };
         }
         #endregion Commands
@@ -234,52 +233,34 @@ namespace Kino.ViewModels
 
         private void open(String name)
         {
-            if (name == "Wszyscy klienci") {
+            if (name == "CustomersNew")
                 createWorkspace(new CustomersNewViewModel());
-            }
-            else if (name == "Wszyscy pracownicy") {
+            else if (name == "EmployeesNew")
                 createWorkspace(new EmployeesNewViewModel());
-            }
-            else if (name == "Wszystkie filmy")
-            {
+            else if (name == "FilmsNew")
                 createWorkspace(new FilmsNewViewModel());
-            }
-            else if (name == "Wszystkie zamowienia")
-            {
+            else if (name == "OrdersNew")
                 createWorkspace(new OrdersNewViewModel());
-            }
-            else if (name == "Wszystkie sale")
-            {
+            else if (name == "RoomsNew")
                 createWorkspace(new RoomsNewViewModel());
-            }
-            else if (name == "Wszystkie seanse")
-            {
+            else if (name == "ShowingsNew")
                 createWorkspace(new ShowingsNewViewModel());
-            }
-            else if (name == "Wszystkie adresy")
-            {
+            else if (name == "AddressesNew")
                 createWorkspace(new AddressesNewViewModel());
-            }
-            else if (name == "Nowy typ seansu")
-            {
+            else if (name == "ShowingTypesNew")
                 createWorkspace(new ShowingTypesNewViewModel());
-            }
-            else if (name == "FilmsShow")
-            {
+            else if (name == "TicketTypesNew")
+                createWorkspace(new TicketTypesNewViewModel());
+            else if (name == "GenreNew")
+                createWorkspace(new GenreNewViewModel());
+            else if (name == "FilmsAll")
                 showFilmsAll();
-            }
-            else if (name == "ShowingsShow")
-            {
+            else if (name == "ShowingsAll")
                 showShowingsAll();
-            }
-            else if (name == "CustomersShow")
-            {
+            else if (name == "CustomersAll")
                 showCustomersAll();
-            }
-            else if (name == "AddressesShow")
-            {
+            else if (name == "AddressesAll")
                 showAddressesAll();
-            }
         }
         #endregion Helpers
 
@@ -289,11 +270,8 @@ namespace Kino.ViewModels
         {
             get
             {
-
                 if (_showShowingsAllCommand == null)
-                {
                     _showShowingsAllCommand = new BaseCommand(() => showShowingsAll());
-                }
 
                 return _showShowingsAllCommand;
             }
@@ -304,11 +282,8 @@ namespace Kino.ViewModels
         {
             get
             {
-
                 if (_showRoomsAllCommand == null)
-                {
                     _showRoomsAllCommand = new BaseCommand(() => showRoomsAll());
-                }
 
                 return _showRoomsAllCommand;
             }
@@ -319,11 +294,8 @@ namespace Kino.ViewModels
         {
             get
             {
-
                 if (_showFilmsAllCommand == null)
-                {
                     _showFilmsAllCommand = new BaseCommand(() => showFilmsAll());
-                }
 
                 return _showFilmsAllCommand;
             }
@@ -334,11 +306,8 @@ namespace Kino.ViewModels
         {
             get
             {
-
                 if (_showOrdersAllCommand == null)
-                {
                     _showOrdersAllCommand = new BaseCommand(() => showOrdersAll());
-                }
 
                 return _showOrdersAllCommand;
             }
@@ -349,11 +318,8 @@ namespace Kino.ViewModels
         {
             get
             {
-
                 if (_showCustomersAllCommand == null)
-                {
                     _showCustomersAllCommand = new BaseCommand(() => showCustomersAll());
-                }
 
                 return _showCustomersAllCommand;
             }
@@ -364,11 +330,8 @@ namespace Kino.ViewModels
         {
             get
             {
-
                 if (_showEmployeesAllCommand == null)
-                {
                     _showEmployeesAllCommand = new BaseCommand(() => showEmployeesAll());
-                }
 
                 return _showEmployeesAllCommand;
             }
@@ -379,27 +342,20 @@ namespace Kino.ViewModels
         {
             get
             {
-
                 if (_showAddressesAllCommand == null)
-                {
-                    _showAddressesAllCommand = new BaseCommand(() => createWorkspace(new AddressesAllViewModel()));
-                }
+                    _showAddressesAllCommand = new BaseCommand(() => showAddressesAll());
 
                 return _showAddressesAllCommand;
             }
         }
-
 
         private BaseCommand _showSalesReportCommand;
         public ICommand ShowSalesReportCommand
         {
             get
             {
-
                 if (_showSalesReportCommand == null)
-                {
-                    _showSalesReportCommand = new BaseCommand(() => createWorkspace(new SalesReportViewModel()));
-                }
+                    _showSalesReportCommand = new BaseCommand(() => showSalesReport());
 
                 return _showSalesReportCommand;
             }

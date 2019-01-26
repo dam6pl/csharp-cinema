@@ -66,7 +66,7 @@
         <ComboBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
                   ItemsSource="{Binding TypyBiletowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
                   SelectedValue="{Binding Path=IdTypuBiletu, Mode=TwoWay}"/>
-        <Button Grid.Row="8" Grid.Column="3" Style="{StaticResource ButtonStyle}">Dodaj nowy</Button>
+        <Button Grid.Row="8" Grid.Column="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddTicketTypeCommand}">Dodaj nowy</Button>
 
         <Label Content="Pracownik:" Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelGridStyle}"/>
         <ComboBox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource ComboBoxStyle}" 

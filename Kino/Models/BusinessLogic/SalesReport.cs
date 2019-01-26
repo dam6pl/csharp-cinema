@@ -50,8 +50,8 @@ namespace Kino.Models.BusinessLogic
             }
         }
 
-        private int _IdPracownika;
-        public int IdPracownika
+        private int? _IdPracownika;
+        public int? IdPracownika
         {
             get
             {
@@ -66,8 +66,8 @@ namespace Kino.Models.BusinessLogic
             }
         }
 
-        private int _IdSali;
-        public int IdSali
+        private int? _IdSali;
+        public int? IdSali
         {
             get
             {
@@ -82,8 +82,8 @@ namespace Kino.Models.BusinessLogic
             }
         }
 
-        private int _IdFilmu;
-        public int IdFilmu
+        private int? _IdFilmu;
+        public int? IdFilmu
         {
             get
             {
@@ -102,17 +102,154 @@ namespace Kino.Models.BusinessLogic
         #region Helpers
         public int? getShowingsCount()
         {
-            return 123;
+            var zapytanie =
+                (
+                   from zamowienie in kinoEntities.Zamowienia
+                   where
+                       zamowienie.Status == true &&
+                       zamowienie.Data >= OdDaty &&
+                       zamowienie.Data <= DoDaty
+                   select zamowienie
+               );
+
+            if (IdPracownika != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.IdPracownika == IdPracownika
+                        select zamowienie
+                    );
+            }
+
+            if (IdSali != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.Seanse.IdSali == IdSali
+                        select zamowienie
+                    );
+            }
+
+            if (IdFilmu != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.Seanse.IdFilmu == IdFilmu
+                        select zamowienie
+                    );
+            }
+
+            return 
+                (
+                    from zamowienie in zapytanie
+                    select zamowienie.IdSeansu
+                ).Distinct().Count();
         }
 
         public int? getTicketsCount()
         {
-            return null;
+            var zapytanie =
+                (
+                   from zamowienie in kinoEntities.Zamowienia
+                   where
+                       zamowienie.Status == true &&
+                       zamowienie.Data >= OdDaty &&
+                       zamowienie.Data <= DoDaty
+                   select zamowienie
+               );
+
+            if (IdPracownika != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.IdPracownika == IdPracownika
+                        select zamowienie
+                    );
+            }
+
+            if (IdSali != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.Seanse.IdSali == IdSali
+                        select zamowienie
+                    );
+            }
+
+            if (IdFilmu != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.Seanse.IdFilmu == IdFilmu
+                        select zamowienie
+                    );
+            }
+
+            return zapytanie.Count();
         }
 
         public decimal? getIncomeCount()
         {
-            return null;
+            var zapytanie =
+                (
+                   from zamowienie in kinoEntities.Zamowienia
+                   where
+                       zamowienie.Status == true &&
+                       zamowienie.Data >= OdDaty &&
+                       zamowienie.Data <= DoDaty
+                   select zamowienie
+               );
+
+            if (IdPracownika != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.IdPracownika == IdPracownika
+                        select zamowienie
+                    );
+            }
+
+            if (IdSali != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.Seanse.IdSali == IdSali
+                        select zamowienie
+                    );
+            }
+
+            if (IdFilmu != null)
+            {
+                zapytanie =
+                    (
+                        from zamowienie in zapytanie
+                        where
+                            zamowienie.Seanse.IdFilmu == IdFilmu
+                        select zamowienie
+                    );
+            }
+
+            return 
+                (
+                    from zamowienie in zapytanie
+                    select zamowienie.TypyBiletow.Cena
+                ).Sum();
         }
         #endregion
     }

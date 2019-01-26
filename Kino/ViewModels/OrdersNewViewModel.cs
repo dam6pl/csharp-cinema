@@ -26,8 +26,12 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowe zamowienie";
+            base.ViewType = "Orders";
 
             this.item = new Zamowienia();
+            this.Status = true;
+            this.Data = DateTime.Now;
+
             Messenger.Default.Register<Klienci>(this, getSelectedCustomer);
             Messenger.Default.Register<ShowingsForAllView>(this, getSelectedShowing);
         }
@@ -39,7 +43,7 @@ namespace Kino.ViewModels
             get
             {
                 if (_ShowShowingsCommand == null)
-                    _ShowShowingsCommand = new BaseCommand(() => Messenger.Default.Send("ShowingsShow"));
+                    _ShowShowingsCommand = new BaseCommand(() => Messenger.Default.Send("ShowingsAll"));
 
                 return _ShowShowingsCommand;
             }
@@ -50,7 +54,7 @@ namespace Kino.ViewModels
             get
             {
                 if (_ShowCustomersCommand == null)
-                    _ShowCustomersCommand = new BaseCommand(() => Messenger.Default.Send("CustomersShow"));
+                    _ShowCustomersCommand = new BaseCommand(() => Messenger.Default.Send("CustomersAll"));
 
                 return _ShowCustomersCommand;
             }
@@ -61,7 +65,7 @@ namespace Kino.ViewModels
             get
             {
                 if (_AddTicketTypeCommand == null)
-                    _AddTicketTypeCommand = new BaseCommand(() => Messenger.Default.Send("Nowy typ biletow"));
+                    _AddTicketTypeCommand = new BaseCommand(() => Messenger.Default.Send("TicketTypesNew"));
 
                 return _AddTicketTypeCommand;
             }
@@ -144,6 +148,22 @@ namespace Kino.ViewModels
             get
             {
                 return new Employees(kinoEntities).getEmployeeComboboxItems();
+            }
+        }
+
+        public DateTime? Data
+        {
+            get
+            {
+                return item.Data;
+            }
+            set
+            {
+                if (item.Data != value)
+                {
+                    item.Data = value;
+                    OnPropertyChanged(() => Data);
+                }
             }
         }
 

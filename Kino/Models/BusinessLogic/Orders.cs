@@ -30,6 +30,7 @@ namespace Kino.Models.BusinessLogic
                         NazwaKlienta = zamowienie.Klienci.Imie + " " + zamowienie.Klienci.Nazwisko,
                         TypBiletu = zamowienie.TypyBiletow.Nazwa,
                         Pracownik = zamowienie.Pracownicy.Imie + " " + zamowienie.Pracownicy.Nazwisko,
+                        Data = zamowienie.Data,
                         Status = zamowienie.Status
                     }
                 );

@@ -26,6 +26,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowy seans";
+            base.ViewType = "Showings";
 
             this.item = new Seanse();
             Messenger.Default.Register<FilmsForAllView>(this, getSelectedFilm);
@@ -38,7 +39,7 @@ namespace Kino.ViewModels
             get
             {
                 if (_ShowFilmsCommand == null)
-                    _ShowFilmsCommand = new BaseCommand(() => Messenger.Default.Send("FilmsShow"));
+                    _ShowFilmsCommand = new BaseCommand(() => Messenger.Default.Send("FilmsAll"));
 
                 return _ShowFilmsCommand;
             }
@@ -49,7 +50,7 @@ namespace Kino.ViewModels
             get
             {
                 if (_AddRoomCommand == null)
-                    _AddRoomCommand = new BaseCommand(() => Messenger.Default.Send("Wszystkie sale"));
+                    _AddRoomCommand = new BaseCommand(() => Messenger.Default.Send("RoomsNew"));
 
                 return _AddRoomCommand;
             }
@@ -60,7 +61,7 @@ namespace Kino.ViewModels
             get
             {
                 if (_AddShowingTypeCommand == null)
-                    _AddShowingTypeCommand = new BaseCommand(() => Messenger.Default.Send("Nowy typ seansu"));
+                    _AddShowingTypeCommand = new BaseCommand(() => Messenger.Default.Send("ShowingTypesNew"));
 
                 return _AddShowingTypeCommand;
             }

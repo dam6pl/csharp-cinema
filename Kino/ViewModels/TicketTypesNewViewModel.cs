@@ -15,6 +15,7 @@ namespace Kino.ViewModels
             : base()
         {
             base.DisplayName = "Nowy typ biletow";
+            base.ViewType = "TicketTypes";
 
             this.item = new TypyBiletow();
         }
