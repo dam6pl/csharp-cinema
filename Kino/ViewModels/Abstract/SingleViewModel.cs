@@ -41,10 +41,22 @@ namespace Kino.ViewModels.Abstract
 
         private void saveAndClose()
         {
-            this.Save();
-            Messenger.Default.Send(ViewType + "Close");
-            onRequestClose();
+            if (IsValid())
+            {
+                this.Save();
+                Messenger.Default.Send(ViewType + "Close");
+                onRequestClose();
+            }
+            else
+                ShowMessageBox("Przed zapisem popraw wszystkie błędy");
         }
         #endregion Helpers
+
+        #region Validations
+        public virtual bool IsValid()
+        {
+            return true;
+        }
+        #endregion
     }
 }

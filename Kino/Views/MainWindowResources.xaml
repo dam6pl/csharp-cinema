@@ -75,7 +75,6 @@
         <vw:SalesReportView/>
     </DataTemplate>
 
-
     <!--Moje style-->
     <Style x:Key="MainGridStyle" TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="#303F9F" />

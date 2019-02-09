@@ -1,14 +1,16 @@
 ﻿using Kino.Models;
+using Kino.Models.Validators;
 using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class AddressesNewViewModel : SingleViewModel<Adresy>
+    class AddressesNewViewModel : SingleViewModel<Adresy>, IDataErrorInfo
     {
         #region Construktor
         public AddressesNewViewModel()
@@ -126,5 +128,45 @@ namespace Kino.ViewModels
             kinoEntities.SaveChanges();
         }
         #endregion Helpers
+
+
+        #region Validations
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Ulica")
+                    komunikat = StringValidator.IsNotEmpty(this.Ulica) ?? StringValidator.IsStartFromUpper(this.Ulica);
+                if (name == "NrDomu")
+                    komunikat = StringValidator.IsNotEmpty(this.NrDomu);
+                if (name == "Miejscowosc")
+                    komunikat = StringValidator.IsNotEmpty(this.Miejscowosc);
+                if (name == "KodPocztowy")
+                    komunikat = StringValidator.IsNotEmpty(this.KodPocztowy);
+                if (name == "Poczta")
+                    komunikat = StringValidator.IsNotEmpty(this.Poczta);
+
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            return this["Ulica"] == null
+                && this["NrDomu"] == null
+                && this["Miejscowosc"] == null
+                && this["KodPocztowy"] == null
+                && this["Poczta"] == null;
+        }
+        #endregion
     }
 }

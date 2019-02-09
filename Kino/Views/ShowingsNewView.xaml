@@ -32,33 +32,33 @@
         <Label Content="Sala:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxStyle}" 
                   ItemsSource="{Binding SaleComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                  SelectedValue="{Binding Path=IdSali, Mode=TwoWay}" SelectedIndex="0"/>
+                  SelectedValue="{Binding Path=IdSali, Mode=TwoWay, ValidatesOnDataErrors=True}" SelectedIndex="0"/>
         <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ButtonStyle}"
                 Command="{Binding AddRoomCommand}">Dodaj nowy</Button>
 
         <Label Content="Film:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
         <Label Content="Tytuł:" Grid.Column="1" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
-                  Text="{Binding Path=FilmTytul, UpdateSourceTrigger=PropertyChanged}"/>
+                  Text="{Binding Path=FilmTytul, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
         <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource ButtonStyle}"
                 Command="{Binding ShowFilmsCommand}">Wybierz</Button>
 
         <Label Content="Opis:" Grid.Column="1" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
-                  Text="{Binding Path=FilmOpis, UpdateSourceTrigger=PropertyChanged}"/>
+                  Text="{Binding Path=FilmOpis, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Rok produkcji:" Grid.Column="1" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Row="4" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
-                  Text="{Binding Path=FilmRokProdukcji, UpdateSourceTrigger=PropertyChanged}"/>
+                  Text="{Binding Path=FilmRokProdukcji, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Data:" Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelGridStyle}"/>
         <DatePicker Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"
-                    SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged}"/>
+                    SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Typ seansu:" Grid.Column="0" Grid.Row="7" Style="{StaticResource LabelGridStyle}"/>
         <ComboBox Grid.Row="7" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" Grid.ColumnSpan="2"
                   ItemsSource="{Binding TypySeansowComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                  SelectedValue="{Binding Path=IdTypuSeansu, Mode=TwoWay}"/>
+                  SelectedValue="{Binding Path=IdTypuSeansu, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
         <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource ButtonStyle}"
                 Command="{Binding AddShowingTypeCommand}">Dodaj nowy</Button>
 

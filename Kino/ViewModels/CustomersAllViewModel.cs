@@ -15,8 +15,8 @@ namespace Kino.ViewModels
     class CustomersAllViewModel : AllViewModel<Klienci>
     {
         #region Constructor
-        public CustomersAllViewModel()
-            : base()
+        public CustomersAllViewModel(bool modal = false)
+            : base(modal)
         {
             base.DisplayName = "Wszyscy klienci";
             base.ViewType = "Customers";
@@ -37,7 +37,7 @@ namespace Kino.ViewModels
                 {
                     _SelectedCustomer = value;
                     Messenger.Default.Send(_SelectedCustomer);
-                    onRequestClose();
+                    if (modal) onRequestClose();
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new Customers(kinoEntities).getAllCustomers();
+            List = new CustomersB(kinoEntities).getAllCustomers();
         }
         #endregion Helpers
 

@@ -32,38 +32,38 @@
 
         <Label Content="Imie:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Nazwisko:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Stanowisko:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Stanowisko, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Stanowisko, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Telefon:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Adres:" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelGridStyle}"/>
         <Label Content="Ulica:" Grid.Column="1" Grid.Row="5" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Row="5" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
-                  Text="{Binding Path=AdresUlica, UpdateSourceTrigger=PropertyChanged}"/>
+                  Text="{Binding Path=AdresUlica, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
         <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource ButtonStyle}"
                 Command="{Binding ShowAddressesCommand}">Wybierz</Button>
 
         <Label Content="Numer domu:" Grid.Column="1" Grid.Row="6" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
-                  Text="{Binding Path=AdresNrDomu, UpdateSourceTrigger=PropertyChanged}"/>
+                  Text="{Binding Path=AdresNrDomu, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
         
         <Label Content="Miejscowość:" Grid.Column="1" Grid.Row="7" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
-                  Text="{Binding Path=AdresMiejscowosc, UpdateSourceTrigger=PropertyChanged}"/>
+                  Text="{Binding Path=AdresMiejscowosc, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Kod pocztowy:" Grid.Column="1" Grid.Row="8" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Row="8" Grid.Column="2" Style="{StaticResource TextBoxStyle}" IsEnabled="False"
-                  Text="{Binding Path=AdresKodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
+                  Text="{Binding Path=AdresKodPocztowy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
     </Grid>
 
 </local:SingleViewBase>

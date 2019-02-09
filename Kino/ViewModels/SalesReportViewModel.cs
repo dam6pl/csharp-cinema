@@ -99,7 +99,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new Employees(kinoEntities).getEmployeeComboboxItems();
+                return new EmployeesB(kinoEntities).getEmployeeComboboxItems();
             }
         }
 
@@ -123,7 +123,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new Rooms(kinoEntities).getRoomsComboboxItems();
+                return new RoomsB(kinoEntities).getRoomsComboboxItems();
             }
         }
 
@@ -147,7 +147,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new Films(kinoEntities).getFilmsComboboxItems();
+                return new FilmsB(kinoEntities).getFilmsComboboxItems();
             }
         }
 
@@ -206,7 +206,7 @@ namespace Kino.ViewModels
         #region Helpers
         private void GetReportClick()
         {
-            SalesReport salesReport = new SalesReport(kinoEntities)
+            SalesReportB salesReport = new SalesReportB(kinoEntities)
             {
                 OdDaty = OdDaty,
                 DoDaty = DoDaty,

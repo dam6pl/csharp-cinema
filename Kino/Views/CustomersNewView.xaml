@@ -27,23 +27,23 @@
 
         <Label Content="Imie:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Nazwisko:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Email:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Telefon:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Telefon, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Data urodzenia:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
         <DatePicker Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}"
-                    SelectedDate="{Binding Path=DataUrodzenia, UpdateSourceTrigger=PropertyChanged}"/>
+                    SelectedDate="{Binding Path=DataUrodzenia, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
     </Grid>
 

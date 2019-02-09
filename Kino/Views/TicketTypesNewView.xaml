@@ -24,7 +24,7 @@
 
         <Label Content="Nazwa:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Opis:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}"
@@ -32,7 +32,7 @@
 
         <Label Content="Cena:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Cena, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
     </Grid>
 

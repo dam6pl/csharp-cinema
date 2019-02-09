@@ -79,23 +79,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\BusinessLogic\Customers.cs" />
+    <Compile Include="Models\BusinessLogic\CustomersB.cs" />
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
-    <Compile Include="Models\BusinessLogic\SalesReport.cs" />
-    <Compile Include="Models\BusinessLogic\Genre.cs" />
-    <Compile Include="Models\BusinessLogic\Employees.cs" />
-    <Compile Include="Models\BusinessLogic\Addresses.cs" />
-    <Compile Include="Models\BusinessLogic\Films.cs" />
-    <Compile Include="Models\BusinessLogic\Showings.cs" />
-    <Compile Include="Models\BusinessLogic\Orders.cs" />
-    <Compile Include="Models\BusinessLogic\TicketTypes.cs" />
-    <Compile Include="Models\BusinessLogic\ShowingTypes.cs" />
-    <Compile Include="Models\BusinessLogic\Rooms.cs" />
+    <Compile Include="Models\BusinessLogic\SalesReportB.cs" />
+    <Compile Include="Models\BusinessLogic\GenreB.cs" />
+    <Compile Include="Models\BusinessLogic\EmployeesB.cs" />
+    <Compile Include="Models\BusinessLogic\AddressesB.cs" />
+    <Compile Include="Models\BusinessLogic\FilmsB.cs" />
+    <Compile Include="Models\BusinessLogic\ShowingsB.cs" />
+    <Compile Include="Models\BusinessLogic\OrdersB.cs" />
+    <Compile Include="Models\BusinessLogic\TicketTypesB.cs" />
+    <Compile Include="Models\BusinessLogic\ShowingTypesB.cs" />
+    <Compile Include="Models\BusinessLogic\RoomsB.cs" />
     <Compile Include="Models\EntitiesForView\ComboboxKeyAndValue.cs" />
     <Compile Include="Models\EntitiesForView\EmployeesForAllView.cs" />
     <Compile Include="Models\EntitiesForView\OrdersForAllView.cs" />
     <Compile Include="Models\EntitiesForView\FilmsForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ShowingsForAllView.cs" />
+    <Compile Include="Models\Validators\BussinesValidator.cs" />
+    <Compile Include="Models\Validators\ComboboxValidator.cs" />
+    <Compile Include="Models\Validators\DateValidator.cs" />
+    <Compile Include="Models\Validators\DecimalValidation.cs" />
+    <Compile Include="Models\Validators\IntegerValidation.cs" />
+    <Compile Include="Models\Validators\StringValidator.cs" />
+    <Compile Include="Models\Validators\Validator.cs" />
     <Compile Include="ViewModels\AddressesAllViewModel.cs" />
     <Compile Include="ViewModels\EmployeesNewViewModel.cs" />
     <Compile Include="ViewModels\EmployeesAllViewModel.cs" />

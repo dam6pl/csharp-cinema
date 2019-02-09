@@ -27,11 +27,11 @@
 
         <Label Content="Ulica:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Ulica, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Ulica, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Numer domu:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=NrDomu, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=NrDomu, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Numer lokalu:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}"
@@ -39,15 +39,15 @@
 
         <Label Content="Miejscowosc:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Miejscowosc, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Miejscowosc, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Kod pocztowy:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=KodPocztowy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Poczta:" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="5" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Poczta, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Poczta, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
     </Grid>
 

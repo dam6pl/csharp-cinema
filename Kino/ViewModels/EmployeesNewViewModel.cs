@@ -1,9 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using Kino.Models;
 using Kino.Models.EntitiesForView;
+using Kino.Models.Validators;
 using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,7 @@ using System.Windows.Input;
 namespace Kino.ViewModels
 {
     
-    public class EmployeesNewViewModel : SingleViewModel<Pracownicy>
+    public class EmployeesNewViewModel : SingleViewModel<Pracownicy>, IDataErrorInfo
     {
         #region Fields
         private BaseCommand _ShowAddressesCommand;
@@ -209,5 +211,47 @@ namespace Kino.ViewModels
             AdresKodPocztowy = adres.KodPocztowy;
         }
         #endregion Helpers
+
+        #region Validations
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Imie")
+                    komunikat = StringValidator.IsNotEmpty(this.Imie) ?? StringValidator.IsStartFromUpper(this.Imie);
+                if (name == "Nazwisko")
+                    komunikat = StringValidator.IsNotEmpty(this.Nazwisko) ?? StringValidator.IsStartFromUpper(this.Nazwisko);
+                if (name == "Stanowisko")
+                    komunikat = StringValidator.IsNotEmpty(this.Stanowisko);
+                if (name == "Telefon")
+                    komunikat = StringValidator.IsNotEmpty(this.Telefon) ?? BussinesValidator.IsValidPhoneNumber(this.Telefon);
+                if (name == "AdresUlica" || name == "AdresKodPocztowy" || name == "AdresMiejscowosc" || name == "AdresNrDomu")
+                    komunikat = StringValidator.IsNotEmpty(this.AdresUlica);
+
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            return this["Imie"] == null
+                && this["Nazwisko"] == null
+                && this["Stanowisko"] == null
+                && this["Telefon"] == null
+                && this["AdresUlica"] == null
+                && this["AdresKodPocztowy"] == null
+                && this["AdresMiejscowosc"] == null
+                && this["AdresNrDomu"] == null;
+        }
+        #endregion
     }
 }

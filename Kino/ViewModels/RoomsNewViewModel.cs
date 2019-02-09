@@ -1,14 +1,16 @@
 ﻿using Kino.Models;
+using Kino.Models.Validators;
 using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kino.ViewModels
 {
-    class RoomsNewViewModel : SingleViewModel<Sale>
+    class RoomsNewViewModel : SingleViewModel<Sale>, IDataErrorInfo
     {
         #region Construktor
         public RoomsNewViewModel()
@@ -91,5 +93,38 @@ namespace Kino.ViewModels
             kinoEntities.SaveChanges();
         }
         #endregion Helpers
+
+        #region Validations
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Nazwa")
+                    komunikat = StringValidator.IsNotEmpty(this.Nazwa) ?? StringValidator.IsStartFromUpper(this.Nazwa);
+                else if (name == "Numer")
+                    komunikat = IntegerValidation.IsNotEmpty(this.Numer) ?? IntegerValidation.IsPositive(this.Numer);
+                else if (name == "LiczbaMiejsc")
+                    komunikat = IntegerValidation.IsNotEmpty(this.LiczbaMiejsc) ?? IntegerValidation.IsPositive(this.LiczbaMiejsc);
+
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            return this["Nazwa"] == null
+                && this["Numer"] == null
+                && this["LiczbaMiejsc"] == null;
+        }
+        #endregion
     }
 }

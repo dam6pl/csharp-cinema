@@ -2,9 +2,11 @@
 using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
+using Kino.Models.Validators;
 using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ using System.Windows.Input;
 namespace Kino.ViewModels
 {
     
-    public class ShowingsNewViewModel : SingleViewModel<Seanse>
+    public class ShowingsNewViewModel : SingleViewModel<Seanse>, IDataErrorInfo
     {
         #region Fields
         private BaseCommand _ShowFilmsCommand;
@@ -88,7 +90,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new Rooms(kinoEntities).getRoomsComboboxItems();
+                return new RoomsB(kinoEntities).getRoomsComboboxItems();
             }
         }
 
@@ -143,7 +145,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new ShowingTypes(kinoEntities).getShowingTypesComboboxItems();
+                return new ShowingTypesB(kinoEntities).getShowingTypesComboboxItems();
             }
         }
 
@@ -214,5 +216,43 @@ namespace Kino.ViewModels
             FilmRokProdukcji = film.RokProdukcji;
         }
         #endregion Helpers
+
+        #region Validations
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "IdSali")
+                    komunikat = ComboboxValidator.IsNotEmpty(this.IdSali);
+                else if (name == "FilmTytul" || name == "FilmOpis" || name == "FilmRokProdukcji")
+                    komunikat = StringValidator.IsNotEmpty(this.FilmTytul);
+                else if (name == "Data")
+                    komunikat = DateValidator.IsNotEmpty(this.Data) ?? DateValidator.IsInPast(this.Data);
+                else if (name == "IdTypuSeansu")
+                    komunikat = ComboboxValidator.IsNotEmpty(this.IdTypuSeansu);
+
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            return this["Sala"] == null
+                && this["FilmTytul"] == null
+                && this["FilmOpis"] == null
+                && this["FilmRokProdukcji"] == null
+                && this["Data"] == null
+                && this["IdTypuSeansu"] == null;
+        }
+        #endregion
     }
 }

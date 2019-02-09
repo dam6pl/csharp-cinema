@@ -2,9 +2,11 @@
 using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
+using Kino.Models.Validators;
 using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ using System.Windows.Input;
 namespace Kino.ViewModels
 {
     
-    public class FilmsNewViewModel : SingleViewModel<Filmy>
+    public class FilmsNewViewModel : SingleViewModel<Filmy>, IDataErrorInfo
     {
         #region Fields
         private BaseCommand _AddGenreCommand;
@@ -95,7 +97,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new Genre(kinoEntities).getGenreComboboxItems();
+                return new GenreB(kinoEntities).getGenreComboboxItems();
 
             }
         }
@@ -174,5 +176,47 @@ namespace Kino.ViewModels
             kinoEntities.SaveChanges();
         }
         #endregion Helpers
+
+        #region Validations
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Tytuł")
+                    komunikat = StringValidator.IsNotEmpty(this.Tytuł) ?? StringValidator.IsStartFromUpper(this.Tytuł);
+                else if (name == "IdGatunku")
+                    komunikat = ComboboxValidator.IsNotEmpty(this.IdGatunku);
+                else if (name == "Rezyser")
+                    komunikat = StringValidator.IsNotEmpty(this.Rezyser);
+                else if (name == "RokProdukcji")
+                    komunikat = IntegerValidation.IsNotEmpty(this.RokProdukcji) ?? IntegerValidation.IsYearInPast(this.RokProdukcji);
+                else if (name == "CzasTrwania")
+                    komunikat = DecimalValidation.IsNotEmpty(this.CzasTrwania) ?? DecimalValidation.IsPositive(this.CzasTrwania);
+                else if (name == "LimitWiekowy")
+                    komunikat = IntegerValidation.IsNotEmpty(this.LimitWiekowy) ?? IntegerValidation.IsPositive(this.LimitWiekowy);
+
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            return this["Tytuł"] == null
+                && this["IdGatunku"] == null
+                && this["Rezyser"] == null
+                && this["RokProdukcji"] == null
+                && this["CzasTrwania"] == null
+                && this["LimitWiekowy"] == null;
+        }
+        #endregion
     }
 }

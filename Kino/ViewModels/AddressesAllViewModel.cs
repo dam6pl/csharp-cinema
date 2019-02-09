@@ -15,8 +15,8 @@ namespace Kino.ViewModels
     class AddressesAllViewModel : AllViewModel<Adresy>
     {
         #region Constructor
-        public AddressesAllViewModel()
-            : base()
+        public AddressesAllViewModel(bool modal = false)
+            : base(modal)
         {
             base.DisplayName = "Wszystkie adresy";
             base.ViewType = "Addresses";
@@ -37,7 +37,7 @@ namespace Kino.ViewModels
                 {
                     _SelectedAddress = value;
                     Messenger.Default.Send(_SelectedAddress);
-                    onRequestClose();
+                    if (modal) onRequestClose();
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new Addresses(kinoEntities).getAllAddresses();
+            List = new AddressesB(kinoEntities).getAllAddresses();
         }
         #endregion Helpers
 

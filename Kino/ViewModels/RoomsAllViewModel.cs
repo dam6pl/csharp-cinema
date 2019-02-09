@@ -24,7 +24,7 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new Rooms(kinoEntities).getAllRooms();
+            List = new RoomsB(kinoEntities).getAllRooms();
         }
         #endregion Helpers
 

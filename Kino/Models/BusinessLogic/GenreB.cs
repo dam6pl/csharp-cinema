@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace Kino.Models.BusinessLogic
 {
-    class ShowingTypes : DatabaseClass
+    class GenreB : DatabaseClass
     {
         #region Constructor
-        public ShowingTypes(KinoEntities kinoEntities)
+        public GenreB(KinoEntities kinoEntities)
             : base(kinoEntities)
         {
         }
         #endregion
 
-        public IQueryable<ComboboxKeyAndValue> getShowingTypesComboboxItems()
+        public IQueryable<ComboboxKeyAndValue> getGenreComboboxItems()
         {
-            return
+             return
                 (
-                    from typSeansu in kinoEntities.TypySeansow
+                    from gatunek in kinoEntities.Gatunki
                     select new ComboboxKeyAndValue
                     {
-                        Key = typSeansu.IdTypuSeansu,
-                        Value = typSeansu.Nazwa
+                        Key = gatunek.IdGatunku,
+                        Value = gatunek.Nazwa
                     }
                 ).ToList().AsQueryable();
         }

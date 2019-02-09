@@ -46,32 +46,6 @@ namespace Kino.ViewModels
         {
             return new List<CommandViewModel>
             {
-                new CommandViewModel("Nowy seans", new BaseCommand(()=>this.createWorkspace(new ShowingsNewViewModel()))),
-                new CommandViewModel("Wszystkie seanse", new BaseCommand(()=>this.showShowingsAll())),
-
-                new CommandViewModel("Nowa sala", new BaseCommand(()=>this.createWorkspace(new RoomsNewViewModel()))),
-                new CommandViewModel("Wszystkie sale", new BaseCommand(()=>this.showRoomsAll())),
-
-                new CommandViewModel("Nowy film", new BaseCommand(()=>this.createWorkspace(new FilmsNewViewModel()))),
-                new CommandViewModel("Wszystkie filmy", new BaseCommand(()=>this.showFilmsAll())),
-
-                new CommandViewModel("Nowy gatunek", new BaseCommand(()=>this.createWorkspace(new GenreNewViewModel()))),
-
-                new CommandViewModel("Nowy typ seansu", new BaseCommand(()=>this.createWorkspace(new ShowingTypesNewViewModel()))),
-
-                new CommandViewModel("Nowe zamowienie", new BaseCommand(()=>this.createWorkspace(new OrdersNewViewModel()))),
-                new CommandViewModel("Wszystkie zamowienia", new BaseCommand(()=>this.showOrdersAll())),
-
-                new CommandViewModel("Nowy klient", new BaseCommand(()=>this.createWorkspace(new CustomersNewViewModel()))),
-                new CommandViewModel("Wszyscy klienci", new BaseCommand(()=>this.showCustomersAll())),
-
-                new CommandViewModel("Nowy pracownik", new BaseCommand(()=>this.createWorkspace(new EmployeesNewViewModel()))),
-                new CommandViewModel("Wszyscy pracownicy", new BaseCommand(()=>this.showEmployeesAll())),
-
-                new CommandViewModel("Nowy adres", new BaseCommand(()=>this.createWorkspace(new AddressesNewViewModel()))),
-                new CommandViewModel("Wszystkie adresy", new BaseCommand(()=>this.showAddressesAll())),
-
-                new CommandViewModel("Raport sprzedaży", new BaseCommand(()=>this.showSalesReport()))
             };
         }
         #endregion Commands
@@ -115,13 +89,13 @@ namespace Kino.ViewModels
             this.setActiveWorkspace(workspace);
         }
 
-        private void showShowingsAll()
+        private void showShowingsAll(bool modal = false)
         {
             ShowingsAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is ShowingsAllViewModel)
                 as ShowingsAllViewModel;
             if (workspace == null)
             {
-                workspace = new ShowingsAllViewModel();
+                workspace = new ShowingsAllViewModel(modal);
                 this.Workspaces.Add(workspace);
             }
 
@@ -141,13 +115,13 @@ namespace Kino.ViewModels
             this.setActiveWorkspace(workspace);
         }
 
-        private void showFilmsAll()
+        private void showFilmsAll(bool modal = false)
         {
             FilmsAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is FilmsAllViewModel)
                 as FilmsAllViewModel;
             if (workspace == null)
             {
-                workspace = new FilmsAllViewModel();
+                workspace = new FilmsAllViewModel(modal);
                 this.Workspaces.Add(workspace);
             }
 
@@ -167,13 +141,13 @@ namespace Kino.ViewModels
             this.setActiveWorkspace(workspace);
         }
 
-        private void showCustomersAll()
+        private void showCustomersAll(bool modal = false)
         {
             CustomersAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is CustomersAllViewModel)
                 as CustomersAllViewModel;
             if (workspace == null)
             {
-                workspace = new CustomersAllViewModel();
+                workspace = new CustomersAllViewModel(modal);
                 this.Workspaces.Add(workspace);
             }
 
@@ -193,13 +167,13 @@ namespace Kino.ViewModels
             this.setActiveWorkspace(workspace);
         }
 
-        private void showAddressesAll()
+        private void showAddressesAll(bool modal = false)
         {
             AddressesAllViewModel workspace = this._Workspaces.FirstOrDefault(vm => vm is AddressesAllViewModel)
                 as AddressesAllViewModel;
             if (workspace == null)
             {
-                workspace = new AddressesAllViewModel();
+                workspace = new AddressesAllViewModel(modal);
                 this.Workspaces.Add(workspace);
             }
 
@@ -254,13 +228,13 @@ namespace Kino.ViewModels
             else if (name == "GenreNew")
                 createWorkspace(new GenreNewViewModel());
             else if (name == "FilmsAll")
-                showFilmsAll();
+                showFilmsAll(true);
             else if (name == "ShowingsAll")
-                showShowingsAll();
+                showShowingsAll(true);
             else if (name == "CustomersAll")
-                showCustomersAll();
+                showCustomersAll(true);
             else if (name == "AddressesAll")
-                showAddressesAll();
+                showAddressesAll(true);
         }
         #endregion Helpers
 

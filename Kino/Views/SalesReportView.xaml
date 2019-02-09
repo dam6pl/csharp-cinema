@@ -20,7 +20,7 @@
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -33,9 +33,6 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-
-        <Label Content="Obliczanie raportu sprzedaży" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"
-               VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
 
         <Label Content="Data:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
         <Label Content="Od:" Grid.Column="1" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>

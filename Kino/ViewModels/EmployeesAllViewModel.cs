@@ -29,7 +29,7 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new Employees(kinoEntities).getAllEmployees();
+            List = new EmployeesB(kinoEntities).getAllEmployees();
         }
         #endregion Helpers
 

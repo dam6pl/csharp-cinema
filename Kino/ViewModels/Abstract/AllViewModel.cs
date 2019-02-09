@@ -14,6 +14,7 @@ namespace Kino.ViewModels.Abstract
     {
         #region Fields
         protected KinoEntities kinoEntities;
+        protected bool modal;
         private BaseCommand _LoadCommand;
         private BaseCommand _AddCommand;
         private ObservableCollection<T> _List;
@@ -23,10 +24,11 @@ namespace Kino.ViewModels.Abstract
         #endregion Fields
 
         #region Constructor
-        public AllViewModel()
+        public AllViewModel(bool modal = false)
         {
             this.kinoEntities = new KinoEntities();
             Messenger.Default.Register<String>(this, onSaveNewItem);
+            this.modal = modal;
         }
         #endregion Constructor
 

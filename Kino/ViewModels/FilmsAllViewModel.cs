@@ -15,8 +15,8 @@ namespace Kino.ViewModels
     class FilmsAllViewModel : AllViewModel<FilmsForAllView>
     {
         #region Constructor
-        public FilmsAllViewModel()
-            : base()
+        public FilmsAllViewModel(bool modal = false)
+            : base(modal)
         {
             base.DisplayName = "Wszystkie filmy";
             base.ViewType = "Films";
@@ -37,7 +37,7 @@ namespace Kino.ViewModels
                 {
                     _SelectedFilm = value;
                     Messenger.Default.Send(_SelectedFilm);
-                    onRequestClose();
+                    if (modal) onRequestClose();
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new Films(kinoEntities).getAllFilms();
+            List = new FilmsB(kinoEntities).getAllFilms();
         }
         #endregion Helpers
 

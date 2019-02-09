@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Kino.Models.BusinessLogic
 {
-    class Rooms : DatabaseClass
+    class RoomsB : DatabaseClass
     {
         #region Constructor
-        public Rooms(KinoEntities kinoEntities)
+        public RoomsB(KinoEntities kinoEntities)
             : base(kinoEntities)
         {
         }

@@ -27,6 +27,14 @@
         <Setter Property="Padding" Value="5" />
     </Style>
 
+    <Style TargetType="TextBox">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type local:AllViewBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -115,8 +123,9 @@
                                     Command="{Binding CloseCommand}" Style="{StaticResource TabButtonStyle}"/>
                         </Grid>
 
-                       
-                        <ContentPresenter Grid.Row="1" Margin="0,5,0,5"/>
+                        <AdornerDecorator Grid.Row="1" Margin="0,5,0,5">
+                            <ContentPresenter/>
+                        </AdornerDecorator>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

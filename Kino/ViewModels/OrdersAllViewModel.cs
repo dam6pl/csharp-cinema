@@ -28,7 +28,7 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new Orders(kinoEntities).getAllOrders();
+            List = new OrdersB(kinoEntities).getAllOrders();
         }
         #endregion Helpers
 

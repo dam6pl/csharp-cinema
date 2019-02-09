@@ -29,7 +29,7 @@
 
         <Label Content="Tytul:" Grid.Column="0" Grid.Row="0" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Tytuł, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Tytuł, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Opis:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
@@ -38,24 +38,24 @@
         <Label Content="Gatunek:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelGridStyle}"/>
         <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" 
                   ItemsSource="{Binding GatunkiComboboxItems}" DisplayMemberPath="Value" SelectedValuePath="Key"
-                  SelectedValue="{Binding Path=IdGatunku, Mode=TwoWay}"/>
+                  SelectedValue="{Binding Path=IdGatunku, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
         <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddGenreCommand}">Dodaj nowy</Button>
 
         <Label Content="Reżyser:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=Rezyser, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Rezyser, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Rok produkcji:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=RokProdukcji, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=RokProdukcji, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Czas trwania:" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=CzasTrwania, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=CzasTrwania, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
         <Label Content="Limit wiekowy:" Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelGridStyle}"/>
         <TextBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"
-                 Text="{Binding Path=LimitWiekowy, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=LimitWiekowy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
     </Grid>
 

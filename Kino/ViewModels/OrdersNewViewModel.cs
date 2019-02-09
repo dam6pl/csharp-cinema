@@ -2,9 +2,11 @@
 using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
+using Kino.Models.Validators;
 using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ using System.Windows.Input;
 namespace Kino.ViewModels
 {
     
-    public class OrdersNewViewModel : SingleViewModel<Zamowienia>
+    public class OrdersNewViewModel : SingleViewModel<Zamowienia>, IDataErrorInfo
     {
         #region Fields
         private BaseCommand _ShowShowingsCommand;
@@ -124,7 +126,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new TicketTypes(kinoEntities).getTicketTypesComboboxItems();
+                return new TicketTypesB(kinoEntities).getTicketTypesComboboxItems();
             }
         }
 
@@ -147,7 +149,7 @@ namespace Kino.ViewModels
         {
             get
             {
-                return new Employees(kinoEntities).getEmployeeComboboxItems();
+                return new EmployeesB(kinoEntities).getEmployeeComboboxItems();
             }
         }
 
@@ -307,7 +309,47 @@ namespace Kino.ViewModels
             KlientImieNazwisko = klient.Imie + " " + klient.Nazwisko;
             KlientEmail = klient.Email;
             KlientTelefon = klient.Telefon;
-        }   
+        }
         #endregion Helpers
+
+        #region Validations
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "SeansSala" || name == "SeansFilm" || name == "SeansData")
+                    komunikat = StringValidator.IsNotEmpty(this.SeansSala);
+                if (name == "KlientImieNazwisko" || name == "KlientEmail" || name == "KlientTelefon")
+                    komunikat = StringValidator.IsNotEmpty(this.KlientImieNazwisko);
+                else if (name == "IdTypuBiletu")
+                    komunikat = ComboboxValidator.IsNotEmpty(this.IdTypuBiletu);
+                else if (name == "IdPracownika")
+                    komunikat = ComboboxValidator.IsNotEmpty(this.IdPracownika);
+
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            return this["SeansSala"] == null
+                && this["SeansFilm"] == null
+                && this["SeansData"] == null
+                && this["KlientImieNazwisko"] == null
+                && this["KlientEmail"] == null
+                && this["KlientTelefon"] == null
+                && this["IdTypuBiletu"] == null
+                && this["IdPracownika"] == null;
+        }
+        #endregion
     }
 }

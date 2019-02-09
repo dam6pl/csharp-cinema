@@ -15,8 +15,8 @@ namespace Kino.ViewModels
     class ShowingsAllViewModel : AllViewModel<ShowingsForAllView>
     {
         #region Constructor
-        public ShowingsAllViewModel()
-            : base()
+        public ShowingsAllViewModel(bool modal = false)
+            : base(modal)
         {
             base.DisplayName = "Wszystkie seanse";
             base.ViewType = "Showings";
@@ -37,7 +37,7 @@ namespace Kino.ViewModels
                 {
                     _SelectedShowing = value;
                     Messenger.Default.Send(_SelectedShowing);
-                    onRequestClose();
+                    if (modal) onRequestClose();
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace Kino.ViewModels
         #region Helpers
         public override void load()
         {
-            List = new Showings(kinoEntities).getAllShowings();
+            List = new ShowingsB(kinoEntities).getAllShowings();
         }
         #endregion Helpers
 
