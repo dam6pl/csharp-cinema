@@ -35,5 +35,21 @@ namespace Kino.Models.BusinessLogic
                     }
                 );
         }
+
+        public bool removeOrder(int orderId)
+        {
+            try
+            {
+                Zamowienia zamowienie = kinoEntities.Zamowienia.Find(orderId);
+                kinoEntities.Zamowienia.Remove(zamowienie);
+                kinoEntities.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

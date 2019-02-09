@@ -22,13 +22,16 @@ namespace Kino.ViewModels
         #endregion
 
         #region Construktor
-        public FilmsNewViewModel()
+        public FilmsNewViewModel(int? id = null)
             : base()
         {
             base.DisplayName = "Nowy film";
             base.ViewType = "Films";
 
-            this.item = new Filmy();
+            if (id == null)
+                this.item = new Filmy();
+            else
+                this.item = kinoEntities.Filmy.Find(id);
         }
         #endregion Constructor
 
@@ -172,7 +175,14 @@ namespace Kino.ViewModels
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Filmy.Add(item);
+            if (this.item.IdFilmu == 0)
+                kinoEntities.Filmy.Add(item);
+            else
+            {
+                Filmy filmy = kinoEntities.Filmy.Find(this.item.IdFilmu);
+                filmy = item;
+            }
+
             kinoEntities.SaveChanges();
         }
         #endregion Helpers

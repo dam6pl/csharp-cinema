@@ -48,5 +48,21 @@ namespace Kino.Models.BusinessLogic
                     }
                 ).ToList().AsQueryable();
         }
+
+        public bool removeFilm(int filmId)
+        {
+            try
+            {
+                Filmy filmy = kinoEntities.Filmy.Find(filmId);
+                kinoEntities.Filmy.Remove(filmy);
+                kinoEntities.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

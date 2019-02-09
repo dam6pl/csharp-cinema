@@ -18,6 +18,14 @@ namespace Kino.Models.Validators
 
         public static string IsInPast(DateTime? date)
         {
+            if (date >= DateTime.Now)
+                return "Data musi być z przeszłości!";
+
+            return null;
+        }
+
+        public static string IsInFuture(DateTime? date)
+        {
             if (date < DateTime.Now)
                 return "Data musi być z przyszłości!";
 

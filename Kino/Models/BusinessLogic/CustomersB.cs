@@ -25,5 +25,21 @@ namespace Kino.Models.BusinessLogic
                 select klient
                 );
         }
+
+        public bool removeCustomer(int klientId)
+        {
+            try
+            {
+                Klienci klienci = kinoEntities.Klienci.Find(klientId);
+                kinoEntities.Klienci.Remove(klienci);
+                kinoEntities.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

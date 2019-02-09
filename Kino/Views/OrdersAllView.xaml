@@ -11,7 +11,8 @@
         <ResourceDictionary Source="MainWindowResources.xaml"/>
     </UserControl.Resources>
 
-    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
+    <DataGrid SelectedItem="{Binding Path=SelectedOrder, Mode=TwoWay}"
+              AutoGenerateColumns="False" ItemsSource="{Binding List}" IsReadOnly="True" FontSize="12">
         <DataGrid.Columns>
             <DataGridTextColumn Header="ID zamówienia" Binding="{Binding IdZamowienia}" Width="75*"/>
             <DataGridTextColumn Header="Seans" Binding="{Binding Seans}" Width="200*"/>

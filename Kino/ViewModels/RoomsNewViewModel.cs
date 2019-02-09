@@ -13,13 +13,16 @@ namespace Kino.ViewModels
     class RoomsNewViewModel : SingleViewModel<Sale>, IDataErrorInfo
     {
         #region Construktor
-        public RoomsNewViewModel()
+        public RoomsNewViewModel(int? id = null)
             : base()
         {
             base.DisplayName = "Nowa sala";
             base.ViewType = "Rooms";
 
-            this.item = new Sale();
+            if (id == null)
+                this.item = new Sale();
+            else
+                this.item = kinoEntities.Sale.Find(id);
         }
         #endregion Constructor
 
@@ -89,7 +92,14 @@ namespace Kino.ViewModels
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Sale.Add(item);
+            if (this.item.IdSali == 0)
+                kinoEntities.Sale.Add(item);
+            else
+            {
+                Sale sale = kinoEntities.Sale.Find(this.item.IdSali);
+                sale = item;
+            }
+
             kinoEntities.SaveChanges();
         }
         #endregion Helpers

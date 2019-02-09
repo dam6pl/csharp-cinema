@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Kino.ViewModels.Abstract
@@ -17,6 +18,8 @@ namespace Kino.ViewModels.Abstract
         protected bool modal;
         private BaseCommand _LoadCommand;
         private BaseCommand _AddCommand;
+        private BaseCommand _RemoveCommand;
+        private BaseCommand _ModifyCommand;
         private ObservableCollection<T> _List;
         private BaseCommand _SortDescCommand;
         private BaseCommand _SortAscCommand;
@@ -50,6 +53,26 @@ namespace Kino.ViewModels.Abstract
                 if (_AddCommand == null)
                     _AddCommand = new BaseCommand(() => add());
                 return _AddCommand;
+            }
+        }
+
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                if (_RemoveCommand == null)
+                    _RemoveCommand = new BaseCommand(() => remove());
+                return _RemoveCommand;
+            }
+        }
+
+        public ICommand ModifyCommand
+        {
+            get
+            {
+                if (_ModifyCommand == null)
+                    _ModifyCommand = new BaseCommand(() => modify());
+                return _ModifyCommand;
             }
         }
 
@@ -136,6 +159,20 @@ namespace Kino.ViewModels.Abstract
         {
             Messenger.Default.Send(this.ViewType + "New");
         }
+
+        public MessageBoxResult removeAlert()
+        {
+            return MessageBox.Show(
+                "Czy na pewno chcesz usunąć rekord?",
+                "Usuwanie rekordu",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+        }
+
+        public abstract void remove();
+
+        public abstract void modify();
 
         public abstract void Sort(bool order);
 

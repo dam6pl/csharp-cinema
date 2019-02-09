@@ -1,4 +1,6 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Helpers;
+using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
 using Kino.ViewModels.Abstract;
@@ -8,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kino.ViewModels
 {
@@ -23,12 +26,47 @@ namespace Kino.ViewModels
         #endregion Constructor
 
         #region Properties
+        private OrdersForAllView _SelectedOrder;
+        public OrdersForAllView SelectedOrder
+        {
+            get
+            {
+                return _SelectedOrder;
+            }
+            set
+            {
+                if (_SelectedOrder != value)
+                    _SelectedOrder = value;
+            }
+        }
         #endregion
 
         #region Helpers
         public override void load()
         {
             List = new OrdersB(kinoEntities).getAllOrders();
+        }
+
+        public override void remove()
+        {
+            if (SelectedOrder != null)
+            {
+                new OrdersB(kinoEntities).removeOrder(SelectedOrder.IdZamowienia);
+                load();
+            }
+        }
+
+        public override void modify()
+        {
+            if (SelectedOrder != null && this.removeAlert() == MessageBoxResult.Yes)
+            {
+                ModifyCommand command = new ModifyCommand
+                {
+                    Name = ViewType + "Modify",
+                    Id = SelectedOrder.IdZamowienia
+                };
+                Messenger.Default.Send(command);
+            }
         }
         #endregion Helpers
 

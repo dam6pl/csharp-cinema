@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Helpers;
 using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
@@ -9,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kino.ViewModels
 {
@@ -24,12 +26,51 @@ namespace Kino.ViewModels
         #endregion Constructor
 
         #region Properties
+        private EmployeesForAllView _SelectedEmployee;
+        public EmployeesForAllView SelectedEmployee
+        {
+            get
+            {
+                return _SelectedEmployee;
+            }
+            set
+            {
+                if (_SelectedEmployee != value)
+                {
+                    _SelectedEmployee = value;
+                }
+            }
+        }
         #endregion
 
         #region Helpers
         public override void load()
         {
             List = new EmployeesB(kinoEntities).getAllEmployees();
+        }
+
+        public override void remove()
+        {
+            if (SelectedEmployee != null && this.removeAlert() == MessageBoxResult.Yes)
+            {
+                if (!new EmployeesB(kinoEntities).removeEmployee(SelectedEmployee.IdPracownika))
+                    ShowMessageBox("Rekord nie może zostać usunięty! " +
+                        "\nIstnieją zamówienia powiązane z tym rekordem.");
+                load();
+            }
+        }
+
+        public override void modify()
+        {
+            if (SelectedEmployee != null)
+            {
+                ModifyCommand command = new ModifyCommand
+                {
+                    Name = ViewType + "Modify",
+                    Id = SelectedEmployee.IdPracownika
+                };
+                Messenger.Default.Send(command);
+            }
         }
         #endregion Helpers
 

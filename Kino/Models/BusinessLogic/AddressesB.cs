@@ -25,5 +25,20 @@ namespace Kino.Models.BusinessLogic
                 select adres
                 );
         }
+
+        public bool removeAddress(int adresId)
+        {
+            try
+            {
+                Adresy adresy = kinoEntities.Adresy.Find(adresId);
+                kinoEntities.Adresy.Remove(adresy);
+                kinoEntities.SaveChanges();
+            } catch(Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -48,5 +48,21 @@ namespace Kino.Models.BusinessLogic
                     }
                 ).ToList().AsQueryable();
         }
+
+        public bool removeEmployee(int pracownikId)
+        {
+            try
+            {
+                Pracownicy pracownicy = kinoEntities.Pracownicy.Find(pracownikId);
+                kinoEntities.Pracownicy.Remove(pracownicy);
+                kinoEntities.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

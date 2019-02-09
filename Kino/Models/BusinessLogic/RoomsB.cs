@@ -38,5 +38,21 @@ namespace Kino.Models.BusinessLogic
                     }
                 ).ToList().AsQueryable();
         }
+
+        public bool removeRoom(int salaId)
+        {
+            try
+            {
+                Sale sale = kinoEntities.Sale.Find(salaId);
+                kinoEntities.Sale.Remove(sale);
+                kinoEntities.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -24,15 +24,32 @@ namespace Kino.ViewModels
         #endregion
 
         #region Construktor
-        public OrdersNewViewModel()
+        public OrdersNewViewModel(int? id = null)
             : base()
         {
             base.DisplayName = "Nowe zamowienie";
             base.ViewType = "Orders";
 
-            this.item = new Zamowienia();
-            this.Status = true;
-            this.Data = DateTime.Now;
+
+
+            if (id == null)
+            {
+                this.item = new Zamowienia();
+                this.Status = true;
+                this.Data = DateTime.Now;
+            }
+            else
+            {
+                this.item = kinoEntities.Zamowienia.Find(id);
+                this.IdSeansu = this.item.Seanse.IdSeansu;
+                this.SeansSala = this.item.Seanse.Sale.Nazwa;
+                this.SeansFilm = this.item.Seanse.Filmy.Tytuł;
+                this.SeansData = this.item.Seanse.Data;
+                this.IdKlienta = this.item.Klienci.IdKlienta;
+                this.KlientImieNazwisko = this.item.Klienci.Imie + " " + this.item.Klienci.Nazwisko;
+                this.KlientEmail = this.item.Klienci.Email;
+                this.KlientTelefon = this.item.Klienci.Telefon;
+            }
 
             Messenger.Default.Register<Klienci>(this, getSelectedCustomer);
             Messenger.Default.Register<ShowingsForAllView>(this, getSelectedShowing);
@@ -291,7 +308,14 @@ namespace Kino.ViewModels
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Zamowienia.Add(item);
+            if (this.item.IdZamowienia == 0)
+                kinoEntities.Zamowienia.Add(item);
+            else
+            {
+                Zamowienia zamowienia = kinoEntities.Zamowienia.Find(this.item.IdZamowienia);
+                zamowienia = item;
+            }
+
             kinoEntities.SaveChanges();
         }
 

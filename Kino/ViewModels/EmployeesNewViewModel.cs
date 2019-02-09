@@ -21,13 +21,24 @@ namespace Kino.ViewModels
         #endregion
 
         #region Construktor
-        public EmployeesNewViewModel()
+        public EmployeesNewViewModel(int? id = null)
             : base()
         {
             base.DisplayName = "Nowy pracownik";
             base.ViewType = "Empoyees";
 
-            this.item = new Pracownicy();
+            if (id == null)
+                this.item = new Pracownicy();
+            else
+            {
+                this.item = kinoEntities.Pracownicy.Find(id);
+                this.IdAdresu = this.item.Adresy.IdAdresu;
+                this.AdresUlica = this.item.Adresy.Ulica;
+                this.AdresNrDomu = this.item.Adresy.NrDomu;
+                this.AdresMiejscowosc = this.item.Adresy.Miejscowosc;
+                this.AdresKodPocztowy = this.item.Adresy.KodPocztowy;
+            }
+
             Messenger.Default.Register<Adresy>(this, getSelectedAddress);
         }
         #endregion Constructor
@@ -198,7 +209,14 @@ namespace Kino.ViewModels
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Pracownicy.Add(item);
+            if (this.item.IdPracownika == 0)
+                kinoEntities.Pracownicy.Add(item);
+            else
+            {
+                Pracownicy pracownicy = kinoEntities.Pracownicy.Find(this.item.IdPracownika);
+                pracownicy = item;
+            }
+
             kinoEntities.SaveChanges();
         }
 

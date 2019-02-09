@@ -1,4 +1,6 @@
-﻿using Kino.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Helpers;
+using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.ViewModels.Abstract;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kino.ViewModels
 {
@@ -21,10 +24,50 @@ namespace Kino.ViewModels
         }
         #endregion Constructor
 
+        #region Properties
+        private Sale _SelectedRoom;
+        public Sale SelectedRoom
+        {
+            get
+            {
+                return _SelectedRoom;
+            }
+            set
+            {
+                if (_SelectedRoom != value)
+                    _SelectedRoom = value;
+            }
+        }
+        #endregion
+
         #region Helpers
         public override void load()
         {
             List = new RoomsB(kinoEntities).getAllRooms();
+        }
+
+        public override void remove()
+        {
+            if (SelectedRoom != null)
+            {
+                if (!new RoomsB(kinoEntities).removeRoom(SelectedRoom.IdSali))
+                    ShowMessageBox("Rekord nie może zostać usunięty! " +
+                        "\nIstnieją seanse powiązane z tym rekordem.");
+                load();
+            }
+        }
+
+        public override void modify()
+        {
+            if (SelectedRoom != null && this.removeAlert() == MessageBoxResult.Yes)
+            {
+                ModifyCommand command = new ModifyCommand
+                {
+                    Name = ViewType + "Modify",
+                    Id = SelectedRoom.IdSali
+                };
+                Messenger.Default.Send(command);
+            }
         }
         #endregion Helpers
 

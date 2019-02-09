@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Helpers;
 using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
@@ -9,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kino.ViewModels
 {
@@ -41,12 +43,38 @@ namespace Kino.ViewModels
                 }
             }
         }
+
+        public MessageBoxResult DialogResult { get; private set; }
         #endregion
 
         #region Helpers
         public override void load()
         {
             List = new AddressesB(kinoEntities).getAllAddresses();
+        }
+
+        public override void remove()
+        {
+            if (SelectedAddress != null && this.removeAlert() == MessageBoxResult.Yes)
+            {
+                if (!new AddressesB(kinoEntities).removeAddress(SelectedAddress.IdAdresu))
+                    ShowMessageBox("Rekord nie może zostać usunięty! " +
+                        "\nIstnieją pracownicy powiązani z tym rekordem.");
+                load();
+            }
+        }
+
+        public override void modify()
+        {
+            if (SelectedAddress != null)
+            {
+                ModifyCommand command = new ModifyCommand
+                {
+                    Name = ViewType + "Modify",
+                    Id = SelectedAddress.IdAdresu
+                };
+                Messenger.Default.Send(command);
+            }
         }
         #endregion Helpers
 

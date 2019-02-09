@@ -32,5 +32,21 @@ namespace Kino.Models.BusinessLogic
                     }
                 );
         }
+
+        public bool removeShowing(int seansId)
+        {
+            try
+            {
+                Seanse seanse = kinoEntities.Seanse.Find(seansId);
+                kinoEntities.Seanse.Remove(seanse);
+                kinoEntities.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

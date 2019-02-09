@@ -24,13 +24,23 @@ namespace Kino.ViewModels
         #endregion
 
         #region Construktor
-        public ShowingsNewViewModel()
+        public ShowingsNewViewModel(int? id = null)
             : base()
         {
             base.DisplayName = "Nowy seans";
             base.ViewType = "Showings";
 
-            this.item = new Seanse();
+            if (id == null)
+                this.item = new Seanse();
+            else
+            {
+                this.item = kinoEntities.Seanse.Find(id);
+                this.IdFilmu = this.item.Filmy.IdFilmu;
+                this.FilmTytul = this.item.Filmy.Tytuł;
+                this.FilmOpis = this.item.Filmy.Opis;
+                this.FilmRokProdukcji = this.item.Filmy.RokProdukcji;
+            }
+
             Messenger.Default.Register<FilmsForAllView>(this, getSelectedFilm);
         }
         #endregion Constructor
@@ -204,7 +214,14 @@ namespace Kino.ViewModels
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Seanse.Add(item);
+            if (this.item.IdSeansu == 0)
+                kinoEntities.Seanse.Add(item);
+            else
+            {
+                Seanse seanse = kinoEntities.Seanse.Find(this.item.IdSeansu);
+                seanse = item;
+            }
+
             kinoEntities.SaveChanges();
         }
 
@@ -236,7 +253,7 @@ namespace Kino.ViewModels
                 else if (name == "FilmTytul" || name == "FilmOpis" || name == "FilmRokProdukcji")
                     komunikat = StringValidator.IsNotEmpty(this.FilmTytul);
                 else if (name == "Data")
-                    komunikat = DateValidator.IsNotEmpty(this.Data) ?? DateValidator.IsInPast(this.Data);
+                    komunikat = DateValidator.IsNotEmpty(this.Data) ?? DateValidator.IsInFuture(this.Data);
                 else if (name == "IdTypuSeansu")
                     komunikat = ComboboxValidator.IsNotEmpty(this.IdTypuSeansu);
 

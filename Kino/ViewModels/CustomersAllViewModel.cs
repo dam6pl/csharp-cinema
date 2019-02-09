@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Helpers;
 using Kino.Models;
 using Kino.Models.BusinessLogic;
 using Kino.Models.EntitiesForView;
@@ -9,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kino.ViewModels
 {
@@ -47,6 +49,30 @@ namespace Kino.ViewModels
         public override void load()
         {
             List = new CustomersB(kinoEntities).getAllCustomers();
+        }
+
+        public override void remove()
+        {
+            if (SelectedCustomer != null && this.removeAlert() == MessageBoxResult.Yes)
+            {
+                if (!new CustomersB(kinoEntities).removeCustomer(SelectedCustomer.IdKlienta))
+                    ShowMessageBox("Rekord nie może zostać usunięty! " +
+                        "\nIstnieją zamówienia powiązane z tym rekordem.");
+                load();
+            }
+        }
+
+        public override void modify()
+        {
+            if (SelectedCustomer != null)
+            {
+                ModifyCommand command = new ModifyCommand
+                {
+                    Name = ViewType + "Modify",
+                    Id = SelectedCustomer.IdKlienta
+                };
+                Messenger.Default.Send(command);
+            }
         }
         #endregion Helpers
 

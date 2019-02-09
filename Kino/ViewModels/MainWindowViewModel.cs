@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Kino.Helpers;
+using Kino.Models;
 using Kino.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,6 @@ namespace Kino.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         #region Fields
-        private ReadOnlyCollection<CommandViewModel> _Commands;
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
         #endregion Fields
 
@@ -25,30 +26,9 @@ namespace Kino.ViewModels
         public MainWindowViewModel()
         {
             Messenger.Default.Register<String>(this, open);
+            Messenger.Default.Register<ModifyCommand>(this, openModify);
         }
         #endregion
-
-        #region Commands
-        public ReadOnlyCollection<CommandViewModel> Commands
-        {
-            get
-            {
-                if (_Commands == null)
-                {
-                    List<CommandViewModel> cmds = this.createCommands();
-                    _Commands = new ReadOnlyCollection<CommandViewModel>(cmds);
-                }
-                return _Commands;
-            }
-        }
-
-        private List<CommandViewModel> createCommands()
-        {
-            return new List<CommandViewModel>
-            {
-            };
-        }
-        #endregion Commands
 
         #region Workspaces
         public ObservableCollection<WorkspaceViewModel> Workspaces
@@ -235,6 +215,24 @@ namespace Kino.ViewModels
                 showCustomersAll(true);
             else if (name == "AddressesAll")
                 showAddressesAll(true);
+        }
+
+        private void openModify(ModifyCommand command)
+        {
+            if (command.Name == "AddressesModify")
+                createWorkspace(new AddressesNewViewModel(command.Id));
+            if (command.Name == "CustomersModify")
+                createWorkspace(new CustomersNewViewModel(command.Id));
+            if (command.Name == "EmployeesModify")
+                createWorkspace(new EmployeesNewViewModel(command.Id));
+            if (command.Name == "FilmsModify")
+                createWorkspace(new FilmsNewViewModel(command.Id));
+            if (command.Name == "OrdersModify")
+                createWorkspace(new OrdersNewViewModel(command.Id));
+            if (command.Name == "RoomsModify")
+                createWorkspace(new RoomsNewViewModel(command.Id));
+            if (command.Name == "ShowingsModify")
+                createWorkspace(new ShowingsNewViewModel(command.Id));
         }
         #endregion Helpers
 

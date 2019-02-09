@@ -13,13 +13,16 @@ namespace Kino.ViewModels
     class AddressesNewViewModel : SingleViewModel<Adresy>, IDataErrorInfo
     {
         #region Construktor
-        public AddressesNewViewModel()
+        public AddressesNewViewModel(int? id = null)
             : base()
         {
             base.DisplayName = "Nowy adres";
             base.ViewType = "Addresses";
 
-            this.item = new Adresy();
+            if (id == null)
+                this.item = new Adresy();
+            else
+                this.item = kinoEntities.Adresy.Find(id);
         }
         #endregion Constructor
 
@@ -124,7 +127,14 @@ namespace Kino.ViewModels
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Adresy.Add(item);
+            if (this.item.IdAdresu == 0)
+                kinoEntities.Adresy.Add(item);
+            else
+            {
+                Adresy adresy = kinoEntities.Adresy.Find(this.item.IdAdresu);
+                adresy = item;
+            }
+
             kinoEntities.SaveChanges();
         }
         #endregion Helpers

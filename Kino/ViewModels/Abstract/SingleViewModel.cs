@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Kino.ViewModels.Abstract
@@ -48,7 +49,12 @@ namespace Kino.ViewModels.Abstract
                 onRequestClose();
             }
             else
-                ShowMessageBox("Przed zapisem popraw wszystkie błędy");
+                MessageBox.Show(
+                    "Podczas zapisywania wystąpił błąd, popraw błędy is próbuj ponownie!", 
+                    "Dodawanie rekordu",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
         }
         #endregion Helpers
 

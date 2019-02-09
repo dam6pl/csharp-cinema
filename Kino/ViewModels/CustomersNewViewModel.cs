@@ -15,13 +15,16 @@ namespace Kino.ViewModels
     public class CustomersNewViewModel : SingleViewModel<Klienci>, IDataErrorInfo
     { 
         #region Construktor
-        public CustomersNewViewModel()
+        public CustomersNewViewModel(int? id = null)
             : base()
         {
             base.DisplayName = "Nowy klient";
             base.ViewType = "Customers";
 
-            this.item = new Klienci();
+            if (id == null)
+                this.item = new Klienci();
+            else
+                this.item = kinoEntities.Klienci.Find(id);
         }
         #endregion Constructor
 
@@ -111,7 +114,14 @@ namespace Kino.ViewModels
         #region Helpers
         public override void Save()
         {
-            kinoEntities.Klienci.Add(item);
+            if (this.item.IdKlienta == 0)
+                kinoEntities.Klienci.Add(item);
+            else
+            {
+                Klienci klienci = kinoEntities.Klienci.Find(this.item.IdKlienta);
+                klienci = item;
+            }
+
             kinoEntities.SaveChanges();
         }
         #endregion Helpers
