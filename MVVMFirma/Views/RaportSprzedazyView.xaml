@@ -6,31 +6,35 @@
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="White" >
         <Grid.RowDefinitions>
             <RowDefinition Height="33"/>
             <RowDefinition Height="33"/>
             <RowDefinition Height="33"/>
-            <RowDefinition Height="44"/>
-            <RowDefinition Height="33"/>
+            <RowDefinition Height="45"/>
             <RowDefinition Height="33"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Utarg w wybranym okresie dla wybranego towaru" 
-               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="0" Content="Utarg w wybranym okresie dla wybranego towaru" HorizontalAlignment="Center" Style="{StaticResource LabelGridStyle}"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Content="Od: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <DatePicker Grid.Column="1" VerticalAlignment="Center" SelectedDate="{Binding Path=OdDaty, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="2" Content="Do: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <DatePicker Grid.Column="3" VerticalAlignment="Center" SelectedDate="{Binding Path=DoDaty, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Content="Od:" HorizontalAlignment="Center" Style="{StaticResource LabelGridStyle}"/>
+            <DatePicker Grid.Column="1" Style="{StaticResource DatePickerStyle}" 
+                        SelectedDate="{Binding odDaty, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Grid.Column="2" Content="Do:" HorizontalAlignment="Center" Style="{StaticResource LabelGridStyle}"/>
+            <DatePicker Grid.Column="3" Style="{StaticResource DatePickerStyle}"
+                        SelectedDate="{Binding doDaty, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="2">
@@ -39,16 +43,19 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Content="Wybierz towar: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" VerticalAlignment="Center" 
-                      ItemsSource="{Binding TowaryComboboxItems}" 
-                      DisplayMemberPath="Value" SelectedValuePath="Key" 
-                      SelectedValue="{Binding Path=IdTowaru, Mode=TwoWay}"/>
+            <Label Grid.Column="0" Content="Wybierz towar:" HorizontalAlignment="Center" Style="{StaticResource LabelGridStyle}"/>
+            <ComboBox Grid.Column="1" Style="{StaticResource ComboBoxStyle}" 
+                      ItemsSource="{Binding TowaryComboBoxItems}"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key"
+                      SelectedValue="{Binding Path=IdTowaru, Mode=TwoWay}"
+                      />
         </Grid>
 
-        <Button Grid.Row="3" Content="Oblicz" VerticalAlignment="Center" Command="{Binding ObliczCommand}"/>
+        <Button Grid.Row="3" Content="Oblicz" Style="{StaticResource ButtonStyle}" 
+                Command="{Binding Path=obliczCommand,UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Grid.Row="4" Content="Utarg Wynosi: " Margin="20,0,0,0" VerticalAlignment="Center"/>
-        <Label Grid.Row="5" Content="{Binding Path=Utarg, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0"  VerticalAlignment="Center"/>
+        <Label Grid.Row="4" Content="Utarg wynosi:" HorizontalAlignment="Left" Style="{StaticResource LabelGridStyle}"/>
+        <Label Grid.Row="4" Content="{Binding Path=Utarg, UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0" HorizontalAlignment="Left" Style="{StaticResource LabelGridStyle}"/>
     </Grid>
 </UserControl>

@@ -17,8 +17,7 @@ namespace MVVMFirma.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SposobyPlatnosci()
         {
-            this.Fakturies = new HashSet<Faktury>();
-            this.Fakturies1 = new HashSet<Faktury>();
+            this.Faktury = new HashSet<Faktury>();
         }
     
         public int IdSposobuPlatnosci { get; set; }
@@ -27,8 +26,6 @@ namespace MVVMFirma.Models.Entities
         public Nullable<bool> CzyAktywny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Faktury> Fakturies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Faktury> Fakturies1 { get; set; }
+        public virtual ICollection<Faktury> Faktury { get; set; }
     }
 }

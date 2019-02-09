@@ -17,7 +17,7 @@ namespace MVVMFirma.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kontrahenci()
         {
-            this.Fakturies = new HashSet<Faktury>();
+            this.Faktury = new HashSet<Faktury>();
         }
     
         public int IdKontrahenta { get; set; }
@@ -31,7 +31,7 @@ namespace MVVMFirma.Models.Entities
     
         public virtual Adresy Adresy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Faktury> Fakturies { get; set; }
+        public virtual ICollection<Faktury> Faktury { get; set; }
         public virtual Rodzaje Rodzaje { get; set; }
         public virtual Statusy Statusy { get; set; }
     }

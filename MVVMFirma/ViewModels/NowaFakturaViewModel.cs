@@ -9,42 +9,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace MVVMFirma.ViewModels
 {
-    class NowaFakturaViewModel : JedenViewModel<Faktury>
+    public class NowaFakturaViewModel : JedenWszystkieViewModel<Faktury, PozycjeFakturyForAllView> 
     {
         #region Fields
-        public BaseCommand _ShowKontrahenciCommand;
-        #endregion
+        private BaseCommand _ShowKontrahenciCommand;
+        #endregion Fields
 
-        #region Construktor
+        #region Constructor
         public NowaFakturaViewModel()
             : base()
         {
-            // to jest nazwa ktora wyswietli sie na zakladce
-            base.DisplayName = "Faktura";
-            //tworzymy nowy pusty obiekt biznesowy
+            base.DisplayName = "Nowa Faktura";
+            base.DisplayListName = "Pozycje faktury";
             this.item = new Faktury();
-            Messenger.Default.Register<KontrahenciForAllView>(this, getWybranyKontrahent);
+            Messenger.Default.Register<KontrahenciForAllView>(this, GetWybranyKontrahent);
+            Messenger.Default.Register<PozycjeFaktury>(this, addPozycjeFaktury);
         }
         #endregion Constructor
+
+        #region Command
         public ICommand ShowKontrahenciCommand
         {
             get
             {
                 if (_ShowKontrahenciCommand == null)
-                    _ShowKontrahenciCommand = new BaseCommand(() => Messenger.Default.Send("KontrahenciShow"));
-
+                {
+                    // Komenda która wywołuje okno z kontrahentami
+                    // Ten komunikat zostanie wysłany do MainWindowViewModel które wywoła zakładkę z Kontrahentami
+                    _ShowKontrahenciCommand = new BaseCommand(() => Messenger.Default.Send("showAllKontrahenci"));
+                }
                 return _ShowKontrahenciCommand;
             }
         }
-        #region Command
-        
-        #endregion
+        #endregion Command
 
         #region Properties
-        //dla kazdego pola na interfejsie edytowalnego tworzymy propertisa z standardowym kodem
+        // Dla każdego pola na interfejsie edytowalnego, tworzymy propertiesa ze standardowym kodem
         public string Numer
         {
             get
@@ -56,7 +60,7 @@ namespace MVVMFirma.ViewModels
                 if (item.Numer != value)
                 {
                     item.Numer = value;
-                    OnPropertyChanged(() => Numer);
+                    OnPropertyChanged(() => Numer); // to jest funkcja która odpowiada za odświeżenie okna po zmianie pola Kod
                 }
             }
         }
@@ -71,10 +75,11 @@ namespace MVVMFirma.ViewModels
                 if (item.DataWystawienia != value)
                 {
                     item.DataWystawienia = value;
-                    OnPropertyChanged(() => DataWystawienia);
+                    OnPropertyChanged(() => DataWystawienia); // to jest funkcja która odpowiada za odświeżenie okna po zmianie pola Kod
                 }
             }
         }
+        // Dla każdego klucza obcego trzeba stworzyć properties z Id oraz properties do ComboBoxa
         public int? IdKontrahenta
         {
             get
@@ -86,26 +91,12 @@ namespace MVVMFirma.ViewModels
                 if (item.IdKontrahenta != value)
                 {
                     item.IdKontrahenta = value;
-                    OnPropertyChanged(() => IdKontrahenta);
+                    OnPropertyChanged(() => IdKontrahenta); // to jest funkcja która odpowiada za odświeżenie okna po zmianie pola Kod
                 }
             }
         }
-        public IQueryable<ComboboxKeyAndValue> KontrahenciComboboxItems
-        {
-            get
-            {
-                return
-                    (
-                        from kontrahent in fakturyEntities.Kontrahencis
-                        select new ComboboxKeyAndValue
-                        {
-                            Key = kontrahent.IdKontrahenta,
-                            Value = kontrahent.Nazwa + " (NIP: " + kontrahent.NIP + ")"
-                        }
-                    ).ToList().AsQueryable();
 
-            }
-        }
+        // To są pola i propertiesy do pól dotyczących kontrahenta które przyjdą z okna do wyboru kontrahenta
         private string _Nazwa;
         public string Nazwa
         {
@@ -118,10 +109,11 @@ namespace MVVMFirma.ViewModels
                 if (_Nazwa != value)
                 {
                     _Nazwa = value;
-                    OnPropertyChanged(() => _Nazwa);
+                    OnPropertyChanged(() => Nazwa);
                 }
             }
         }
+
         private string _NIP;
         public string NIP
         {
@@ -134,10 +126,11 @@ namespace MVVMFirma.ViewModels
                 if (_NIP != value)
                 {
                     _NIP = value;
-                    OnPropertyChanged(() => _NIP);
+                    OnPropertyChanged(() => NIP);
                 }
             }
         }
+
         private string _Adres;
         public string Adres
         {
@@ -150,10 +143,29 @@ namespace MVVMFirma.ViewModels
                 if (_Adres != value)
                 {
                     _Adres = value;
-                    OnPropertyChanged(() => _Adres);
+                    OnPropertyChanged(() => Adres);
                 }
             }
         }
+
+        // Nowy Kod standardowy - > KONTRAHENTA BĘDZIEMY WYPEŁNIAĆ PRZEZ WYBÓR W COMBOBOXIE
+        // Tworzymy zatem standardowy kod ComboBoxa
+        public IQueryable<ComboBoxKeyAndValue> KontrahenciComboBoxItems
+        {
+            get
+            {
+                return
+                    (
+                        from Kontrahent in fakturyEntities.Kontrahenci  // dla każdego kontrahenta z bazy danych Kontrahentów
+                        select new ComboBoxKeyAndValue  // tworzymy ComboBoxKeyAndValue
+                        {
+                            Key = Kontrahent.IdKontrahenta,
+                            Value = Kontrahent.Nazwa + " | "+ Kontrahent.NIP + " | " + Kontrahent.Adresy.Miasto
+                        }
+                    ).ToList().AsQueryable();
+            }
+        }
+
         public DateTime? TerminPlatnosci
         {
             get
@@ -169,51 +181,99 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
-        public int? IdSposobuPlatnosci
+
+        public int? IdFormyPlatnosci
         {
             get
             {
-                return item.IdSposobuPlatnosci;
+                return item.IdFormyPlatnosci;
             }
             set
             {
-                if (item.IdSposobuPlatnosci != value)
+                if (item.IdFormyPlatnosci != value)
                 {
-                    item.IdSposobuPlatnosci = value;
-                    OnPropertyChanged(() => IdSposobuPlatnosci);
+                    item.IdFormyPlatnosci = value;
+                    OnPropertyChanged(() => IdFormyPlatnosci);
                 }
             }
         }
-        public IQueryable<SposobyPlatnosci> SposobPlatnosciComboboxItems
+        // i ComboBox do Formy płatności (będziemy wyświetlać konkretne kole bez sklejania
+        public IQueryable<SposobyPlatnosci> SposobyPlatnosciComboBoxItems
         {
             get
             {
                 return
                     (
-                        from sposobPlatnosci in fakturyEntities.SposobyPlatnoscis
+                        from sposobPlatnosci in fakturyEntities.SposobyPlatnosci  // dla każdego sposobu platnosci z bazy danych SposobyPlatnosci
                         select sposobPlatnosci
                     ).ToList().AsQueryable();
-
             }
         }
+
         #endregion Properties
 
         #region Helpers
-        //to jest metoda ktora zapisuje rekod
-        public override void Save()
-        {
-            //najpierw dodajemy nowy rekord do lokalnej kolekcji
-            fakturyEntities.Fakturies.Add(item);
-            //nastepnie zapisujemy zmiany w bazie danych
-            fakturyEntities.SaveChanges();
-        }
-        private void getWybranyKontrahent(KontrahenciForAllView kontrahent)
+        // To jest metoda która się wywoła jak Messenger z construcora złapie Kontrahent wybranego w zakładce wyświetlającej kontrahentów
+        private void GetWybranyKontrahent(KontrahenciForAllView kontrahent)
         {
             Nazwa = kontrahent.Nazwa;
             NIP = kontrahent.NIP;
             Adres = kontrahent.Adres;
             IdKontrahenta = kontrahent.IdKontrahenta;
         }
+
+        // To jest metoda która zapisuje rekord
+        public override void Save()
+        {
+            // Najpierw dodajemy nowy rekord do lokalnej kolekcji
+            fakturyEntities.Faktury.Add(item);
+            // Następnie zapisujemy zmiany w bazie danych 
+            fakturyEntities.SaveChanges();
+        }
+
+        public override void loadList()
+        {
+            List = new ObservableCollection<PozycjeFakturyForAllView>
+                (
+                    from pozycja in item.PozycjeFaktury
+                    select new PozycjeFakturyForAllView
+                    {
+                        TowarKod = pozycja.Towary.Kod,
+                        TowarNazwa = pozycja.Towary.Nazwa,
+                        Cena = pozycja.Cena,
+                        Ilosc = pozycja.Ilosc,
+                        Rabat = pozycja.Rabat,
+                        Wartosc = (pozycja.Cena * pozycja.Ilosc) - pozycja.Rabat * (pozycja.Cena * pozycja.Ilosc) / 100
+                    }
+                );
+        }
+
+        private void addPozycjeFaktury(PozycjeFaktury pozycjeFaktury)
+        {
+            PozycjeFaktury nowa = new PozycjeFaktury();
+            nowa.IdTowaru = pozycjeFaktury.IdTowaru;
+            nowa.Towary = fakturyEntities.Towary.Find(nowa.IdTowaru);
+            nowa.Ilosc = pozycjeFaktury.Ilosc;
+            nowa.Rabat = pozycjeFaktury.Rabat;
+            nowa.Cena = pozycjeFaktury.Cena;
+            nowa.CzyAktywny = true;
+
+            fakturyEntities.PozycjeFaktury.Add(nowa);
+            item.PozycjeFaktury.Add(nowa);
+            List.Add
+                (
+                    new PozycjeFakturyForAllView()
+                    {
+                        TowarKod = nowa.Towary.Kod,
+                        TowarNazwa = nowa.Towary.Nazwa,
+                        Cena = nowa.Cena,
+                        Ilosc = nowa.Ilosc,
+                        Rabat = nowa.Rabat,
+                        Wartosc = (nowa.Cena * nowa.Ilosc) - nowa.Rabat * (nowa.Cena * nowa.Ilosc) / 100
+                    }
+                );
+        }
         #endregion Helpers
+
     }
 }

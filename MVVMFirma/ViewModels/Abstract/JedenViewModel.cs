@@ -9,50 +9,69 @@ using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels.Abstract
 {
-    //jezeli klasa dziala na jakims typie ktory przybiera konkretna instancje w klasie dziedziczacym to te klase powinnismy oprzec na mechanizmie typow generycznych
-    public abstract class JedenViewModel<T> : WorkspaceViewModel //typ T to jest dowlony typ obiektu ktory bedzie dodawany za pomoca tej klasy. Czym jest T zdecydujemy w klasie dziedziczacej. W przypadku dodawania towarow T bedzie typu Towary
+    // Jeżeli klasa działa na jakimś typie, który przybiera konkretną instancję w klasie dziedziczącej, to tę klasę powinniśmy oprzeć
+    // na mechanizmie typów generycznych, w tym przypadku <T>
+    // Typ T to dowolny typ obiektu które zostanie dodany do klasy
+    // O typie tym zdecydujemy w klasie dziedziczącej
+    // Np w klasie NowyTowar, T będzie typem Towary
+    public abstract class JedenViewModel<T> : WorkspaceViewModel
     {
         #region Fields
-        //tworzymy obiekt do polaczenia z baza danych
+        // tworzymy obiekt do połączenia z bazą danych
         protected FakturyEntities fakturyEntities;
-        //tworzymy obiekt ktory bedziemy dodawac do bazy
+        // obiekt item klasy generycznej T
         protected T item;
-        //to jest komenda ktora zostanie podpieta pod przycisk zapisz
+        // to jest komenda która zostanie podpięta pod przycisk zapisz
         private BaseCommand _SaveCommand;
         #endregion Fields
 
-        #region Construktor
+        #region Constructor
         public JedenViewModel()
         {
-            //to jest utworzenie polaczenia z baza danych
+            // to jest utworzenie połączenia z bazą danych
             this.fakturyEntities = new FakturyEntities();
         }
         #endregion Constructor
 
         #region Command
-        //to jest komenda ktora zostanie podpieta pod przycisk zapisu
+        // To jest komenda która zostanie podpięta pod przycisk zapisu
         public ICommand SaveCommand
         {
             get
             {
                 if (_SaveCommand == null)
-                    _SaveCommand = new BaseCommand(() => saveAndClose()); //ta komenda wywola metode saveAndClose() ktora zapisze rekod i zamknie zakladke
+                { // ta komenda wywoła metodę saveAndClose() która zapisze rekord i zamknie zakładkę
+                    _SaveCommand = new BaseCommand(() => saveAndClose());
+                }
                 return _SaveCommand;
             }
         }
         #endregion Command
 
         #region Helpers
-        //to jest metoda ktora zapisuje rekod
+        // To jest abstrakcyjna Save metoda która zapisuje rekord
         public abstract void Save();
-        //to jest metoda ktora zapisuje rekord i zamyka zakladke
+
+        // to jest metoda która zapisuje rekord i zamyka zakładkę
         private void saveAndClose()
         {
-            //najpierw zapisujemy rekord
-            this.Save();
-            //nastepnie zamykamy zakladke
-            onRequestClose();
+            if (IsValid())
+            {
+                // Najpierw zapisujemy rekord
+                this.Save();
+                // A następnie zamykamy zakładkę
+                onRequestClose();
+            }
+            else
+                ShowMessageBox("Przed zapisem popraw wszystkie błędy");
         }
         #endregion Helpers
+
+        #region Validations
+        public virtual bool IsValid()
+        {
+            return true;
+        }
+        #endregion
     }
 }

@@ -14,49 +14,54 @@ namespace MVVMFirma.ViewModels
         #region Constructor
         public WszystkieFakturyViewModel()
             : base()
+        // to jest lista inicjalizacyjna - wywoluje ona konstruktor z klasy WszystkieViewModel (bazowej)
         {
             base.DisplayName = "Faktury";
         }
         #endregion Constructor
 
         #region Helpers
+        // To jest metoda która w klasie WszystkieViewModel była abstrakcyjna
+        // zatem w tej klasie musi być nadpisana (override) oraz publiczna
         public override void load()
         {
             List = new ObservableCollection<FakturaForAllView>
-                (
-                from faktura in fakturyEntities.Fakturies
-                select new FakturaForAllView
-                {
-                    IdFaktury = faktura.IdFaktury,
-                    Numer = faktura.Numer,
-                    DataWystawienia = faktura.DataWystawienia,
-                    KontrahentKod = faktura.Kontrahenci.Kod,
-                    KontrahentNazwa = faktura.Kontrahenci.Nazwa,
-                    KontrahentNip = faktura.Kontrahenci.NIP,
-                    TerminPlatnosci = faktura.TerminPlatnosci,
-                    SposobPlatnosciNazwa = faktura.SposobyPlatnosci.Nazwa
-                }
+                (   // Zapytanie LinQ (odpowiednik SQLa)
+                    from faktura in fakturyEntities.Faktury // dla każdej faktury z bazdy danych
+                    select new FakturaForAllView // tworzymy nową FakturaForAllView
+                    {
+                        IdFaktury = faktura.IdFaktury,
+                        NumerFaktury = faktura.Numer,
+                        DataWystawienia = faktura.DataWystawienia,
+                        KontrahentKod = faktura.Kontrahenci.Kod,
+                        KontrahentNazwa = faktura.Kontrahenci.Nazwa,
+                        KontrahentNIP = faktura.Kontrahenci.NIP,
+                        TerminPlatnosci = faktura.TerminPlatnosci,
+                        SposobPlatnosciNazwa = faktura.SposobyPlatnosci.Nazwa
+                    }
                 );
         }
         #endregion Helpers
 
-        #region Sort and Find
+        #region SortAndFind
+        // W tej funkcji decydujemy jak sortować
         public override void Sort()
         {
-
         }
-        public override List<String> getComboboxSortList()
+        // W tej funkcji decydujemy po czym możemy sortować
+        public override List<string> GetComboBoxSortList()
         {
             return null;
         }
+        // W tej funkcji decydujemy jak wyszukiwać
         public override void Find()
         {
-
         }
-        public override List<String> getComboboxFindList()
+        // W tej funkcji decydujemy po jakich kolumnach możemy wyszukiwać
+        public override List<string> GetComboBoxFindList()
         {
             return null;
         }
-        #endregion
+        #endregion SortAndFind
     }
 }

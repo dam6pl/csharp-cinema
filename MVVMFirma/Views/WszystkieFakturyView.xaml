@@ -13,14 +13,15 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id Faktury" Binding="{Binding IdFaktury}"/>
-                <DataGridTextColumn Header="Numer" Binding="{Binding Numer}"/>
+                <!-- Bindujemy kolumny z bazy danych -->
+                <DataGridTextColumn Header="IdFaktury" Binding="{Binding IdFaktury}"/>
+                <DataGridTextColumn Header="Numer faktury" Binding="{Binding NumerFaktury}"/>
                 <DataGridTextColumn Header="Data Wystawienia" Binding="{Binding DataWystawienia}"/>
                 <DataGridTextColumn Header="Kod Kontrahenta" Binding="{Binding KontrahentKod}"/>
                 <DataGridTextColumn Header="Nazwa Kontrahenta" Binding="{Binding KontrahentNazwa}"/>
-                <DataGridTextColumn Header="NIP Kontrahenta" Binding="{Binding KontrahentNip}"/>
-                <DataGridTextColumn Header="Termin Platnosci" Binding="{Binding TerminPlatnosci}"/>
-                <DataGridTextColumn Header="Nazwa Sposobu Platnosci" Binding="{Binding SposobPlatnosciNazwa}"/>
+                <DataGridTextColumn Header="NIP" Binding="{Binding KontrahentNIP}"/>
+                <DataGridTextColumn Header="Termin płatności" Binding="{Binding TerminPlatnosci}"/>
+                <DataGridTextColumn Header="Sposób płatności" Binding="{Binding SposobPlatnosciNazwa}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

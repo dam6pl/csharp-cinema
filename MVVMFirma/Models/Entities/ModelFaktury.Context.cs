@@ -25,14 +25,14 @@ namespace MVVMFirma.Models.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Adresy> Adresies { get; set; }
-        public virtual DbSet<Faktury> Fakturies { get; set; }
-        public virtual DbSet<Kontrahenci> Kontrahencis { get; set; }
-        public virtual DbSet<PozycjeFaktury> PozycjeFakturies { get; set; }
-        public virtual DbSet<Rodzaje> Rodzajes { get; set; }
-        public virtual DbSet<SposobyPlatnosci> SposobyPlatnoscis { get; set; }
-        public virtual DbSet<Statusy> Statusies { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Towary> Towaries { get; set; }
+        public virtual DbSet<Adresy> Adresy { get; set; }
+        public virtual DbSet<Faktury> Faktury { get; set; }
+        public virtual DbSet<Kontrahenci> Kontrahenci { get; set; }
+        public virtual DbSet<PozycjeFaktury> PozycjeFaktury { get; set; }
+        public virtual DbSet<Rodzaje> Rodzaje { get; set; }
+        public virtual DbSet<SposobyPlatnosci> SposobyPlatnosci { get; set; }
+        public virtual DbSet<Statusy> Statusy { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Towary> Towary { get; set; }
     }
 }

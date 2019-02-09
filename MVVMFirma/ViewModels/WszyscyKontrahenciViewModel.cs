@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helpers;
 using MVVMFirma.Models.EntitiesForView;
 using MVVMFirma.ViewModels.Abstract;
 using System;
@@ -28,55 +29,63 @@ namespace MVVMFirma.ViewModels
             {
                 return _WybranyKontrahent;
             }
+            // set wywołuje się wtedy, gdy klikniemy na kontrahenta w oknie wyświetlającym wszystkich kontrahentów
+            // dzięki właściwości SelectedItem która jest w <Data Grid>
             set
             {
-                if (_WybranyKontrahent != value)
+                if(_WybranyKontrahent != value)
                 {
                     _WybranyKontrahent = value;
+                    // Po kliknięciu na kontrahenta wysyłany jest on Messengerem do okna z Nową fakturą
                     Messenger.Default.Send(_WybranyKontrahent);
+                    // Następnie okno ze wszystkimi kontrahentami jest zamykane
                     onRequestClose();
                 }
             }
         }
-        #endregion
+        #endregion Properties
 
         #region Helpers
+
         public override void load()
         {
             List = new ObservableCollection<KontrahenciForAllView>
                 (
-                from kontrahent in fakturyEntities.Kontrahencis
-                select new KontrahenciForAllView
-                {
-                    IdKontrahenta = kontrahent.IdKontrahenta,
-                    Kod = kontrahent.Kod,
-                    NIP = kontrahent.NIP,
-                    Nazwa = kontrahent.Nazwa,
-                    Rodzaj = kontrahent.Rodzaje.Nazwa,
-                    Adres = kontrahent.Adresy.Miasto + ",  " + kontrahent.Adresy.Ulica
-                    + "  " + kontrahent.Adresy.NrDomu + "/" + kontrahent.Adresy.NrLokalu
-                }
+                    from kontrahent in fakturyEntities.Kontrahenci
+                    select new KontrahenciForAllView
+                    {
+                        IdKontrahenta = kontrahent.IdKontrahenta,
+                        Kod = kontrahent.Kod,
+                        Nazwa = kontrahent.Nazwa,
+                        NIP = kontrahent.NIP,
+                        Adres = kontrahent.Adresy.Miasto + " " + kontrahent.Adresy.Ulica + " " 
+                                + kontrahent.Adresy.NrDomu + " " + kontrahent.Adresy.NrLokalu,
+                        Rodzaj = kontrahent.Rodzaje.Nazwa
+                    }
                 );
         }
         #endregion Helpers
 
-        #region Sort and Find
+        #region SortAndFind
+        // W tej funkcji decydujemy jak sortować
         public override void Sort()
         {
-
         }
-        public override List<String> getComboboxSortList()
+        // W tej funkcji decydujemy po czym możemy sortować
+        public override List<string> GetComboBoxSortList()
         {
             return null;
         }
+        // W tej funkcji decydujemy jak wyszukiwać
         public override void Find()
         {
-
         }
-        public override List<String> getComboboxFindList()
+        // W tej funkcji decydujemy po jakich kolumnach możemy wyszukiwać
+        public override List<string> GetComboBoxFindList()
         {
             return null;
         }
-        #endregion
+        #endregion SortAndFind
+
     }
 }

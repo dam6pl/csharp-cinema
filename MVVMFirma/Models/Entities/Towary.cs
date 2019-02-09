@@ -17,21 +17,19 @@ namespace MVVMFirma.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Towary()
         {
-            this.PozycjeFakturies = new HashSet<PozycjeFaktury>();
+            this.PozycjeFaktury = new HashSet<PozycjeFaktury>();
         }
     
         public int IdTowaru { get; set; }
-        public string Kod { get; set; }
         public string Nazwa { get; set; }
-        public Nullable<int> StawkaVatSprzedazy { get; set; }
-        public Nullable<int> StawkaVatZakupu { get; set; }
+        public string Kod { get; set; }
+        public Nullable<int> StawkaVatTowaruZakup { get; set; }
+        public Nullable<int> StawkaVatTowaruSprzedaz { get; set; }
         public Nullable<decimal> Cena { get; set; }
         public Nullable<decimal> Marza { get; set; }
         public Nullable<bool> CzyAktywny { get; set; }
-        public Nullable<int> StawkaVatTowaruZakup { get; set; }
-        public Nullable<int> StawkaVatTowaruSprzedaz { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PozycjeFaktury> PozycjeFakturies { get; set; }
+        public virtual ICollection<PozycjeFaktury> PozycjeFaktury { get; set; }
     }
 }

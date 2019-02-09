@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace MVVMFirma.Views
 {
     /// <summary>
-    /// Interaction logic for NowaFakturaView.xaml
+    /// Logika interakcji dla klasy NowaPozycjaFakturyView.xaml
     /// </summary>
-    public partial class NowaFakturaView : JedenWszystkieViewBase
+    public partial class NowaPozycjaFakturyView : JedenViewBase
     {
-        public NowaFakturaView()
+        public NowaPozycjaFakturyView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

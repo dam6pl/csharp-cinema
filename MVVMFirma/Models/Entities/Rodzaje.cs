@@ -17,7 +17,7 @@ namespace MVVMFirma.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Rodzaje()
         {
-            this.Kontrahencis = new HashSet<Kontrahenci>();
+            this.Kontrahenci = new HashSet<Kontrahenci>();
         }
     
         public int IdRodzaju { get; set; }
@@ -26,6 +26,6 @@ namespace MVVMFirma.Models.Entities
         public Nullable<bool> CzyAktywny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kontrahenci> Kontrahencis { get; set; }
+        public virtual ICollection<Kontrahenci> Kontrahenci { get; set; }
     }
 }

@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace MVVMFirma.Models.Validators
 {
-    class StringValidator : Validator
+    public class StringValidator: Validator
     {
-
         public static string SprawdzCzyZaczynaSieOdDuzej(string wartosc)
         {
             try
             {
                 if (!char.IsUpper(wartosc, 0))
-                    return "Rozpocznij dużą literą!";
+                    return "Rozpocznij od duzej";
             }
-            catch (Exception)
-            {}
-            
+            catch (Exception) { }
+
             return null;
         }
     }

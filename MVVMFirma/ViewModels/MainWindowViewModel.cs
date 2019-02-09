@@ -47,28 +47,22 @@ namespace MVVMFirma.ViewModels
         //to jest funckja ktora tworzy komendy
         private List<CommandViewModel> createCommands()
         {
-            //to jest messenger ktory nasluchuje czy wyslano komunikat z poleceniem 
-            //uruchomienia nowej zakladki, jak taki komunikat dostanie wywola metode open
-            Messenger.Default.Register<String>(this, open);
+            // To jest Messenger który nasłuchuje czy wysłano komunikat z poleceniem uruchomienia nowej zakładki
+            // Jak taki komunikat dostanie, wywoła metodę open()
+            Messenger.Default.Register<string>(this,open);
             //tworzymy nowa liste linkow
             return new List<CommandViewModel>
             {
                 //kazdy element listy to nowy CommandViewModel o pierwszym parametrze
                 //takim jak nazwa linku a drugim parametr mowi jaka funkcje wywolac
                 //po kliknieciu
-                new CommandViewModel("Towar",
-                    new BaseCommand(()=>this.createWorkspace(
-                                                new NowyTowarViewModel()))),
-                new CommandViewModel("Towary",
-                    new BaseCommand(()=>this.showAllTowary())),
-                new CommandViewModel("Faktura",
-                    new BaseCommand(()=>this.createWorkspace(
-                                                new NowaFakturaViewModel()))),
-                new CommandViewModel("Faktury",
-                    new BaseCommand(()=>this.showAllFaktury())),
-
-                new CommandViewModel("Raport Sprzedazy",
-                    new BaseCommand(()=>this.showRaportSprzedazy()))
+                new CommandViewModel("Towar", new BaseCommand(()=>this.createWorkspace(new NowyTowarViewModel()))),
+                new CommandViewModel("Towary", new BaseCommand(()=>this.showAllTowary())),
+                new CommandViewModel("Faktura", new BaseCommand(()=>this.createWorkspace( new NowaFakturaViewModel()))),
+                new CommandViewModel("Faktury", new BaseCommand(()=>this.showAllFaktury())),
+                new CommandViewModel("Pozycja faktury", new BaseCommand(()=>this.createWorkspace( new NowaPozycjaFakturyViewModel()))),
+                new CommandViewModel("Kontrahenci", new BaseCommand(()=>this.showAllKontrahenci())),
+                new CommandViewModel("Raport sprzedaży", new BaseCommand(()=>this.showRaportSprzedazy()))
             };
         }
         #endregion Commands
@@ -156,6 +150,18 @@ namespace MVVMFirma.ViewModels
             }
             this.setActiveWorkspace(workspace);
         }
+
+        //to jest funkcja ktora wlacza aktywnosc zakladki
+        private void setActiveWorkspace(WorkspaceViewModel workspace)
+        {
+            Debug.Assert(this.Workspaces.Contains(workspace));
+
+            ICollectionView collectionView =
+                CollectionViewSource.GetDefaultView(this.Workspaces);
+            if (collectionView != null)
+                collectionView.MoveCurrentTo(workspace);
+        }
+
         private void showAllKontrahenci()
         {
             WszyscyKontrahenciViewModel workspace =
@@ -181,31 +187,7 @@ namespace MVVMFirma.ViewModels
             }
             this.setActiveWorkspace(workspace);
         }
-        //to jest funkcja ktora wlacza aktywnosc zakladki
-        private void setActiveWorkspace(WorkspaceViewModel workspace)
-        {
-            Debug.Assert(this.Workspaces.Contains(workspace));
 
-            ICollectionView collectionView =
-                CollectionViewSource.GetDefaultView(this.Workspaces);
-            if (collectionView != null)
-                collectionView.MoveCurrentTo(workspace);
-        }
-        private void open(String name)
-        {
-            if (name == "FakturyAdd")
-            {
-                createWorkspace(new NowaFakturaViewModel());
-            }
-            else if (name == "TowaryAdd")
-            {
-                createWorkspace(new NowyTowarViewModel());
-            }
-            else if (name == "KontrahenciShow")
-            {
-                showAllKontrahenci();
-            }
-        }
         #endregion Helpers
 
         #region MenuCommands
@@ -223,6 +205,28 @@ namespace MVVMFirma.ViewModels
                 }
                 return _ShowNowyTowarCommand;
             }
+        }
+
+        private void open(string name)
+        {
+            // Jeżeli komunikat przesłanyt prze Messengera jest FakturyAdd
+            if(name == "FakturyAdd")
+            {
+                createWorkspace(new NowaFakturaViewModel());    // To wtedy tworzy się nowa zakładka do dodawania faktur
+            }
+            if(name == "TowaryAdd")
+            {
+                createWorkspace(new NowyTowarViewModel());
+            }
+            if (name == "showAllKontrahenci")
+            {
+                showAllKontrahenci();
+            }
+            if (name == "Pozycje fakturyAdd")
+            {
+                createWorkspace(new NowaPozycjaFakturyViewModel());
+            }
+
         }
         #endregion MenuCommands
 

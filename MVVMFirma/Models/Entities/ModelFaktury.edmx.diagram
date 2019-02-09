@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3ef369e7b0314b04a4e2ab7c87d5b3c3" Name="Diagram1">
+      <Diagram DiagramId="84f9c580a6a9446883c61c309342456b" Name="Diagram1" ZoomLevel="109">
         <EntityTypeShape EntityType="FakturyModel.Adresy" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="FakturyModel.Faktury" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FakturyModel.Kontrahenci" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FakturyModel.PozycjeFaktury" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.Rodzaje" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FakturyModel.Rodzaje" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FakturyModel.SposobyPlatnosci" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.Statusy" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.sysdiagram" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FakturyModel.Statusy" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FakturyModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FakturyModel.Towary" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="FakturyModel.FK_Kontrahenci_Adresy" ManuallyRouted="false" />
         <AssociationConnector Association="FakturyModel.FK_Faktury_Kontrahenci" ManuallyRouted="false" />

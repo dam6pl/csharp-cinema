@@ -47,6 +47,7 @@
           <Property Name="IdRodzaju" Type="int" />
           <Property Name="IdStatusu" Type="int" />
           <Property Name="IdAdresu" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="PozycjeFaktury">
           <Key>
@@ -248,32 +249,29 @@
           <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Poczta" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Powiat" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Wojewodztwo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Gmina" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="NrTelefonu" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
-          <NavigationProperty Name="Kontrahencis" Relationship="Self.FK_Kontrahenci_Adresy" FromRole="Adresy" ToRole="Kontrahenci" />
+          <NavigationProperty Name="Kontrahenci" Relationship="Self.FK_Kontrahenci_Adresy" FromRole="Adresy" ToRole="Kontrahenci" />
         </EntityType>
         <EntityType Name="Faktury">
           <Key>
             <PropertyRef Name="IdFaktury" />
           </Key>
           <Property Name="IdFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CzyAktywna" Type="Boolean" />
+          <Property Name="CzyZatwierdzona" Type="Boolean" />
           <Property Name="Numer" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="DataWystawienia" Type="DateTime" Precision="0" />
           <Property Name="IdKontrahenta" Type="Int32" />
           <Property Name="TerminPlatnosci" Type="DateTime" Precision="0" />
-          <Property Name="IdSposobuPlatnosci" Type="Int32" />
           <Property Name="CzyAktywny" Type="Boolean" />
           <NavigationProperty Name="Kontrahenci" Relationship="Self.FK_Faktury_Kontrahenci" FromRole="Faktury" ToRole="Kontrahenci" />
           <NavigationProperty Name="SposobyPlatnosci" Relationship="Self.FK_Faktury_SposobyPlatnosci" FromRole="Faktury" ToRole="SposobyPlatnosci" />
-          <NavigationProperty Name="PozycjeFakturies" Relationship="Self.FK_PozycjeFaktury_Faktury" FromRole="Faktury" ToRole="PozycjeFaktury" />
-          <Property Name="CzyZatwierdzona" Type="Boolean" />
+          <NavigationProperty Name="PozycjeFaktury" Relationship="Self.FK_PozycjeFaktury_Faktury" FromRole="Faktury" ToRole="PozycjeFaktury" />
           <Property Name="IdFormyPlatnosci" Type="Int32" />
-          <NavigationProperty Name="SposobyPlatnosci1" Relationship="FakturyModel.FK_Faktury_SposobyPlatnosci1" FromRole="Faktury" ToRole="SposobyPlatnosci" />
         </EntityType>
         <EntityType Name="Kontrahenci">
           <Key>
@@ -286,11 +284,11 @@
           <Property Name="IdRodzaju" Type="Int32" />
           <Property Name="IdStatusu" Type="Int32" />
           <Property Name="IdAdresu" Type="Int32" />
-          <Property Name="CzyAktywny" Type="Boolean" />
           <NavigationProperty Name="Adresy" Relationship="Self.FK_Kontrahenci_Adresy" FromRole="Kontrahenci" ToRole="Adresy" />
-          <NavigationProperty Name="Fakturies" Relationship="Self.FK_Faktury_Kontrahenci" FromRole="Kontrahenci" ToRole="Faktury" />
+          <NavigationProperty Name="Faktury" Relationship="Self.FK_Faktury_Kontrahenci" FromRole="Kontrahenci" ToRole="Faktury" />
           <NavigationProperty Name="Rodzaje" Relationship="Self.FK_Kontrahenci_Rodzaje" FromRole="Kontrahenci" ToRole="Rodzaje" />
           <NavigationProperty Name="Statusy" Relationship="Self.FK_Kontrahenci_Statusy" FromRole="Kontrahenci" ToRole="Statusy" />
+          <Property Name="CzyAktywny" Type="Boolean" />
         </EntityType>
         <EntityType Name="PozycjeFaktury">
           <Key>
@@ -314,7 +312,7 @@
           <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Opis" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
-          <NavigationProperty Name="Kontrahencis" Relationship="Self.FK_Kontrahenci_Rodzaje" FromRole="Rodzaje" ToRole="Kontrahenci" />
+          <NavigationProperty Name="Kontrahenci" Relationship="Self.FK_Kontrahenci_Rodzaje" FromRole="Rodzaje" ToRole="Kontrahenci" />
         </EntityType>
         <EntityType Name="SposobyPlatnosci">
           <Key>
@@ -324,8 +322,7 @@
           <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Opis" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
-          <NavigationProperty Name="Fakturies" Relationship="Self.FK_Faktury_SposobyPlatnosci" FromRole="SposobyPlatnosci" ToRole="Faktury" />
-          <NavigationProperty Name="Fakturies1" Relationship="FakturyModel.FK_Faktury_SposobyPlatnosci1" FromRole="SposobyPlatnosci" ToRole="Faktury" />
+          <NavigationProperty Name="Faktury" Relationship="Self.FK_Faktury_SposobyPlatnosci" FromRole="SposobyPlatnosci" ToRole="Faktury" />
         </EntityType>
         <EntityType Name="Statusy">
           <Key>
@@ -335,9 +332,9 @@
           <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Opis" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="CzyAktywny" Type="Boolean" />
-          <NavigationProperty Name="Kontrahencis" Relationship="Self.FK_Kontrahenci_Statusy" FromRole="Statusy" ToRole="Kontrahenci" />
+          <NavigationProperty Name="Kontrahenci" Relationship="Self.FK_Kontrahenci_Statusy" FromRole="Statusy" ToRole="Kontrahenci" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -352,16 +349,14 @@
             <PropertyRef Name="IdTowaru" />
           </Key>
           <Property Name="IdTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="StawkaVatSprzedazy" Type="Int32" />
-          <Property Name="StawkaVatZakupu" Type="Int32" />
+          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="StawkaVatTowaruZakup" Type="Int32" />
+          <Property Name="StawkaVatTowaruSprzedaz" Type="Int32" />
           <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Marza" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="CzyAktywny" Type="Boolean" />
-          <NavigationProperty Name="PozycjeFakturies" Relationship="Self.FK_PozycjeFaktury_Towary" FromRole="Towary" ToRole="PozycjeFaktury" />
-          <Property Name="StawkaVatTowaruZakup" Type="Int32" />
-          <Property Name="StawkaVatTowaruSprzedaz" Type="Int32" />
+          <NavigationProperty Name="PozycjeFaktury" Relationship="Self.FK_PozycjeFaktury_Towary" FromRole="Towary" ToRole="PozycjeFaktury" />
         </EntityType>
         <Association Name="FK_Kontrahenci_Adresy">
           <End Role="Adresy" Type="Self.Adresy" Multiplicity="0..1" />
@@ -395,7 +390,7 @@
               <PropertyRef Name="IdSposobuPlatnosci" />
             </Principal>
             <Dependent Role="Faktury">
-              <PropertyRef Name="IdSposobuPlatnosci" />
+              <PropertyRef Name="IdFormyPlatnosci" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -448,46 +443,46 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FakturyEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Adresies" EntityType="Self.Adresy" />
-          <EntitySet Name="Fakturies" EntityType="Self.Faktury" />
-          <EntitySet Name="Kontrahencis" EntityType="Self.Kontrahenci" />
-          <EntitySet Name="PozycjeFakturies" EntityType="Self.PozycjeFaktury" />
-          <EntitySet Name="Rodzajes" EntityType="Self.Rodzaje" />
-          <EntitySet Name="SposobyPlatnoscis" EntityType="Self.SposobyPlatnosci" />
-          <EntitySet Name="Statusies" EntityType="Self.Statusy" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Towaries" EntityType="Self.Towary" />
+          <EntitySet Name="Adresy" EntityType="Self.Adresy" />
+          <EntitySet Name="Faktury" EntityType="Self.Faktury" />
+          <EntitySet Name="Kontrahenci" EntityType="Self.Kontrahenci" />
+          <EntitySet Name="PozycjeFaktury" EntityType="Self.PozycjeFaktury" />
+          <EntitySet Name="Rodzaje" EntityType="Self.Rodzaje" />
+          <EntitySet Name="SposobyPlatnosci" EntityType="Self.SposobyPlatnosci" />
+          <EntitySet Name="Statusy" EntityType="Self.Statusy" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Towary" EntityType="Self.Towary" />
           <AssociationSet Name="FK_Kontrahenci_Adresy" Association="Self.FK_Kontrahenci_Adresy">
-            <End Role="Adresy" EntitySet="Adresies" />
-            <End Role="Kontrahenci" EntitySet="Kontrahencis" />
+            <End Role="Adresy" EntitySet="Adresy" />
+            <End Role="Kontrahenci" EntitySet="Kontrahenci" />
           </AssociationSet>
           <AssociationSet Name="FK_Faktury_Kontrahenci" Association="Self.FK_Faktury_Kontrahenci">
-            <End Role="Kontrahenci" EntitySet="Kontrahencis" />
-            <End Role="Faktury" EntitySet="Fakturies" />
+            <End Role="Kontrahenci" EntitySet="Kontrahenci" />
+            <End Role="Faktury" EntitySet="Faktury" />
           </AssociationSet>
           <AssociationSet Name="FK_Faktury_SposobyPlatnosci" Association="Self.FK_Faktury_SposobyPlatnosci">
-            <End Role="SposobyPlatnosci" EntitySet="SposobyPlatnoscis" />
-            <End Role="Faktury" EntitySet="Fakturies" />
+            <End Role="SposobyPlatnosci" EntitySet="SposobyPlatnosci" />
+            <End Role="Faktury" EntitySet="Faktury" />
           </AssociationSet>
           <AssociationSet Name="FK_PozycjeFaktury_Faktury" Association="Self.FK_PozycjeFaktury_Faktury">
-            <End Role="Faktury" EntitySet="Fakturies" />
-            <End Role="PozycjeFaktury" EntitySet="PozycjeFakturies" />
+            <End Role="Faktury" EntitySet="Faktury" />
+            <End Role="PozycjeFaktury" EntitySet="PozycjeFaktury" />
           </AssociationSet>
           <AssociationSet Name="FK_Kontrahenci_Rodzaje" Association="Self.FK_Kontrahenci_Rodzaje">
-            <End Role="Rodzaje" EntitySet="Rodzajes" />
-            <End Role="Kontrahenci" EntitySet="Kontrahencis" />
+            <End Role="Rodzaje" EntitySet="Rodzaje" />
+            <End Role="Kontrahenci" EntitySet="Kontrahenci" />
           </AssociationSet>
           <AssociationSet Name="FK_Kontrahenci_Statusy" Association="Self.FK_Kontrahenci_Statusy">
-            <End Role="Statusy" EntitySet="Statusies" />
-            <End Role="Kontrahenci" EntitySet="Kontrahencis" />
+            <End Role="Statusy" EntitySet="Statusy" />
+            <End Role="Kontrahenci" EntitySet="Kontrahenci" />
           </AssociationSet>
           <AssociationSet Name="FK_PozycjeFaktury_Towary" Association="Self.FK_PozycjeFaktury_Towary">
-            <End Role="Towary" EntitySet="Towaries" />
-            <End Role="PozycjeFaktury" EntitySet="PozycjeFakturies" />
+            <End Role="Towary" EntitySet="Towary" />
+            <End Role="PozycjeFaktury" EntitySet="PozycjeFaktury" />
           </AssociationSet>
           <AssociationSet Name="FK_Faktury_SposobyPlatnosci1" Association="FakturyModel.FK_Faktury_SposobyPlatnosci1">
-            <End Role="SposobyPlatnosci" EntitySet="SposobyPlatnoscis" />
-            <End Role="Faktury" EntitySet="Fakturies" />
+            <End Role="SposobyPlatnosci" EntitySet="SposobyPlatnosci" />
+            <End Role="Faktury" EntitySet="Faktury" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Faktury_SposobyPlatnosci1">
@@ -508,7 +503,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FakturyModelStoreContainer" CdmEntityContainer="FakturyEntities">
-          <EntitySetMapping Name="Adresies">
+          <EntitySetMapping Name="Adresy">
             <EntityTypeMapping TypeName="FakturyModel.Adresy">
               <MappingFragment StoreEntitySet="Adresy">
                 <ScalarProperty Name="IdAdresu" ColumnName="IdAdresu" />
@@ -518,21 +513,21 @@
                 <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
                 <ScalarProperty Name="Poczta" ColumnName="Poczta" />
                 <ScalarProperty Name="Powiat" ColumnName="Powiat" />
-                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
                 <ScalarProperty Name="Wojewodztwo" ColumnName="Wojewodztwo" />
-                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
                 <ScalarProperty Name="Gmina" ColumnName="Gmina" />
+                <ScalarProperty Name="Kraj" ColumnName="Kraj" />
                 <ScalarProperty Name="NrTelefonu" ColumnName="NrTelefonu" />
                 <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Fakturies">
+          <EntitySetMapping Name="Faktury">
             <EntityTypeMapping TypeName="FakturyModel.Faktury">
               <MappingFragment StoreEntitySet="Faktury">
                 <ScalarProperty Name="IdFormyPlatnosci" ColumnName="IdFormyPlatnosci" />
-                <ScalarProperty Name="CzyZatwierdzona" ColumnName="CzyZatwierdzona" />
                 <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="CzyZatwierdzona" ColumnName="CzyZatwierdzona" />
                 <ScalarProperty Name="Numer" ColumnName="Numer" />
                 <ScalarProperty Name="DataWystawienia" ColumnName="DataWystawienia" />
                 <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
@@ -541,9 +536,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Kontrahencis">
+          <EntitySetMapping Name="Kontrahenci">
             <EntityTypeMapping TypeName="FakturyModel.Kontrahenci">
               <MappingFragment StoreEntitySet="Kontrahenci">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
                 <ScalarProperty Name="Kod" ColumnName="Kod" />
                 <ScalarProperty Name="NIP" ColumnName="NIP" />
@@ -554,7 +550,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PozycjeFakturies">
+          <EntitySetMapping Name="PozycjeFaktury">
             <EntityTypeMapping TypeName="FakturyModel.PozycjeFaktury">
               <MappingFragment StoreEntitySet="PozycjeFaktury">
                 <ScalarProperty Name="IdPozycjiFaktury" ColumnName="IdPozycjiFaktury" />
@@ -567,7 +563,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rodzajes">
+          <EntitySetMapping Name="Rodzaje">
             <EntityTypeMapping TypeName="FakturyModel.Rodzaje">
               <MappingFragment StoreEntitySet="Rodzaje">
                 <ScalarProperty Name="IdRodzaju" ColumnName="IdRodzaju" />
@@ -577,7 +573,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SposobyPlatnoscis">
+          <EntitySetMapping Name="SposobyPlatnosci">
             <EntityTypeMapping TypeName="FakturyModel.SposobyPlatnosci">
               <MappingFragment StoreEntitySet="SposobyPlatnosci">
                 <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
@@ -587,7 +583,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Statusies">
+          <EntitySetMapping Name="Statusy">
             <EntityTypeMapping TypeName="FakturyModel.Statusy">
               <MappingFragment StoreEntitySet="Statusy">
                 <ScalarProperty Name="IdStatusu" ColumnName="IdStatusu" />
@@ -598,7 +594,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="FakturyModel.sysdiagram">
+            <EntityTypeMapping TypeName="FakturyModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -608,14 +604,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Towaries">
+          <EntitySetMapping Name="Towary">
             <EntityTypeMapping TypeName="FakturyModel.Towary">
               <MappingFragment StoreEntitySet="Towary">
-                <ScalarProperty Name="StawkaVatTowaruSprzedaz" ColumnName="StawkaVatTowaruSprzedaz" />
-                <ScalarProperty Name="StawkaVatTowaruZakup" ColumnName="StawkaVatTowaruZakup" />
                 <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
-                <ScalarProperty Name="Kod" ColumnName="Kod" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="StawkaVatTowaruZakup" ColumnName="StawkaVatTowaruZakup" />
+                <ScalarProperty Name="StawkaVatTowaruSprzedaz" ColumnName="StawkaVatTowaruSprzedaz" />
                 <ScalarProperty Name="Cena" ColumnName="Cena" />
                 <ScalarProperty Name="Marza" ColumnName="Marza" />
                 <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
@@ -636,7 +632,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace MVVMFirma.Models.EntitiesForView
 {
-    public class ComboboxKeyAndValue
+    // To jest klasa pomocniczna do uzupełniania klucza obcego przez ComboBox
+    public class ComboBoxKeyAndValue
     {
-        public int Key { get; set; }
-        public string Value { get; set; }
+        public int Key { get; set; }    // to co się w tle wybierzes
+        public string Value { get; set; }   // to co się wyświetli
     }
 }

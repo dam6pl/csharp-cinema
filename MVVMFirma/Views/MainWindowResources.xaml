@@ -26,6 +26,11 @@
         <vw:RaportSprzedazyView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:NowaPozycjaFakturyViewModel}">
+        <vw:NowaPozycjaFakturyView/>
+    </DataTemplate>
+
+
     <!--Moje style-->
     <Style x:Key="ToolbarButtonStyle" 
            TargetType="{x:Type ToggleButton}">

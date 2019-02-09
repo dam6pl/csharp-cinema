@@ -44,7 +44,7 @@ namespace MVVMFirma.Views
     ///     <MyNamespace:WszystkieViewBase/>
     ///
     /// </summary>
-    public class WszystkieViewBase : UserControl        //bo kazda zakladka jest UserControl
+    public class WszystkieViewBase : UserControl    // Ponieważ każda zakładka jest UserContol
     {
         static WszystkieViewBase()
         {

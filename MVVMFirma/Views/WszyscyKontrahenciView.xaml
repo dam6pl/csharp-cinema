@@ -9,12 +9,13 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" SelectedItem="{Binding Path=WybranyKontrahent, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id Kontrahenta" Binding="{Binding IdKontrahenta}"/>
+                <!-- Bindujemy kolumny z bazy danych -->
+                <DataGridTextColumn Header="Id" Binding="{Binding IdKontrahenta}"/>
                 <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
+                <DataGridTextColumn Header="Nazwa kontrahenta" Binding="{Binding Nazwa}"/>
                 <DataGridTextColumn Header="NIP" Binding="{Binding NIP}"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj}"/>
                 <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
+                <DataGridTextColumn Header="Rodzaj" Binding="{Binding Rodzaj}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

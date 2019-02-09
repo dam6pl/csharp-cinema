@@ -9,13 +9,14 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding IdTowaru}"/>
-                <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
+                <!-- Bindujemy kolumny z bazy danych -->
+                <DataGridTextColumn Header="IdTowaru" Binding="{Binding IdTowaru}"/>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="Stawka VAT sprzedazy" Binding="{Binding StawkaVatSprzedazy}"/>
-                <DataGridTextColumn Header="Stawka VAT zakupu" Binding="{Binding StawkaVatZakupu}"/>
+                <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
+                <DataGridTextColumn Header="Stawka VAT Sprzedaży" Binding="{Binding StawkaVatTowaruSprzedaz}"/>
+                <DataGridTextColumn Header="Stawka VAT Zakupu" Binding="{Binding StawkaVatTowaruZakup}"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
-                <DataGridTextColumn Header="Marza" Binding="{Binding Marza}"/>
+                <DataGridTextColumn Header="Marża" Binding="{Binding Marza}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

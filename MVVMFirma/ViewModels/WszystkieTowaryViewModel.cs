@@ -15,62 +15,76 @@ namespace MVVMFirma.ViewModels
     {
         #region Constructor
         public WszystkieTowaryViewModel()
-            : base() //to jest lista inicjalizacyjna, wywoluje ona konstruktor z klasy WszystkieViewModel - bazowej
+            : base()
+            // to jest lista inicjalizacyjna - wywoluje ona konstruktor z klasy WszystkieViewModel (bazowej)
         {
             base.DisplayName = "Towary";
         }
         #endregion Constructor
 
         #region Helpers
-        //to jest metoda ktora w klasie WszytskieViewModel byla abstrakcyjna
-        //zatem w tej klasie musi byc nadpisana (override) i publiczna
+        // To jest metoda która w klasie WszystkieViewModel była abstrakcyjna
+        // zatem w tej klasie musi być nadpisana (override) oraz publiczna
         public override void load()
         {
             List = new ObservableCollection<Towary>
-                (
-                from towar in fakturyEntities.Towaries
-                select towar
+                (   // Zapytanie LinQ (odpowiednik SQLa)
+                    from towar in fakturyEntities.Towary
+                    select towar 
                 );
         }
         #endregion Helpers
 
-        #region Sort and Find
+        #region SortAndFind
+        // W tej funkcji decydujemy jak sortować
         public override void Sort()
         {
-            if (SortField == "Nazwa")
-                List = new ObservableCollection<Towary>(List.OrderBy(item => item.Nazwa));
-            else if (SortField == "Kod")
-                List = new ObservableCollection<Towary>(List.OrderBy(item => item.Kod));
-            else if (SortField == "Cena")
-                List = new ObservableCollection<Towary>(List.OrderBy(item => item.Cena));
+            if(SortField == "Nazwa")
+            {
+                List = new ObservableCollection<Towary>(List.OrderBy(Item => Item.Nazwa));
+            }
+            if (SortField == "Kod")
+            {
+                List = new ObservableCollection<Towary>(List.OrderBy(Item => Item.Kod));
+            }
+            if (SortField == "Cena")
+            {
+                List = new ObservableCollection<Towary>(List.OrderBy(Item => Item.Cena));
+            }
         }
-        public override List<String> getComboboxSortList()
+        // W tej funkcji decydujemy po czym możemy sortować
+        public override List<string> GetComboBoxSortList()
         {
+
             return new List<string>
             {
-                "Nazwa",
-                "Kod",
-                "Cena"
+                "Nazwa" , "Kod" , "Cena"
             };
         }
+        // W tej funkcji decydujemy jak wyszukiwać
         public override void Find()
         {
             load();
 
-            if (FindField == "Nazwa")
-                List = new ObservableCollection<Towary>(List.Where(item => item.Nazwa != null && item.Nazwa.StartsWith(FindTextBox)));
-            else if (FindField == "Kod")
-                List = new ObservableCollection<Towary>(List.Where(item => item.Kod != null && item.Kod.StartsWith(FindTextBox)));
-
+            if(FindField == "Nazwa")
+            {
+                List = new ObservableCollection<Towary>
+                    (List.Where(Item => Item.Nazwa != null && Item.Nazwa.StartsWith(FindTextBox)));
+            }
+            if (FindField == "Kod")
+            {
+                List = new ObservableCollection<Towary>
+                    (List.Where(Item => Item.Kod != null && Item.Kod.StartsWith(FindTextBox)));
+            }
         }
-        public override List<String> getComboboxFindList()
+        // W tej funkcji decydujemy po jakich kolumnach możemy wyszukiwać
+        public override List<string> GetComboBoxFindList()
         {
             return new List<string>
             {
-                "Nazwa",
-                "Kod"
+                "Nazwa" , "Kod"
             };
         }
-        #endregion
+        #endregion SortAndFind
     }
 }

@@ -17,7 +17,7 @@ namespace MVVMFirma.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Adresy()
         {
-            this.Kontrahencis = new HashSet<Kontrahenci>();
+            this.Kontrahenci = new HashSet<Kontrahenci>();
         }
     
         public int IdAdresu { get; set; }
@@ -27,14 +27,14 @@ namespace MVVMFirma.Models.Entities
         public string KodPocztowy { get; set; }
         public string Poczta { get; set; }
         public string Powiat { get; set; }
-        public string Miasto { get; set; }
         public string Wojewodztwo { get; set; }
-        public string Kraj { get; set; }
+        public string Miasto { get; set; }
         public string Gmina { get; set; }
+        public string Kraj { get; set; }
         public string NrTelefonu { get; set; }
         public Nullable<bool> CzyAktywny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kontrahenci> Kontrahencis { get; set; }
+        public virtual ICollection<Kontrahenci> Kontrahenci { get; set; }
     }
 }

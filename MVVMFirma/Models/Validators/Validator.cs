@@ -8,10 +8,8 @@ namespace MVVMFirma.Models.Validators
 {
     public class Validator
     {
-        #region Constructor
         public Validator()
         {
         }
-        #endregion
     }
 }

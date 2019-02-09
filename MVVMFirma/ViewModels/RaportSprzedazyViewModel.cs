@@ -1,5 +1,5 @@
 ﻿using MVVMFirma.Helpers;
-using MVVMFirma.Models.BussinesLogic;
+using MVVMFirma.Models.BusinessLogic;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView;
 using MVVMFirma.ViewModels.Abstract;
@@ -16,51 +16,40 @@ namespace MVVMFirma.ViewModels
     {
         #region Fields
         private FakturyEntities fakturyEntities;
-        #endregion
-
-        #region Constructor
-        public RaportSprzedazyViewModel()
-            : base()
-        {
-            base.DisplayName = "Raport sprzedazy";
-            this.fakturyEntities = new FakturyEntities();
-            this.OdDaty = DateTime.Now;
-            this.DoDaty = DateTime.Now;
-            this.Utarg = 0;
-        }
-        #endregion Constructor
+        #endregion Fields
 
         #region Properties
-        private DateTime _OdDaty;
-        public DateTime OdDaty
+        // Dla każdego pola na widoku istotnego w obliczeniach, dodajemy pole i właściwość
+        private DateTime _odDaty;
+        public DateTime odDaty
         {
             get
             {
-                return _OdDaty;
+                return _odDaty;
             }
             set
             {
-                if (_OdDaty != value)
+                if (_odDaty != value)
                 {
-                    _OdDaty = value;
-                    OnPropertyChanged(() => _OdDaty);
+                    _odDaty = value;
+                    OnPropertyChanged(() => odDaty);
                 }
             }
         }
 
-        private DateTime _DoDaty;
-        public DateTime DoDaty
+        private DateTime _doDaty;
+        public DateTime doDaty
         {
             get
             {
-                return _DoDaty;
+                return _doDaty;
             }
             set
             {
-                if (_DoDaty != value)
+                if (_doDaty != value)
                 {
-                    _DoDaty = value;
-                    OnPropertyChanged(() => _DoDaty);
+                    _doDaty = value;
+                    OnPropertyChanged(() => doDaty);
                 }
             }
         }
@@ -77,17 +66,21 @@ namespace MVVMFirma.ViewModels
                 if (_IdTowaru != value)
                 {
                     _IdTowaru = value;
-                    OnPropertyChanged(() => _IdTowaru);
+                    OnPropertyChanged(() => IdTowaru);
                 }
             }
         }
-        public IQueryable<ComboboxKeyAndValue> TowaryComboboxItems
+
+        // Tworzymy teraz properties obsługującego ComboBoxa wyświetlającego towary
+        public IQueryable<ComboBoxKeyAndValue> TowaryComboBoxItems
         {
             get
             {
-                return new TowarB(fakturyEntities).getTowaryComboboxItems();
+                // To jest wywoładnie funkcji logiki biznesowej klasy TowaryB z warstwy Models
+                return new TowarB(fakturyEntities).GetTowaryComboBoxItems();
             }
         }
+
         private decimal? _Utarg;
         public decimal? Utarg
         {
@@ -100,31 +93,49 @@ namespace MVVMFirma.ViewModels
                 if (_Utarg != value)
                 {
                     _Utarg = value;
-                    OnPropertyChanged(() => _Utarg);
+                    OnPropertyChanged(() => Utarg);
                 }
             }
         }
-        #endregion
 
-        #region Commands
-        private BaseCommand _ObliczCommand;
-        public ICommand ObliczCommand
+        #endregion Properties
+
+        #region Command
+        // To jest komenda która zostanie podpięta pod przycisk oblicz
+        // i wywoła metodę ObliczUtargClick()
+        private BaseCommand _obliczCommand;
+        public ICommand obliczCommand
         {
             get
             {
-                if (_ObliczCommand == null)
-                    _ObliczCommand = new BaseCommand(() => ObliczUtargClick());
-
-                return _ObliczCommand;
+                if(_obliczCommand == null)
+                {
+                    _obliczCommand = new BaseCommand(() => ObliczUtargClick());
+                }
+                return _obliczCommand;
             }
         }
-        #endregion
+        #endregion Command
+
+        #region Constructor
+        public RaportSprzedazyViewModel()
+            : base()
+        {
+            fakturyEntities = new FakturyEntities();
+            base.DisplayName = "Raport sprzedaży";
+            // Dodatkowo konstruktor ustawi wartości domyślne pól
+            odDaty = DateTime.Now; // Aktualna data
+            doDaty = DateTime.Now;
+            Utarg = 0;
+        }
+        #endregion Constructor
 
         #region Helpers
         private void ObliczUtargClick()
         {
-            Utarg = new UtargB(fakturyEntities).utargOkresTowar(OdDaty, DoDaty, IdTowaru);
+            // Wykorzystamy teraz funkcję UtargOkresTowar z klasy logiki biznesowej UtargB z warstwy Models
+           Utarg = new UtargB(fakturyEntities).UtargOkresTowar(odDaty, doDaty, IdTowaru);
         }
-        #endregion
+        #endregion Helpers
     }
 }
