@@ -90,7 +90,7 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\ModifyCommand.cs" />
     <Compile Include="Models\Adresy.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogic\CustomersB.cs" />
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
@@ -110,43 +110,43 @@
     <Compile Include="Models\EntitiesForView\FilmsForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ShowingsForAllView.cs" />
     <Compile Include="Models\Filmy.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Gatunki.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KinoEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KinoEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KinoEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KinoEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KinoEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Klienci.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pracownicy.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sale.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seanse.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TypyBiletow.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TypySeansow.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Validators\BussinesValidator.cs" />
     <Compile Include="Models\Validators\ComboboxValidator.cs" />
@@ -156,7 +156,7 @@
     <Compile Include="Models\Validators\StringValidator.cs" />
     <Compile Include="Models\Validators\Validator.cs" />
     <Compile Include="Models\Zamowienia.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AddressesAllViewModel.cs" />
     <Compile Include="ViewModels\EmployeesNewViewModel.cs" />
@@ -352,12 +352,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\KinoEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>KinoEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Models\KinoEntities.edmx.diagram">
+      <DependentUpon>KinoEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -367,18 +367,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\logo.png" />
@@ -416,6 +404,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\KinoEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KinoEntities.edmx</DependentUpon>
+      <LastGenOutput>KinoEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\KinoEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KinoEntities.edmx</DependentUpon>
+      <LastGenOutput>KinoEntities.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
