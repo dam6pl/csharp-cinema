@@ -48,7 +48,7 @@ namespace Kino.ViewModels
 
         public override void remove()
         {
-            if (SelectedRoom != null)
+            if (SelectedRoom != null && this.removeAlert() == MessageBoxResult.Yes)
             {
                 if (!new RoomsB(kinoEntities).removeRoom(SelectedRoom.IdSali))
                     ShowMessageBox("Rekord nie może zostać usunięty! " +
@@ -59,7 +59,7 @@ namespace Kino.ViewModels
 
         public override void modify()
         {
-            if (SelectedRoom != null && this.removeAlert() == MessageBoxResult.Yes)
+            if (SelectedRoom != null)
             {
                 ModifyCommand command = new ModifyCommand
                 {

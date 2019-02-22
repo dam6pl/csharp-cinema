@@ -49,7 +49,7 @@ namespace Kino.ViewModels
 
         public override void remove()
         {
-            if (SelectedOrder != null)
+            if (SelectedOrder != null && this.removeAlert() == MessageBoxResult.Yes)
             {
                 new OrdersB(kinoEntities).removeOrder(SelectedOrder.IdZamowienia);
                 load();
@@ -58,7 +58,7 @@ namespace Kino.ViewModels
 
         public override void modify()
         {
-            if (SelectedOrder != null && this.removeAlert() == MessageBoxResult.Yes)
+            if (SelectedOrder != null)
             {
                 ModifyCommand command = new ModifyCommand
                 {
