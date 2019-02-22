@@ -16,7 +16,7 @@
         <DataGrid.Columns>
             <DataGridTextColumn Header="ID zamówienia" Binding="{Binding IdZamowienia}" Width="75*"/>
             <DataGridTextColumn Header="Seans" Binding="{Binding Seans}" Width="200*"/>
-            <DataGridTextColumn Header="Nazwa klienta" Binding="{Binding NazwaKlienta}" Width="200*"/>
+            <DataGridTextColumn Header="Nazwa klienta" Binding="{Binding NazwaKlienta}" Width="100*"/>
             <DataGridTextColumn Header="Typ biletu" Binding="{Binding TypBiletu}" Width="100*"/>
             <DataGridTextColumn Header="Pracownik" Binding="{Binding Pracownik}" Width="150*"/>
             <DataGridTextColumn Header="Data zamowienia" Binding="{Binding Data}" Width="150*"/>

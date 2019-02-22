@@ -3,28 +3,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Kino.Views.Abstract">
 
-    <Style x:Key="TabButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="FontSize" Value="13"/>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="TabButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+        <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <Style x:Key="LabelGridStyle" TargetType="{x:Type Label}">
         <Setter Property="Margin" Value="2" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+        <Setter Property="Margin" Value="5 0" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+
+    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+        <Setter Property="Margin" Value="5 0" />
         <Setter Property="FontSize" Value="12" />
     </Style>
 
-    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="Background" Value="White" />
-    </Style>
-
-    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="FontSize" Value="12" />
-    </Style>
-
-    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="Padding" Value="5" />
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="Margin" Value="5 0" />
+        <Setter Property="Padding" Value="5 0" />
     </Style>
 
     <Style TargetType="TextBox">
@@ -41,9 +48,10 @@
                 <ControlTemplate TargetType="{x:Type local:AllViewBase}">
                     <Grid Margin="0,10,0,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="45"/>
                             <RowDefinition Height="10"/>
-                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="10"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
@@ -55,7 +63,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0" Content="Dodaj nowy element" Margin="0 0 4 0"
-                                    Command="{Binding AddCommand}" Style="{StaticResource TabButtonStyle}"/>
+                                    Command="{Binding AddCommand}" Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
                             <Button Grid.Column="1" Content="Usun element" Margin="2 0 2 0" 
                                     Command="{Binding RemoveCommand}" Style="{StaticResource TabButtonStyle}"/>
                             <Button Grid.Column="2" Content="Modufikuj element" Margin="4 0 0 0"
@@ -64,8 +72,8 @@
 
                         <Grid Grid.Row="2">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="150"/>
@@ -92,7 +100,7 @@
                                     Style="{StaticResource ButtonStyle}"/>
                         </Grid>
 
-                        <ContentPresenter Grid.Row="3" Margin="0,5,0,5"/>
+                        <ContentPresenter Grid.Row="4" Margin="0,5,0,5"/>
 
                     </Grid>
                 </ControlTemplate>
@@ -107,7 +115,8 @@
                 <ControlTemplate TargetType="{x:Type local:SingleViewBase}">
                     <Grid Margin="0,10,0,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="34"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="10"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
@@ -123,7 +132,7 @@
                                     Command="{Binding CloseCommand}" Style="{StaticResource TabButtonStyle}"/>
                         </Grid>
 
-                        <AdornerDecorator Grid.Row="1" Margin="0,5,0,5">
+                        <AdornerDecorator Grid.Row="2" Margin="0,5,0,5">
                             <ContentPresenter/>
                         </AdornerDecorator>
                     </Grid>

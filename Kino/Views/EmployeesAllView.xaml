@@ -19,7 +19,7 @@
             <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" Width="150*"/>
             <DataGridTextColumn Header="Stanowisko" Binding="{Binding Stanowisko}" Width="150*"/>
             <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="100*"/>
-            <DataGridTextColumn Header="Adres" Binding="{Binding Adres}" Width="100*"/>
+            <DataGridTextColumn Header="Adres" Binding="{Binding Adres}" Width="200*"/>
         </DataGrid.Columns>
     </DataGrid>
 

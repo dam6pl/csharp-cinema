@@ -77,7 +77,7 @@
 
     <!--Moje style-->
     <Style x:Key="MainGridStyle" TargetType="{x:Type Grid}">
-        <Setter Property="Background" Value="#303F9F" />
+        <Setter Property="Background" Value="#311b92" />
     </Style>
 
     <Style x:Key="MenuStyle" TargetType="{x:Type Menu}">
@@ -141,14 +141,16 @@
     <Style x:Key="WorkspacesStyle" TargetType="{x:Type Grid}">
     </Style>
 
-    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="2" />
+    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+        <Setter Property="Margin" Value="5 0" />
         <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="Background" Value="White" />
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+        <Setter Property="Margin" Value="5 0" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ComboBox}">
@@ -159,11 +161,12 @@
 
     <Style x:Key="LabelGridStyle" TargetType="{x:Type Label}">
         <Setter Property="Margin" Value="2" />
-        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}">
-        <Setter Property="Margin" Value="2" />
+    <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MaterialDesignCheckBox}">
+        <Setter Property="Margin" Value="5 0" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="12" />
     </Style>
@@ -184,19 +187,19 @@
         <Setter Property="BorderBrush" Value="#FFCBCBCB" />
     </Style>
 
-    <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
-        <Setter Property="Margin" Value="2" />
+    <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignDatePicker}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="10" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Background" Value="White" />
     </Style>
 
     <Style x:Key="ListBoxStyle" TargetType="{x:Type ListBox}">
         <Setter Property="Margin" Value="2" />
     </Style>
-    
-    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="Padding" Value="2" />
+
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="5 0" />
     </Style>
 
     <Style x:Key="TextBoxRightStyle" BasedOn="{StaticResource TextBoxStyle}" TargetType="{x:Type TextBox}">
@@ -209,7 +212,8 @@
     <!--Moje style-->
 
     <!-- This style configures both of the main content areas in the main window. -->
-    <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
+    <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}" 
+           BasedOn="{StaticResource MaterialDesignHeaderedContentControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
@@ -231,20 +235,19 @@
 
     <!-- This template explains how to render a tab item with a close button. -->
     <DataTemplate x:Key="ClosableTabItemTemplate">
-        <DockPanel Width="150">
+        <DockPanel Width="250" Height="25">
             <Button 
                 Command="{Binding Path=CloseCommand}"
                 Content="X"
                 Cursor="Hand"
                 DockPanel.Dock="Right"
                 Focusable="False"
-                FontFamily="Courier" 
                 FontSize="9"
                 FontWeight="Bold"  
                 Margin="0,1,0,0"
                 Padding="0"
-                VerticalContentAlignment="Bottom"
-                Width="16" Height="16"
+                VerticalContentAlignment="Center"
+                Width="20" Height="20"
             />
             <ContentPresenter  
                 Content="{Binding Path=DisplayName}" 
@@ -259,8 +262,14 @@
             IsSynchronizedWithCurrentItem="True" 
             ItemsSource="{Binding}" 
             ItemTemplate="{StaticResource ClosableTabItemTemplate}"
-            BorderThickness="0"
-            >
+            BorderThickness="1"
+            Background="#fafafa">
+            
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Background" Value="#fafafa" />
+                </Style>
+            </TabControl.Resources>
         </TabControl>
     </DataTemplate>
 
