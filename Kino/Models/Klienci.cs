@@ -26,6 +26,7 @@ namespace Kino.Models
         public string Email { get; set; }
         public string Telefon { get; set; }
         public Nullable<System.DateTime> DataUrodzenia { get; set; }
+        public Nullable<bool> CzyAktywny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Zamowienia> Zamowienia { get; set; }

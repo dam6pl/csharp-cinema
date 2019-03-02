@@ -25,6 +25,7 @@ namespace Kino.Models
         public Nullable<int> IdFilmu { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
         public Nullable<int> IdTypuSeansu { get; set; }
+        public bool CzyAktywny { get; set; }
     
         public virtual Filmy Filmy { get; set; }
         public virtual Sale Sale { get; set; }

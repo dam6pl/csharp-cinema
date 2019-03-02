@@ -51,7 +51,8 @@ namespace Kino.ViewModels
         {
             if (SelectedOrder != null && this.removeAlert() == MessageBoxResult.Yes)
             {
-                new OrdersB(kinoEntities).removeOrder(SelectedOrder.IdZamowienia);
+                if (!new OrdersB(kinoEntities).removeOrder(SelectedOrder.IdZamowienia))
+                    ShowMessageBox("Rekord nie może zostać usunięty!");
                 load();
             }
         }
@@ -116,16 +117,16 @@ namespace Kino.ViewModels
 
             if (FindField == "Senas")
                 List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.Seans != null
-                && item.Seans.StartsWith(FindTextBox)));
+                && item.Seans.Contains(FindTextBox)));
             else if (FindField == "Klient")
                 List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.NazwaKlienta != null
-                && item.NazwaKlienta.StartsWith(FindTextBox)));
+                && item.NazwaKlienta.Contains(FindTextBox)));
             else if (FindField == "Typ biletu")
                 List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.TypBiletu != null
-                && item.TypBiletu.StartsWith(FindTextBox)));
+                && item.TypBiletu.Contains(FindTextBox)));
             else if (FindField == "Pracownik")
                 List = new ObservableCollection<OrdersForAllView>(List.Where(item => item.Pracownik != null
-                && item.Pracownik.StartsWith(FindTextBox)));
+                && item.Pracownik.Contains(FindTextBox)));
 
         }
 

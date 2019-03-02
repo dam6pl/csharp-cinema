@@ -22,6 +22,7 @@ namespace Kino.Models.BusinessLogic
             return new ObservableCollection<EmployeesForAllView>
                 (
                 from pracownik in kinoEntities.Pracownicy
+                where pracownik.CzyAktywny == true
                 select new EmployeesForAllView
                     {
                         IdPracownika = pracownik.IdPracownika,
@@ -30,8 +31,8 @@ namespace Kino.Models.BusinessLogic
                         Stanowisko = pracownik.Stanowisko,
                         Telefon = pracownik.Telefon,
                         Adres = pracownik.Adresy.Ulica + " " + pracownik.Adresy.NrDomu + ", " 
-                            + pracownik.Adresy.Miejscowosc + " " + pracownik.Adresy.KodPocztowy
-                    }
+                            + " " + pracownik.Adresy.KodPocztowy + " " + pracownik.Adresy.Miejscowosc
+                }
                 );
         }
 
@@ -40,6 +41,7 @@ namespace Kino.Models.BusinessLogic
             return
                 (
                     from pracownik in kinoEntities.Pracownicy
+                    where pracownik.CzyAktywny == true
                     select new ComboboxKeyAndValue
                     {
                         Key = pracownik.IdPracownika,
@@ -54,7 +56,7 @@ namespace Kino.Models.BusinessLogic
             try
             {
                 Pracownicy pracownicy = kinoEntities.Pracownicy.Find(pracownikId);
-                kinoEntities.Pracownicy.Remove(pracownicy);
+                pracownicy.CzyAktywny = false;
                 kinoEntities.SaveChanges();
             }
             catch (Exception)

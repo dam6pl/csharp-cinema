@@ -27,6 +27,7 @@ namespace Kino.Models
         public string Miejscowosc { get; set; }
         public string KodPocztowy { get; set; }
         public string Poczta { get; set; }
+        public bool CzyAktywny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pracownicy> Pracownicy { get; set; }

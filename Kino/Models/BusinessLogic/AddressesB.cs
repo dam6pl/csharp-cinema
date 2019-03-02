@@ -22,6 +22,7 @@ namespace Kino.Models.BusinessLogic
             return new ObservableCollection<Adresy>
                 (
                 from adres in kinoEntities.Adresy
+                where adres.CzyAktywny == true
                 select adres
                 );
         }
@@ -31,7 +32,7 @@ namespace Kino.Models.BusinessLogic
             try
             {
                 Adresy adresy = kinoEntities.Adresy.Find(adresId);
-                kinoEntities.Adresy.Remove(adresy);
+                adresy.CzyAktywny = false;
                 kinoEntities.SaveChanges();
             } catch(Exception)
             {

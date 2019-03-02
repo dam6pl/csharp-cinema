@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KinoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KinoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adresy">
           <Key>
             <PropertyRef Name="IdAdresu" />
@@ -16,6 +16,7 @@
           <Property Name="Miejscowosc" Type="nvarchar" MaxLength="50" />
           <Property Name="KodPocztowy" Type="nvarchar" MaxLength="50" />
           <Property Name="Poczta" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Filmy">
           <Key>
@@ -29,6 +30,7 @@
           <Property Name="RokProdukcji" Type="int" />
           <Property Name="CzasTrwania" Type="decimal" Precision="18" Scale="0" />
           <Property Name="LimitWiekowy" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Gatunki">
           <Key>
@@ -37,6 +39,7 @@
           <Property Name="IdGatunku" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
           <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Klienci">
           <Key>
@@ -48,6 +51,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
           <Property Name="DataUrodzenia" Type="date" />
+          <Property Name="CzyAktywny" Type="bit" />
         </EntityType>
         <EntityType Name="Pracownicy">
           <Key>
@@ -59,6 +63,7 @@
           <Property Name="Stanowisko" Type="nvarchar" MaxLength="50" />
           <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
           <Property Name="IdAdresu" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -69,6 +74,7 @@
           <Property Name="Numer" Type="int" />
           <Property Name="LiczbaMiejsc" Type="int" />
           <Property Name="Sala3D" Type="bit" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Seanse">
           <Key>
@@ -79,6 +85,17 @@
           <Property Name="IdFilmu" Type="int" />
           <Property Name="Data" Type="datetime" />
           <Property Name="IdTypuSeansu" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TypyBiletow">
           <Key>
@@ -88,6 +105,7 @@
           <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
           <Property Name="Opis" Type="nvarchar(max)" />
           <Property Name="Cena" Type="money" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TypySeansow">
           <Key>
@@ -97,6 +115,7 @@
           <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
           <Property Name="Opis" Type="nvarchar(max)" />
           <Property Name="WymaganeOkulary3D" Type="bit" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Zamowienia">
           <Key>
@@ -109,6 +128,7 @@
           <Property Name="IdPracownika" Type="int" />
           <Property Name="Status" Type="bit" />
           <Property Name="Data" Type="datetime" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Filmy_Gatunki">
           <End Role="Gatunki" Type="Self.Gatunki" Multiplicity="0..1" />
@@ -226,6 +246,7 @@
           <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seanse" EntityType="Self.Seanse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypyBiletow" EntityType="Self.TypyBiletow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypySeansow" EntityType="Self.TypySeansow" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" Schema="dbo" store:Type="Tables" />
@@ -266,8 +287,7 @@
             <End Role="Zamowienia" EntitySet="Zamowienia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KinoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -283,6 +303,7 @@
           <Property Name="KodPocztowy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Poczta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Pracownicy_Adresy" FromRole="Adresy" ToRole="Pracownicy" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Filmy">
           <Key>
@@ -298,6 +319,7 @@
           <Property Name="LimitWiekowy" Type="Int32" />
           <NavigationProperty Name="Gatunki" Relationship="Self.FK_Filmy_Gatunki" FromRole="Filmy" ToRole="Gatunki" />
           <NavigationProperty Name="Seanse" Relationship="Self.FK_Seanse_Filmy" FromRole="Filmy" ToRole="Seanse" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Gatunki">
           <Key>
@@ -307,6 +329,7 @@
           <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Filmy" Relationship="Self.FK_Filmy_Gatunki" FromRole="Gatunki" ToRole="Filmy" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Klienci">
           <Key>
@@ -319,6 +342,7 @@
           <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DataUrodzenia" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Zamowienia" Relationship="Self.FK_Zamowienia_Klienci" FromRole="Klienci" ToRole="Zamowienia" />
+          <Property Name="CzyAktywny" Type="Boolean" />
         </EntityType>
         <EntityType Name="Pracownicy">
           <Key>
@@ -332,6 +356,7 @@
           <Property Name="IdAdresu" Type="Int32" />
           <NavigationProperty Name="Adresy" Relationship="Self.FK_Pracownicy_Adresy" FromRole="Pracownicy" ToRole="Adresy" />
           <NavigationProperty Name="Zamowienia" Relationship="Self.FK_Zamowienia_Pracownicy" FromRole="Pracownicy" ToRole="Zamowienia" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -343,6 +368,7 @@
           <Property Name="LiczbaMiejsc" Type="Int32" />
           <Property Name="Sala3D" Type="Boolean" />
           <NavigationProperty Name="Seanse" Relationship="Self.FK_Seanse_Sale" FromRole="Sale" ToRole="Seanse" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Seanse">
           <Key>
@@ -357,6 +383,7 @@
           <NavigationProperty Name="Sale" Relationship="Self.FK_Seanse_Sale" FromRole="Seanse" ToRole="Sale" />
           <NavigationProperty Name="TypySeansow" Relationship="Self.FK_Seanse_TypySeansow" FromRole="Seanse" ToRole="TypySeansow" />
           <NavigationProperty Name="Zamowienia" Relationship="Self.FK_Zamowienia_Seanse" FromRole="Seanse" ToRole="Zamowienia" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TypyBiletow">
           <Key>
@@ -367,6 +394,7 @@
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Zamowienia" Relationship="Self.FK_Zamowienia_TypyBiletow" FromRole="TypyBiletow" ToRole="Zamowienia" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TypySeansow">
           <Key>
@@ -377,6 +405,7 @@
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="WymaganeOkulary3D" Type="Boolean" />
           <NavigationProperty Name="Seanse" Relationship="Self.FK_Seanse_TypySeansow" FromRole="TypySeansow" ToRole="Seanse" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Zamowienia">
           <Key>
@@ -393,6 +422,7 @@
           <NavigationProperty Name="Pracownicy" Relationship="Self.FK_Zamowienia_Pracownicy" FromRole="Zamowienia" ToRole="Pracownicy" />
           <NavigationProperty Name="Seanse" Relationship="Self.FK_Zamowienia_Seanse" FromRole="Zamowienia" ToRole="Seanse" />
           <NavigationProperty Name="TypyBiletow" Relationship="Self.FK_Zamowienia_TypyBiletow" FromRole="Zamowienia" ToRole="TypyBiletow" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Pracownicy_Adresy">
           <End Role="Adresy" Type="Self.Adresy" Multiplicity="0..1" />
@@ -549,7 +579,18 @@
             <End Role="TypyBiletow" EntitySet="TypyBiletow" />
             <End Role="Zamowienia" EntitySet="Zamowienia" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="KinoModel.sysdiagrams" />
         </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -559,6 +600,7 @@
           <EntitySetMapping Name="Adresy">
             <EntityTypeMapping TypeName="KinoModel.Adresy">
               <MappingFragment StoreEntitySet="Adresy">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdAdresu" ColumnName="IdAdresu" />
                 <ScalarProperty Name="Ulica" ColumnName="Ulica" />
                 <ScalarProperty Name="NrDomu" ColumnName="NrDomu" />
@@ -572,6 +614,7 @@
           <EntitySetMapping Name="Filmy">
             <EntityTypeMapping TypeName="KinoModel.Filmy">
               <MappingFragment StoreEntitySet="Filmy">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdFilmu" ColumnName="IdFilmu" />
                 <ScalarProperty Name="Tytuł" ColumnName="Tytuł" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
@@ -586,6 +629,7 @@
           <EntitySetMapping Name="Gatunki">
             <EntityTypeMapping TypeName="KinoModel.Gatunki">
               <MappingFragment StoreEntitySet="Gatunki">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdGatunku" ColumnName="IdGatunku" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
@@ -595,6 +639,7 @@
           <EntitySetMapping Name="Klienci">
             <EntityTypeMapping TypeName="KinoModel.Klienci">
               <MappingFragment StoreEntitySet="Klienci">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
                 <ScalarProperty Name="Imie" ColumnName="Imie" />
                 <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
@@ -607,6 +652,7 @@
           <EntitySetMapping Name="Pracownicy">
             <EntityTypeMapping TypeName="KinoModel.Pracownicy">
               <MappingFragment StoreEntitySet="Pracownicy">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
                 <ScalarProperty Name="Imie" ColumnName="Imie" />
                 <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
@@ -619,6 +665,7 @@
           <EntitySetMapping Name="Sale">
             <EntityTypeMapping TypeName="KinoModel.Sale">
               <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdSali" ColumnName="IdSali" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
                 <ScalarProperty Name="Numer" ColumnName="Numer" />
@@ -630,6 +677,7 @@
           <EntitySetMapping Name="Seanse">
             <EntityTypeMapping TypeName="KinoModel.Seanse">
               <MappingFragment StoreEntitySet="Seanse">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdSeansu" ColumnName="IdSeansu" />
                 <ScalarProperty Name="IdSali" ColumnName="IdSali" />
                 <ScalarProperty Name="IdFilmu" ColumnName="IdFilmu" />
@@ -641,6 +689,7 @@
           <EntitySetMapping Name="TypyBiletow">
             <EntityTypeMapping TypeName="KinoModel.TypyBiletow">
               <MappingFragment StoreEntitySet="TypyBiletow">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdTypuBiletu" ColumnName="IdTypuBiletu" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
@@ -651,6 +700,7 @@
           <EntitySetMapping Name="TypySeansow">
             <EntityTypeMapping TypeName="KinoModel.TypySeansow">
               <MappingFragment StoreEntitySet="TypySeansow">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdTypuSeansu" ColumnName="IdTypuSeansu" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
@@ -661,6 +711,7 @@
           <EntitySetMapping Name="Zamowienia">
             <EntityTypeMapping TypeName="KinoModel.Zamowienia">
               <MappingFragment StoreEntitySet="Zamowienia">
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
                 <ScalarProperty Name="IdZamowienia" ColumnName="IdZamowienia" />
                 <ScalarProperty Name="IdSeansu" ColumnName="IdSeansu" />
                 <ScalarProperty Name="IdKlienta" ColumnName="IdKlienta" />
@@ -668,6 +719,17 @@
                 <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KinoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

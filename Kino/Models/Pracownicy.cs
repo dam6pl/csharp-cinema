@@ -26,6 +26,7 @@ namespace Kino.Models
         public string Stanowisko { get; set; }
         public string Telefon { get; set; }
         public Nullable<int> IdAdresu { get; set; }
+        public bool CzyAktywny { get; set; }
     
         public virtual Adresy Adresy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

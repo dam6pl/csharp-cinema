@@ -35,5 +35,6 @@ namespace Kino.Models
         public virtual DbSet<TypyBiletow> TypyBiletow { get; set; }
         public virtual DbSet<TypySeansow> TypySeansow { get; set; }
         public virtual DbSet<Zamowienia> Zamowienia { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

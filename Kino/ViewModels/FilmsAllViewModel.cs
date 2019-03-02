@@ -56,8 +56,7 @@ namespace Kino.ViewModels
             if (SelectedFilm != null && this.removeAlert() == MessageBoxResult.Yes)
             {
                 if (!new FilmsB(kinoEntities).removeFilm(SelectedFilm.IdFilmu))
-                    ShowMessageBox("Rekord nie może zostać usunięty! " +
-                        "\nIstnieją seanse powiązane z tym rekordem.");
+                    ShowMessageBox("Rekord nie może zostać usunięty!");
                 load();
             }
         }
@@ -129,10 +128,10 @@ namespace Kino.ViewModels
 
             if (FindField == "Tytuł")
                 List = new ObservableCollection<FilmsForAllView>(List.Where(item => item.Tytul != null
-                && item.Tytul.StartsWith(FindTextBox)));
+                && item.Tytul.Contains(FindTextBox)));
             else if (FindField == "Reżyser")
                 List = new ObservableCollection<FilmsForAllView>(List.Where(item => item.Rezyser != null
-                && item.Rezyser.StartsWith(FindTextBox)));
+                && item.Rezyser.Contains(FindTextBox)));
         }
 
         public override List<String> getComboboxFindList()

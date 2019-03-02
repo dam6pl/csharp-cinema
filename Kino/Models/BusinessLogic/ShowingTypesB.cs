@@ -21,6 +21,7 @@ namespace Kino.Models.BusinessLogic
             return
                 (
                     from typSeansu in kinoEntities.TypySeansow
+                    where typSeansu.CzyAktywny == true
                     select new ComboboxKeyAndValue
                     {
                         Key = typSeansu.IdTypuSeansu,

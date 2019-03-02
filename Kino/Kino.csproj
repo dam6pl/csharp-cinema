@@ -142,6 +142,9 @@
     <Compile Include="Models\Seanse.cs">
       <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>KinoEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TypyBiletow.cs">
       <DependentUpon>KinoEntities.tt</DependentUpon>
     </Compile>

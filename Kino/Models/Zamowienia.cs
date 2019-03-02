@@ -21,6 +21,7 @@ namespace Kino.Models
         public Nullable<int> IdPracownika { get; set; }
         public Nullable<bool> Status { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
+        public bool CzyAktywny { get; set; }
     
         public virtual Klienci Klienci { get; set; }
         public virtual Pracownicy Pracownicy { get; set; }

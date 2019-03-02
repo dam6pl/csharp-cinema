@@ -28,6 +28,7 @@ namespace Kino.Models
         public Nullable<int> RokProdukcji { get; set; }
         public Nullable<decimal> CzasTrwania { get; set; }
         public Nullable<int> LimitWiekowy { get; set; }
+        public bool CzyAktywny { get; set; }
     
         public virtual Gatunki Gatunki { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

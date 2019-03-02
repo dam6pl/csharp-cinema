@@ -24,6 +24,7 @@ namespace Kino.Models
         public string Nazwa { get; set; }
         public string Opis { get; set; }
         public Nullable<bool> WymaganeOkulary3D { get; set; }
+        public bool CzyAktywny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Seanse> Seanse { get; set; }

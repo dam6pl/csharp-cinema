@@ -24,6 +24,7 @@
         <AssociationConnector Association="KinoModel.FK_Seanse_TypySeansow" ManuallyRouted="false" />
         <AssociationConnector Association="KinoModel.FK_Zamowienia_Seanse" ManuallyRouted="false" />
         <AssociationConnector Association="KinoModel.FK_Zamowienia_TypyBiletow" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KinoModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

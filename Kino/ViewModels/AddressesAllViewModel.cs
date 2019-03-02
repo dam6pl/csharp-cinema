@@ -58,8 +58,7 @@ namespace Kino.ViewModels
             if (SelectedAddress != null && this.removeAlert() == MessageBoxResult.Yes)
             {
                 if (!new AddressesB(kinoEntities).removeAddress(SelectedAddress.IdAdresu))
-                    ShowMessageBox("Rekord nie może zostać usunięty! " +
-                        "\nIstnieją pracownicy powiązani z tym rekordem.");
+                    ShowMessageBox("Rekord nie może zostać usunięty!");
                 load();
             }
         }
@@ -116,9 +115,9 @@ namespace Kino.ViewModels
             load();
 
             if (FindField == "Ulica")
-                List = new ObservableCollection<Adresy>(List.Where(item => item.Ulica != null && item.Ulica.StartsWith(FindTextBox)));
+                List = new ObservableCollection<Adresy>(List.Where(item => item.Ulica != null && item.Ulica.Contains(FindTextBox)));
             else if (FindField == "Miejscowość")
-                List = new ObservableCollection<Adresy>(List.Where(item => item.Miejscowosc != null && item.Miejscowosc.StartsWith(FindTextBox)));
+                List = new ObservableCollection<Adresy>(List.Where(item => item.Miejscowosc != null && item.Miejscowosc.Contains(FindTextBox)));
 
         }
 

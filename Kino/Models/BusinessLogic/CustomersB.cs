@@ -22,6 +22,7 @@ namespace Kino.Models.BusinessLogic
             return new ObservableCollection<Klienci>
                 (
                 from klient in kinoEntities.Klienci
+                where klient.CzyAktywny == true
                 select klient
                 );
         }
@@ -31,7 +32,7 @@ namespace Kino.Models.BusinessLogic
             try
             {
                 Klienci klienci = kinoEntities.Klienci.Find(klientId);
-                kinoEntities.Klienci.Remove(klienci);
+                klienci.CzyAktywny = false;
                 kinoEntities.SaveChanges();
             }
             catch (Exception)

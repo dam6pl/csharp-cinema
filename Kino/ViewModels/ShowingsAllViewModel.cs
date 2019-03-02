@@ -56,8 +56,7 @@ namespace Kino.ViewModels
             if (SelectedShowing != null && this.removeAlert() == MessageBoxResult.Yes)
             {
                 if (!new ShowingsB(kinoEntities).removeShowing(SelectedShowing.IdSeansu))
-                    ShowMessageBox("Rekord nie może zostać usunięty! " +
-                        "\nIstnieją zamówienia powiązane z tym rekordem.");
+                    ShowMessageBox("Rekord nie może zostać usunięty!");
                 load();
             }
         }
@@ -115,10 +114,10 @@ namespace Kino.ViewModels
 
             if (FindField == "Film")
                 List = new ObservableCollection<ShowingsForAllView>(List.Where(item => item.NazwaFilmu != null 
-                && item.NazwaFilmu.StartsWith(FindTextBox)));
+                && item.NazwaFilmu.Contains(FindTextBox)));
             else if (FindField == "Sala")
                 List = new ObservableCollection<ShowingsForAllView>(List.Where(item => item.NazwaSali != null
-                && item.NazwaSali.StartsWith(FindTextBox)));
+                && item.NazwaSali.Contains(FindTextBox)));
 
         }
 

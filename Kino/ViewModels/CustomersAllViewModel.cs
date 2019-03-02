@@ -56,8 +56,7 @@ namespace Kino.ViewModels
             if (SelectedCustomer != null && this.removeAlert() == MessageBoxResult.Yes)
             {
                 if (!new CustomersB(kinoEntities).removeCustomer(SelectedCustomer.IdKlienta))
-                    ShowMessageBox("Rekord nie może zostać usunięty! " +
-                        "\nIstnieją zamówienia powiązane z tym rekordem.");
+                    ShowMessageBox("Rekord nie może zostać usunięty!");
                 load();
             }
         }
@@ -108,10 +107,10 @@ namespace Kino.ViewModels
 
             if (FindField == "Imię")
                 List = new ObservableCollection<Klienci>(List.Where(item => item.Imie != null
-                && item.Imie.StartsWith(FindTextBox)));
+                && item.Imie.Contains(FindTextBox)));
             else if (FindField == "Nazwisko")
                 List = new ObservableCollection<Klienci>(List.Where(item => item.Nazwisko != null
-                && item.Nazwisko.StartsWith(FindTextBox)));
+                && item.Nazwisko.Contains(FindTextBox)));
         }
 
         public override List<String> getComboboxFindList()

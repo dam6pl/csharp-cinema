@@ -22,6 +22,7 @@ namespace Kino.Models.BusinessLogic
             return new ObservableCollection<Sale>
                 (
                 from sala in kinoEntities.Sale
+                where sala.CzyAktywny == true
                 select sala
                 );
         }
@@ -31,6 +32,7 @@ namespace Kino.Models.BusinessLogic
             return
                 (
                     from sala in kinoEntities.Sale
+                    where sala.CzyAktywny == true
                     select new ComboboxKeyAndValue
                     {
                         Key = sala.IdSali,
@@ -44,7 +46,7 @@ namespace Kino.Models.BusinessLogic
             try
             {
                 Sale sale = kinoEntities.Sale.Find(salaId);
-                kinoEntities.Sale.Remove(sale);
+                sale.CzyAktywny = false;
                 kinoEntities.SaveChanges();
             }
             catch (Exception)

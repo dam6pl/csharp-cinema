@@ -21,6 +21,7 @@ namespace Kino.Models.BusinessLogic
              return
                 (
                     from gatunek in kinoEntities.Gatunki
+                    where gatunek.CzyAktywny == true
                     select new ComboboxKeyAndValue
                     {
                         Key = gatunek.IdGatunku,

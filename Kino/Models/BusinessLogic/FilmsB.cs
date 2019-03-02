@@ -22,6 +22,7 @@ namespace Kino.Models.BusinessLogic
             return new ObservableCollection<FilmsForAllView>
                 (
                 from film in kinoEntities.Filmy
+                where film.CzyAktywny == true
                 select new FilmsForAllView
                     {
                         IdFilmu = film.IdFilmu,
@@ -41,6 +42,7 @@ namespace Kino.Models.BusinessLogic
             return
                 (
                     from film in kinoEntities.Filmy
+                    where film.CzyAktywny == true
                     select new ComboboxKeyAndValue
                     {
                         Key = film.IdFilmu,
@@ -54,7 +56,7 @@ namespace Kino.Models.BusinessLogic
             try
             {
                 Filmy filmy = kinoEntities.Filmy.Find(filmId);
-                kinoEntities.Filmy.Remove(filmy);
+                filmy.CzyAktywny = false;
                 kinoEntities.SaveChanges();
             }
             catch (Exception)

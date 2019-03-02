@@ -54,8 +54,7 @@ namespace Kino.ViewModels
             if (SelectedEmployee != null && this.removeAlert() == MessageBoxResult.Yes)
             {
                 if (!new EmployeesB(kinoEntities).removeEmployee(SelectedEmployee.IdPracownika))
-                    ShowMessageBox("Rekord nie może zostać usunięty! " +
-                        "\nIstnieją zamówienia powiązane z tym rekordem.");
+                    ShowMessageBox("Rekord nie może zostać usunięty!");
                 load();
             }
         }
@@ -73,26 +72,6 @@ namespace Kino.ViewModels
             }
         }
         #endregion Helpers
-
-        #region Properties
-        private FilmsForAllView _SelectedFilm;
-        public FilmsForAllView SelectedFilm
-        {
-            get
-            {
-                return _SelectedFilm;
-            }
-            set
-            {
-                if (_SelectedFilm != value)
-                {
-                    _SelectedFilm = value;
-                    Messenger.Default.Send(_SelectedFilm);
-                    onRequestClose();
-                }
-            }
-        }
-        #endregion
 
         #region Sort and Find
         public override void Sort(bool order)
@@ -133,13 +112,13 @@ namespace Kino.ViewModels
 
             if (FindField == "Imię")
                 List = new ObservableCollection<EmployeesForAllView>(List.Where(item => item.Imie != null
-                && item.Imie.StartsWith(FindTextBox)));
+                && item.Imie.Contains(FindTextBox)));
             else if (FindField == "Nazwisko")
                 List = new ObservableCollection<EmployeesForAllView>(List.Where(item => item.Nazwisko != null
-                && item.Nazwisko.StartsWith(FindTextBox)));
+                && item.Nazwisko.Contains(FindTextBox)));
             else if (FindField == "Stanowisko")
                 List = new ObservableCollection<EmployeesForAllView>(List.Where(item => item.Stanowisko != null
-                && item.Stanowisko.StartsWith(FindTextBox)));
+                && item.Stanowisko.Contains(FindTextBox)));
         }
 
         public override List<String> getComboboxFindList()

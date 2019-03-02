@@ -139,7 +139,6 @@ namespace Kino.ViewModels
         }
         #endregion Helpers
 
-
         #region Validations
         public string Error
         {

@@ -22,6 +22,7 @@ namespace Kino.Models.BusinessLogic
             return new ObservableCollection<OrdersForAllView>
                 (
                 from zamowienie in kinoEntities.Zamowienia
+                where zamowienie.CzyAktywny == true
                 select new OrdersForAllView
                     {
                         IdZamowienia = zamowienie.IdZamowienia,
@@ -41,7 +42,7 @@ namespace Kino.Models.BusinessLogic
             try
             {
                 Zamowienia zamowienie = kinoEntities.Zamowienia.Find(orderId);
-                kinoEntities.Zamowienia.Remove(zamowienie);
+                zamowienie.CzyAktywny = false;
                 kinoEntities.SaveChanges();
             }
             catch (Exception)

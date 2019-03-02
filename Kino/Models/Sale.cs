@@ -25,6 +25,7 @@ namespace Kino.Models
         public Nullable<int> Numer { get; set; }
         public Nullable<int> LiczbaMiejsc { get; set; }
         public Nullable<bool> Sala3D { get; set; }
+        public bool CzyAktywny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Seanse> Seanse { get; set; }

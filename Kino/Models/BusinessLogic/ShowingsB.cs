@@ -22,6 +22,7 @@ namespace Kino.Models.BusinessLogic
             return new ObservableCollection<ShowingsForAllView>
                 (
                 from seans in kinoEntities.Seanse
+                where seans.CzyAktywny == true
                 select new ShowingsForAllView
                     {
                         IdSeansu = seans.IdSeansu,
@@ -38,7 +39,7 @@ namespace Kino.Models.BusinessLogic
             try
             {
                 Seanse seanse = kinoEntities.Seanse.Find(seansId);
-                kinoEntities.Seanse.Remove(seanse);
+                seanse.CzyAktywny = false;
                 kinoEntities.SaveChanges();
             }
             catch (Exception)
