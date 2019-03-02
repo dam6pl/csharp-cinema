@@ -39,7 +39,43 @@ namespace Kino.ViewModels
                 if (_obliczCommand == null)
                     _obliczCommand = new BaseCommand(() => GetReportClick());
 
-                return new BaseCommand(() => GetReportClick());
+                return _obliczCommand;
+            }
+        }
+
+        private BaseCommand _ClearPracownikCommand;
+        public ICommand ClearPracownikCommand
+        {
+            get
+            {
+                if (_ClearPracownikCommand == null)
+                    _ClearPracownikCommand = new BaseCommand(() => ClearPracownik());
+
+                return _ClearPracownikCommand;
+            }
+        }
+
+        private BaseCommand _ClearSalaCommand;
+        public ICommand ClearSalaCommand
+        {
+            get
+            {
+                if (_ClearSalaCommand == null)
+                    _ClearSalaCommand = new BaseCommand(() => ClearSala());
+
+                return _ClearSalaCommand;
+            }
+        }
+
+        private BaseCommand _ClearFilmCommand;
+        public ICommand ClearFilmCommand
+        {
+            get
+            {
+                if (_ClearFilmCommand == null)
+                    _ClearFilmCommand = new BaseCommand(() => ClearFilm());
+
+                return _ClearFilmCommand;
             }
         }
         #endregion
@@ -91,7 +127,7 @@ namespace Kino.ViewModels
                 if (_IdPracownika != value)
                 {
                     _IdPracownika = value;
-                    OnPropertyChanged(() => _IdPracownika);
+                    OnPropertyChanged(() => IdPracownika);
                 }
             }
         }
@@ -115,7 +151,7 @@ namespace Kino.ViewModels
                 if (_IdSali != value)
                 {
                     _IdSali = value;
-                    OnPropertyChanged(() => _IdSali);
+                    OnPropertyChanged(() => IdSali);
                 }
             }
         }
@@ -139,7 +175,7 @@ namespace Kino.ViewModels
                 if (_IdFilmu != value)
                 {
                     _IdFilmu = value;
-                    OnPropertyChanged(() => _IdFilmu);
+                    OnPropertyChanged(() => IdFilmu);
                 }
             }
         }
@@ -215,9 +251,24 @@ namespace Kino.ViewModels
                 IdFilmu = IdFilmu
             };
 
-            ShowingCount = salesReport.getShowingsCount();
-            TicketsCount = salesReport.getTicketsCount();
-            IncomeCount = salesReport.getIncomeCount();
+            ShowingCount = salesReport.getShowingsCount() ?? 0;
+            TicketsCount = salesReport.getTicketsCount() ?? 0;
+            IncomeCount = salesReport.getIncomeCount() ?? 0;
+        }
+
+        private void ClearPracownik()
+        {
+            this.IdPracownika = null;
+        }
+
+        private void ClearSala()
+        {
+            this.IdSali = null;
+        }
+
+        private void ClearFilm()
+        {
+            this.IdFilmu = null;
         }
         #endregion
     }

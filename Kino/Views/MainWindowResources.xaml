@@ -143,8 +143,17 @@
 
     <Style x:Key="ButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
         <Setter Property="Margin" Value="5 0" />
-        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontSize" Value="15" />
         <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="ClearButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">

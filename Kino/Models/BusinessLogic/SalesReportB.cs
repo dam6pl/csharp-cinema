@@ -10,14 +10,30 @@ namespace Kino.Models.BusinessLogic
 {
     class SalesReportB : DatabaseClass
     {
+        #region Fields
+        private IQueryable<Zamowienia> _Orders;
+        #endregion
+
         #region Constructor
         public SalesReportB(KinoEntities kinoEntities)
             : base(kinoEntities)
         {
+
         }
         #endregion
 
         #region Properties
+        public IQueryable<Zamowienia> Orders
+        {
+            get
+            {
+                if (_Orders == null)
+                    _Orders = getOrders();
+
+                return _Orders;
+            }
+        }
+
         private DateTime _OdDaty;
         public DateTime OdDaty
         {
@@ -100,12 +116,13 @@ namespace Kino.Models.BusinessLogic
         #endregion
 
         #region Helpers
-        public int? getShowingsCount()
+        private IQueryable<Zamowienia> getOrders()
         {
-            var zapytanie =
+            var databaseRequest =
                 (
                    from zamowienie in kinoEntities.Zamowienia
                    where
+                       zamowienie.CzyAktywny == true &&
                        zamowienie.Status == true &&
                        zamowienie.Data >= OdDaty &&
                        zamowienie.Data <= DoDaty
@@ -114,140 +131,56 @@ namespace Kino.Models.BusinessLogic
 
             if (IdPracownika != null)
             {
-                zapytanie =
+                databaseRequest =
                     (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.IdPracownika == IdPracownika
+                        from zamowienie in databaseRequest
+                        where zamowienie.IdPracownika == IdPracownika
                         select zamowienie
                     );
             }
 
             if (IdSali != null)
             {
-                zapytanie =
+                databaseRequest =
                     (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.Seanse.IdSali == IdSali
+                        from zamowienie in databaseRequest
+                        where zamowienie.Seanse.IdSali == IdSali
                         select zamowienie
                     );
             }
 
             if (IdFilmu != null)
             {
-                zapytanie =
+                databaseRequest =
                     (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.Seanse.IdFilmu == IdFilmu
+                        from zamowienie in databaseRequest
+                        where zamowienie.Seanse.IdFilmu == IdFilmu
                         select zamowienie
                     );
             }
 
+            return databaseRequest;
+        }
+
+        public int? getShowingsCount()
+        {
             return 
                 (
-                    from zamowienie in zapytanie
+                    from zamowienie in this.Orders
                     select zamowienie.IdSeansu
                 ).Distinct().Count();
         }
 
         public int? getTicketsCount()
         {
-            var zapytanie =
-                (
-                   from zamowienie in kinoEntities.Zamowienia
-                   where
-                       zamowienie.Status == true &&
-                       zamowienie.Data >= OdDaty &&
-                       zamowienie.Data <= DoDaty
-                   select zamowienie
-               );
-
-            if (IdPracownika != null)
-            {
-                zapytanie =
-                    (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.IdPracownika == IdPracownika
-                        select zamowienie
-                    );
-            }
-
-            if (IdSali != null)
-            {
-                zapytanie =
-                    (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.Seanse.IdSali == IdSali
-                        select zamowienie
-                    );
-            }
-
-            if (IdFilmu != null)
-            {
-                zapytanie =
-                    (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.Seanse.IdFilmu == IdFilmu
-                        select zamowienie
-                    );
-            }
-
-            return zapytanie.Count();
+            return this.Orders.Count();
         }
 
         public decimal? getIncomeCount()
         {
-            var zapytanie =
-                (
-                   from zamowienie in kinoEntities.Zamowienia
-                   where
-                       zamowienie.Status == true &&
-                       zamowienie.Data >= OdDaty &&
-                       zamowienie.Data <= DoDaty
-                   select zamowienie
-               );
-
-            if (IdPracownika != null)
-            {
-                zapytanie =
-                    (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.IdPracownika == IdPracownika
-                        select zamowienie
-                    );
-            }
-
-            if (IdSali != null)
-            {
-                zapytanie =
-                    (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.Seanse.IdSali == IdSali
-                        select zamowienie
-                    );
-            }
-
-            if (IdFilmu != null)
-            {
-                zapytanie =
-                    (
-                        from zamowienie in zapytanie
-                        where
-                            zamowienie.Seanse.IdFilmu == IdFilmu
-                        select zamowienie
-                    );
-            }
-
             return 
                 (
-                    from zamowienie in zapytanie
+                    from zamowienie in this.Orders
                     select zamowienie.TypyBiletow.Cena
                 ).Sum();
         }
