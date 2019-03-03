@@ -20,6 +20,7 @@ namespace Kino.ViewModels
             base.ViewType = "ShowingTypes";
 
             this.item = new TypySeansow();
+            this.item.CzyAktywny = true;
         }
         #endregion Constructor
 

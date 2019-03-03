@@ -31,7 +31,10 @@ namespace Kino.ViewModels
             base.ViewType = "Showings";
 
             if (id == null)
+            {
                 this.item = new Seanse();
+                this.item.CzyAktywny = true;
+            }
             else
             {
                 this.item = kinoEntities.Seanse.Find(id);

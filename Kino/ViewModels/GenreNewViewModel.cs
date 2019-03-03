@@ -20,6 +20,7 @@ namespace Kino.ViewModels
             base.ViewType = "Genre";
 
             this.item = new Gatunki();
+            this.item.CzyAktywny = true;
         }
         #endregion Constructor
 

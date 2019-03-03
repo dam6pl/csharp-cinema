@@ -22,7 +22,10 @@ namespace Kino.ViewModels
             base.ViewType = "Customers";
 
             if (id == null)
+            {
                 this.item = new Klienci();
+                this.item.CzyAktywny = true;
+            }
             else
                 this.item = kinoEntities.Klienci.Find(id);
         }

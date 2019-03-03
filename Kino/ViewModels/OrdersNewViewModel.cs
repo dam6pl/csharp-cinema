@@ -35,6 +35,7 @@ namespace Kino.ViewModels
             if (id == null)
             {
                 this.item = new Zamowienia();
+                this.item.CzyAktywny = true;
                 this.Status = true;
                 this.Data = DateTime.Now;
             }

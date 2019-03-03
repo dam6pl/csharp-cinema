@@ -20,6 +20,7 @@ namespace Kino.ViewModels
             base.ViewType = "TicketTypes";
 
             this.item = new TypyBiletow();
+            this.item.CzyAktywny = true;
         }
         #endregion Constructor
 

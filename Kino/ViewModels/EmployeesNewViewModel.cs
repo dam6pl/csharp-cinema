@@ -28,7 +28,10 @@ namespace Kino.ViewModels
             base.ViewType = "Empoyees";
 
             if (id == null)
+            {
                 this.item = new Pracownicy();
+                this.item.CzyAktywny = true;
+            }
             else
             {
                 this.item = kinoEntities.Pracownicy.Find(id);

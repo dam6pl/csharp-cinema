@@ -20,7 +20,10 @@ namespace Kino.ViewModels
             base.ViewType = "Addresses";
 
             if (id == null)
+            {
                 this.item = new Adresy();
+                this.item.CzyAktywny = true;
+            }
             else
                 this.item = kinoEntities.Adresy.Find(id);
         }

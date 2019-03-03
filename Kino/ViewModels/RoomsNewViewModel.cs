@@ -20,7 +20,10 @@ namespace Kino.ViewModels
             base.ViewType = "Rooms";
 
             if (id == null)
+            {
                 this.item = new Sale();
+                this.item.CzyAktywny = true;
+            }
             else
                 this.item = kinoEntities.Sale.Find(id);
         }

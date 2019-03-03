@@ -29,7 +29,10 @@ namespace Kino.ViewModels
             base.ViewType = "Films";
 
             if (id == null)
+            {
                 this.item = new Filmy();
+                this.item.CzyAktywny = true;
+            }
             else
                 this.item = kinoEntities.Filmy.Find(id);
         }
